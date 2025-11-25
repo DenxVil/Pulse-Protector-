@@ -347,10 +347,10 @@ function determineTriageCategory(vitals, overallScore) {
 
     // YELLOW - Delayed
     if (
-        cns.gcs >= 9 && cns.gcs <= 13 ||
-        respiratory.spo2 >= 90 && respiratory.spo2 < 95 ||
-        cardio.bpSystolic >= 70 && cardio.bpSystolic < 90 ||
-        circulation.bloodLoss >= 500 && circulation.bloodLoss < 1500 ||
+        (cns.gcs >= 9 && cns.gcs <= 13) ||
+        (respiratory.spo2 >= 90 && respiratory.spo2 < 95) ||
+        (cardio.bpSystolic >= 70 && cardio.bpSystolic < 90) ||
+        (circulation.bloodLoss >= 500 && circulation.bloodLoss < 1500) ||
         overallScore < 70
     ) {
         return 'YELLOW';

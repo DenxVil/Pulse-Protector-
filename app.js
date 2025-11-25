@@ -914,7 +914,9 @@
         const a = document.createElement('a');
         a.href = url;
         a.download = `trauma-assessment-${Date.now()}.json`;
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
         URL.revokeObjectURL(url);
     }
 
@@ -1038,7 +1040,9 @@
         const a = document.createElement('a');
         a.href = url;
         a.download = `trauma-report-${Date.now()}.html`;
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
         URL.revokeObjectURL(url);
     }
 
