@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smart Trauma Vitals Assessment Pad - AI-powered trauma triage system demo using START protocol">
+    <meta name="keywords" content="trauma, triage, medical, AI, START protocol, vitals monitoring">
+    <title>Smart Trauma Assessment Pad - Interactive Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1>Smart Trauma Assessment Pad</h1>
+                    <span class="subtitle">AI-Powered Triage Demo</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" id="toggleContrastBtn" aria-label="Toggle high contrast mode">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 3a9 9 0 000 18 9 9 0 000-18zm0 16V5a7 7 0 010 14z"/>
+                    </svg>
+                    Contrast
+                </button>
+                <span class="simulation-status" aria-live="polite">
+                    <span class="simulation-indicator running" id="simIndicator"></span>
+                    <span id="simStatus">Simulation Running</span>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" role="main">
+        <!-- Scenario Selector -->
+        <section class="scenario-section" aria-labelledby="scenario-heading">
+            <div class="scenario-selector">
+                <div class="scenario-header">
+                    <h2 id="scenario-heading">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        Trauma Scenario Simulator
+                    </h2>
+                    <div class="scenario-controls">
+                        <div class="select-wrapper">
+                            <select id="scenarioSelect" aria-label="Select trauma scenario">
+                                <option value="">-- Select a Scenario --</option>
+                                <option value="rta_shock">Road Traffic Accident - Hemorrhagic Shock</option>
+                                <option value="drowning">Drowning Victim - Respiratory Distress</option>
+                                <option value="electrocution">Electrocution - Cardiac Arrest</option>
+                                <option value="fall_head_injury">Fall from Height - Head Injury</option>
+                                <option value="mci_multiple">Mass Casualty - Explosion Victim</option>
+                                <option value="minor_injury">Minor Trauma - Stable Patient</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" id="loadScenarioBtn">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
+                            </svg>
+                            Load Scenario
+                        </button>
+                    </div>
+                </div>
+                <div class="scenario-description" id="scenarioDescription" aria-live="polite">
+                    Select a trauma scenario to begin the simulation. Each scenario demonstrates different vital sign patterns and triage decisions based on START protocol.
+                </div>
+            </div>
+        </section>
+
+        <!-- Alerts Panel -->
+        <section class="alerts-panel" id="alertsPanel" aria-label="Critical Alerts" role="alert">
+            <!-- Dynamic alerts will be inserted here -->
+        </section>
+
+        <!-- Vitals Grid -->
+        <section class="vitals-grid" aria-label="Vital Signs Monitoring">
+            <!-- CNS Card -->
+            <article class="vital-card" id="cnsCard">
+                <div class="vital-card-header">
+                    <div class="vital-card-title">
+                        <div class="icon cns" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2a9 9 0 00-9 9c0 4.97 9 13 9 13s9-8.03 9-13a9 9 0 00-9-9zm0 11a2 2 0 110-4 2 2 0 010 4z"/>
+                            </svg>
+                        </div>
+                        <span>Central Nervous System</span>
+                    </div>
+                    <div class="vital-card-status">
+                        <span class="status-indicator normal" id="cnsStatus"></span>
+                        <span id="cnsStatusText">Normal</span>
+                    </div>
+                </div>
+                <div class="vital-card-body">
+                    <div class="vital-items">
+                        <div class="vital-item tooltip" data-tooltip="Glasgow Coma Scale: 3-15, measures consciousness level">
+                            <span class="vital-item-label">GCS Score</span>
+                            <span class="vital-item-value normal" id="gcsValue">15</span>
+                        </div>
+                        <div class="gcs-breakdown" aria-label="GCS Component Scores">
+                            <div class="gcs-component">
+                                <div class="gcs-component-label">Eye</div>
+                                <div class="gcs-component-value" id="gcsEye">4</div>
+                            </div>
+                            <div class="gcs-component">
+                                <div class="gcs-component-label">Verbal</div>
+                                <div class="gcs-component-value" id="gcsVerbal">5</div>
+                            </div>
+                            <div class="gcs-component">
+                                <div class="gcs-component-label">Motor</div>
+                                <div class="gcs-component-value" id="gcsMotor">6</div>
+                            </div>
+                        </div>
+                        <div class="vital-item tooltip" data-tooltip="Pupil response to light: reactive, sluggish, or fixed">
+                            <span class="vital-item-label">Pupil Reactivity</span>
+                            <span class="vital-item-value normal" id="pupilsValue">Reactive</span>
+                        </div>
+                        <div class="vital-item tooltip" data-tooltip="AVPU scale: Alert, Verbal, Pain, Unresponsive">
+                            <span class="vital-item-label">Consciousness</span>
+                            <span class="vital-item-value normal" id="consciousnessValue">Alert</span>
+                        </div>
+                    </div>
+                    <div class="mini-chart" id="cnsChart" aria-label="GCS trend chart">
+                        <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+                            <polyline id="gcsLine" fill="none" stroke="#10b981" stroke-width="2" points=""/>
+                        </svg>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Respiratory Card -->
+            <article class="vital-card" id="respiratoryCard">
+                <div class="vital-card-header">
+                    <div class="vital-card-title">
+                        <div class="icon respiratory" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                            </svg>
+                        </div>
+                        <span>Respiratory System</span>
+                    </div>
+                    <div class="vital-card-status">
+                        <span class="status-indicator normal" id="respStatus"></span>
+                        <span id="respStatusText">Normal</span>
+                    </div>
+                </div>
+                <div class="vital-card-body">
+                    <div class="vital-items">
+                        <div class="vital-item tooltip" data-tooltip="Normal: 12-20 breaths/min. <10 or >29 is critical">
+                            <span class="vital-item-label">Respiratory Rate</span>
+                            <span class="vital-item-value normal" id="rrValue">16<span class="vital-item-unit">breaths/min</span></span>
+                        </div>
+                        <div class="vital-item tooltip" data-tooltip="Oxygen saturation. Normal: 95-100%. <90% is critical">
+                            <span class="vital-item-label">SpO2</span>
+                            <span class="vital-item-value normal" id="spo2Value">98<span class="vital-item-unit">%</span></span>
+                        </div>
+                        <div class="vital-item tooltip" data-tooltip="Breathing pattern assessment">
+                            <span class="vital-item-label">Breathing Pattern</span>
+                            <span class="vital-item-value normal" id="breathingPatternValue">Normal</span>
+                        </div>
+                    </div>
+                    <div class="mini-chart" id="respChart" aria-label="SpO2 trend chart">
+                        <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+                            <polyline id="spo2Line" fill="none" stroke="#06b6d4" stroke-width="2" points=""/>
+                        </svg>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Cardiovascular Card -->
+            <article class="vital-card" id="cardioCard">
+                <div class="vital-card-header">
+                    <div class="vital-card-title">
+                        <div class="icon cardio" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </div>
+                        <span>Cardiovascular System</span>
+                    </div>
+                    <div class="vital-card-status">
+                        <span class="status-indicator normal" id="cardioStatus"></span>
+                        <span id="cardioStatusText">Normal</span>
+                    </div>
+                </div>
+                <div class="vital-card-body">
+                    <div class="vital-items">
+                        <div class="vital-item tooltip" data-tooltip="Normal: 60-100 BPM. <40 or >150 is critical">
+                            <span class="vital-item-label">Heart Rate</span>
+                            <span class="vital-item-value normal" id="hrValue">75<span class="vital-item-unit">BPM</span></span>
+                        </div>
+                        <div class="vital-item tooltip" data-tooltip="Normal: 90-140/60-90 mmHg. <90 systolic is hypotension">
+                            <span class="vital-item-label">Blood Pressure</span>
+                            <span class="vital-item-value normal" id="bpValue">120/80<span class="vital-item-unit">mmHg</span></span>
+                        </div>
+                        <div class="vital-item tooltip" data-tooltip="Normal: ≤2 seconds. >2s indicates poor perfusion">
+                            <span class="vital-item-label">Capillary Refill</span>
+                            <span class="vital-item-value normal" id="crtValue">2<span class="vital-item-unit">seconds</span></span>
+                        </div>
+                        <div class="vital-item tooltip" data-tooltip="Pulse strength assessment">
+                            <span class="vital-item-label">Pulse Strength</span>
+                            <span class="vital-item-value normal" id="pulseValue">Strong</span>
+                        </div>
+                    </div>
+                    <div class="mini-chart" id="cardioChart" aria-label="Heart rate trend chart">
+                        <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+                            <polyline id="hrLine" fill="none" stroke="#ef4444" stroke-width="2" points=""/>
+                        </svg>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Circulation Card -->
+            <article class="vital-card" id="circulationCard">
+                <div class="vital-card-header">
+                    <div class="vital-card-title">
+                        <div class="icon circulation" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9A7.902 7.902 0 014 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1A7.902 7.902 0 0120 12c0 4.42-3.58 8-8 8z"/>
+                            </svg>
+                        </div>
+                        <span>Circulation Assessment</span>
+                    </div>
+                    <div class="vital-card-status">
+                        <span class="status-indicator normal" id="circStatus"></span>
+                        <span id="circStatusText">Normal</span>
+                    </div>
+                </div>
+                <div class="vital-card-body">
+                    <div class="vital-items">
+                        <div class="vital-item tooltip" data-tooltip="Skin color assessment for perfusion">
+                            <span class="vital-item-label">Skin Color</span>
+                            <span class="vital-item-value normal" id="skinColorValue">Normal</span>
+                        </div>
+                        <div class="vital-item tooltip" data-tooltip="Normal: 36.1-37.2°C. <35°C is hypothermia">
+                            <span class="vital-item-label">Temperature</span>
+                            <span class="vital-item-value normal" id="tempValue">36.8<span class="vital-item-unit">°C</span></span>
+                        </div>
+                        <div class="vital-item tooltip" data-tooltip="Estimated blood loss. >1500ml is Class III hemorrhage">
+                            <span class="vital-item-label">Est. Blood Loss</span>
+                            <span class="vital-item-value normal" id="bloodLossValue">0<span class="vital-item-unit">ml</span></span>
+                        </div>
+                    </div>
+                    <div class="mini-chart" id="circChart" aria-label="Temperature trend chart">
+                        <svg viewBox="0 0 200 50" preserveAspectRatio="none">
+                            <polyline id="tempLine" fill="none" stroke="#10b981" stroke-width="2" points=""/>
+                        </svg>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Triage Panel -->
+        <section class="triage-panel" id="triagePanel" aria-labelledby="triage-heading">
+            <div class="triage-header triage-GREEN" id="triageHeader">
+                <div class="triage-category">
+                    <span class="triage-badge GREEN" id="triageBadge">GREEN</span>
+                    <div>
+                        <div class="triage-name" id="triageName">MINOR</div>
+                        <div class="triage-description" id="triageDesc">Walking wounded, minor injuries</div>
+                    </div>
+                </div>
+                <div class="triage-confidence">
+                    <div class="confidence-label">Confidence</div>
+                    <div class="confidence-value" id="confidenceValue">95%</div>
+                    <div class="confidence-bar">
+                        <div class="confidence-bar-fill GREEN" id="confidenceBar" style="width: 95%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="triage-body">
+                <!-- Guideline Badge -->
+                <div class="guideline-badge" id="guidelineBadge">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                    </svg>
+                    Applied Guideline: <strong id="guidelineName">START Protocol</strong>
+                </div>
+
+                <!-- Reasoning Section -->
+                <div class="triage-section">
+                    <h3 class="triage-section-title" id="triage-heading">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                        </svg>
+                        AI Reasoning
+                    </h3>
+                    <div class="reasoning-text" id="reasoningText">
+                        Patient has MINOR injuries. GCS 15 with alert mental status. All vital signs within acceptable limits. Patient is ambulatory and can wait for treatment. Overall assessment score: 95/100. Low acuity case.
+                    </div>
+                </div>
+
+                <!-- KPI Scores Section -->
+                <div class="triage-section">
+                    <h3 class="triage-section-title">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                        </svg>
+                        KPI Model Scores
+                    </h3>
+                    <div class="kpi-grid">
+                        <div class="kpi-item">
+                            <div class="kpi-header">
+                                <span class="kpi-name">CNS Score</span>
+                                <span class="kpi-weight">30% weight</span>
+                            </div>
+                            <div class="kpi-bar">
+                                <div class="kpi-bar-fill" id="cnsKpiBar" style="width: 100%; background: var(--color-green)"></div>
+                            </div>
+                            <div class="kpi-score" id="cnsKpiScore">100/100</div>
+                        </div>
+                        <div class="kpi-item">
+                            <div class="kpi-header">
+                                <span class="kpi-name">Respiratory Score</span>
+                                <span class="kpi-weight">25% weight</span>
+                            </div>
+                            <div class="kpi-bar">
+                                <div class="kpi-bar-fill" id="respKpiBar" style="width: 100%; background: var(--color-green)"></div>
+                            </div>
+                            <div class="kpi-score" id="respKpiScore">100/100</div>
+                        </div>
+                        <div class="kpi-item">
+                            <div class="kpi-header">
+                                <span class="kpi-name">Cardiovascular Score</span>
+                                <span class="kpi-weight">25% weight</span>
+                            </div>
+                            <div class="kpi-bar">
+                                <div class="kpi-bar-fill" id="cardioKpiBar" style="width: 100%; background: var(--color-green)"></div>
+                            </div>
+                            <div class="kpi-score" id="cardioKpiScore">100/100</div>
+                        </div>
+                        <div class="kpi-item">
+                            <div class="kpi-header">
+                                <span class="kpi-name">Circulation Score</span>
+                                <span class="kpi-weight">20% weight</span>
+                            </div>
+                            <div class="kpi-bar">
+                                <div class="kpi-bar-fill" id="circKpiBar" style="width: 100%; background: var(--color-green)"></div>
+                            </div>
+                            <div class="kpi-score" id="circKpiScore">100/100</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interventions Section -->
+                <div class="triage-section">
+                    <h3 class="triage-section-title">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                        Recommended Interventions
+                    </h3>
+                    <div class="interventions-list" id="interventionsList">
+                        <div class="intervention-item routine">
+                            <span class="intervention-priority routine">Routine</span>
+                            <div class="intervention-content">
+                                <div class="intervention-action">Continue monitoring vital signs</div>
+                                <div class="intervention-reason">Patient stable - routine observation recommended</div>
+                            </div>
+                            <span class="intervention-category">General</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Bar -->
+        <section class="action-bar" aria-label="Control Actions">
+            <div class="action-group">
+                <button class="btn btn-secondary" id="pauseSimBtn">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                    </svg>
+                    Pause
+                </button>
+                <button class="btn btn-secondary" id="resetBtn">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
+                    </svg>
+                    Reset
+                </button>
+                <button class="btn btn-primary" id="overrideBtn">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+                    </svg>
+                    Manual Override
+                </button>
+            </div>
+            <div class="action-group">
+                <button class="btn btn-success" id="exportJsonBtn">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                    </svg>
+                    Export JSON
+                </button>
+                <button class="btn btn-success" id="exportHtmlBtn">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                    </svg>
+                    Export Report
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Manual Override Modal -->
+    <div class="modal-overlay" id="overrideModal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title">Manual Vital Signs Override</h2>
+                <button class="modal-close" id="closeModalBtn" aria-label="Close modal">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="overrideForm">
+                    <!-- CNS Section -->
+                    <h3 style="margin-bottom: var(--space-md); color: var(--text-secondary);">Central Nervous System</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="overrideGcs">GCS Score (3-15)</label>
+                            <input type="number" class="form-input" id="overrideGcs" min="3" max="15" value="15">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="overridePupils">Pupil Reactivity</label>
+                            <select class="form-select" id="overridePupils">
+                                <option value="reactive">Reactive</option>
+                                <option value="sluggish">Sluggish</option>
+                                <option value="unequal">Unequal</option>
+                                <option value="fixed">Fixed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="overrideConsciousness">Consciousness</label>
+                            <select class="form-select" id="overrideConsciousness">
+                                <option value="alert">Alert</option>
+                                <option value="confused">Confused</option>
+                                <option value="responds_to_voice">Responds to Voice</option>
+                                <option value="responds_to_pain">Responds to Pain</option>
+                                <option value="unresponsive">Unresponsive</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Respiratory Section -->
+                    <h3 style="margin: var(--space-lg) 0 var(--space-md); color: var(--text-secondary);">Respiratory System</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="overrideRr">Respiratory Rate (0-60)</label>
+                            <input type="number" class="form-input" id="overrideRr" min="0" max="60" value="16">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="overrideSpo2">SpO2 (0-100%)</label>
+                            <input type="number" class="form-input" id="overrideSpo2" min="0" max="100" value="98">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="overrideBreathingPattern">Breathing Pattern</label>
+                            <select class="form-select" id="overrideBreathingPattern">
+                                <option value="normal">Normal</option>
+                                <option value="labored">Labored</option>
+                                <option value="irregular">Irregular</option>
+                                <option value="absent">Absent</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Cardiovascular Section -->
+                    <h3 style="margin: var(--space-lg) 0 var(--space-md); color: var(--text-secondary);">Cardiovascular System</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="overrideHr">Heart Rate (0-200)</label>
+                            <input type="number" class="form-input" id="overrideHr" min="0" max="200" value="75">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="overrideBpSystolic">BP Systolic (0-250)</label>
+                            <input type="number" class="form-input" id="overrideBpSystolic" min="0" max="250" value="120">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="overrideBpDiastolic">BP Diastolic (0-150)</label>
+                            <input type="number" class="form-input" id="overrideBpDiastolic" min="0" max="150" value="80">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="overrideCrt">Capillary Refill (0-10s)</label>
+                            <input type="number" class="form-input" id="overrideCrt" min="0" max="10" step="0.5" value="2">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="overridePulse">Pulse Strength</label>
+                            <select class="form-select" id="overridePulse">
+                                <option value="strong">Strong</option>
+                                <option value="weak">Weak</option>
+                                <option value="thready">Thready</option>
+                                <option value="absent">Absent</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Circulation Section -->
+                    <h3 style="margin: var(--space-lg) 0 var(--space-md); color: var(--text-secondary);">Circulation Assessment</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="overrideSkin">Skin Color</label>
+                            <select class="form-select" id="overrideSkin">
+                                <option value="normal">Normal</option>
+                                <option value="pale">Pale</option>
+                                <option value="mottled">Mottled</option>
+                                <option value="cyanotic">Cyanotic</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="overrideTemp">Temperature (32-42°C)</label>
+                            <input type="number" class="form-input" id="overrideTemp" min="32" max="42" step="0.1" value="36.8">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="overrideBloodLoss">Est. Blood Loss (ml)</label>
+                            <input type="number" class="form-input" id="overrideBloodLoss" min="0" max="5000" step="50" value="0">
+                        </div>
+                    </div>
+
+                    <!-- Justification -->
+                    <div class="form-group" style="margin-top: var(--space-lg);">
+                        <label class="form-label" for="overrideJustification">Override Justification (required)</label>
+                        <textarea class="form-textarea" id="overrideJustification" placeholder="Explain the reason for this manual override..." required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelOverrideBtn">Cancel</button>
+                <button class="btn btn-primary" id="applyOverrideBtn">Apply Override</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <p>Smart Trauma Assessment Pad - Demo Version</p>
+        <p>Based on <a href="https://www.facs.org/quality-programs/trauma/atls/" target="_blank" rel="noopener">ATLS</a> & <a href="https://www.remm.nlm.gov/startadult.htm" target="_blank" rel="noopener">START Protocol</a> guidelines</p>
+        <p style="margin-top: var(--space-sm); color: var(--text-muted);">For demonstration purposes only. Not for clinical use.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scenarios.js"></script>
+    <script src="triage-engine.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
