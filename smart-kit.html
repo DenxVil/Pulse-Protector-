@@ -3,451 +3,517 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Smart Kit - AI-Driven Trauma Management System for first responders">
-    <meta name="keywords" content="trauma kit, first aid, emergency response, smart medical, tourniquet, ambu bag">
+    <meta name="description" content="Smart Kit - Complete trauma response kit with CAT Tourniquet, Ambu Bag, and Smart Pad for comprehensive emergency care">
+    <meta name="keywords" content="trauma kit, first aid, emergency response, CAT tourniquet, ambu bag, smart pad">
     <title>Smart Kit - Trauma Management System | Pulse Protector</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💓</text></svg>">
 </head>
-<body>
+<body class="light-theme">
     <!-- Header -->
-    <header class="header" role="banner">
+    <header class="header light" role="banner">
         <div class="header-content">
             <div class="logo">
                 <div class="logo-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                     </svg>
                 </div>
                 <div>
-                    <h1>Smart Trauma Assessment Pad</h1>
-                    <span class="subtitle">AI-Powered Triage Demo</span>
+                    <h1>Pulse Protector</h1>
+                    <span class="subtitle">Smart Trauma Response System</span>
                 </div>
             </div>
             <nav class="main-nav" aria-label="Main navigation">
-                <a href="index.html" class="nav-link">Triage Demo</a>
+                <a href="index.html" class="nav-link">Home</a>
                 <a href="smart-kit.html" class="nav-link active">Smart Kit</a>
                 <a href="smart-pad.html" class="nav-link">Smart Pad</a>
+                <a href="smart-triage.html" class="nav-link">AI Triage</a>
+                <a href="economy.html" class="nav-link">Economics</a>
+                <a href="effectiveness.html" class="nav-link">Effectiveness</a>
+                <a href="roadmap.html" class="nav-link">Roadmap</a>
+                <a href="references.html" class="nav-link">References</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Page Hero -->
     <section class="page-hero">
-        <span class="badge">Catalyst Hackathon 2025 | MAMC SCISOC</span>
-        <h1>Smart Kit - Trauma Management System</h1>
-        <p class="subtitle">AI-Driven Smart Trauma Response System</p>
+        <span class="badge">Complete Trauma Response Solution</span>
+        <h1>Smart Kit</h1>
+        <p class="subtitle">AI-Driven Smart Trauma Response System - Affordable, Accessible, Life-Saving</p>
         
         <div class="stats-grid">
-            <div class="stat-item">
+            <div class="stat-item glass-card-light">
                 <div class="stat-value">₹2,500</div>
                 <div class="stat-label">Total Cost</div>
             </div>
-            <div class="stat-item">
+            <div class="stat-item glass-card-light">
                 <div class="stat-value">3</div>
                 <div class="stat-label">Components</div>
             </div>
-            <div class="stat-item">
+            <div class="stat-item glass-card-light">
                 <div class="stat-value">31.1%</div>
                 <div class="stat-label">Mortality Reduction</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-value">1:186</div>
+            <div class="stat-item glass-card-light">
+                <div class="stat-value">1:186.6</div>
                 <div class="stat-label">ROI Ratio</div>
             </div>
+        </div>
+        
+        <div class="page-hero-image">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dcd5a51b-d8a1-4feb-bfa1-2fdb1d991500.png" alt="Smart Kit Product Shot">
         </div>
     </section>
 
     <main class="container" role="main">
         <!-- Problem Section -->
         <section class="section">
-            <h2 class="section-title">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                The Problem We're Solving
-            </h2>
+            <div class="section-header">
+                <span class="section-badge">The Challenge</span>
+                <h2 class="section-title">The Problem We're Solving</h2>
+            </div>
             
-            <div class="problem-stats">
-                <div class="problem-stat">
-                    <div class="number">1.5M</div>
-                    <p>Trauma deaths per year globally</p>
+            <div class="problem-grid">
+                <div class="problem-card glass-card-light">
+                    <div class="problem-icon red">💔</div>
+                    <div class="metric-value" style="color: var(--accent-red);">1.5M</div>
+                    <h3>Trauma Deaths Per Year</h3>
+                    <p>In India alone, trauma accounts for 1.5 million deaths annually, making it a leading cause of mortality.</p>
                 </div>
-                <div class="problem-stat">
-                    <div class="number">72%</div>
-                    <p>Occur before reaching hospital</p>
+                <div class="problem-card glass-card-light">
+                    <div class="problem-icon orange">⏰</div>
+                    <div class="metric-value" style="color: var(--accent-orange);">72%</div>
+                    <h3>Before Hospital Arrival</h3>
+                    <p>The majority of trauma deaths occur before patients can reach a hospital, highlighting the critical need for prehospital care.</p>
                 </div>
-                <div class="problem-stat">
-                    <div class="number">31.1%</div>
-                    <p>Preventable with early intervention</p>
+                <div class="problem-card glass-card-light">
+                    <div class="problem-icon green">✅</div>
+                    <div class="metric-value" style="color: var(--accent-green);">31.1%</div>
+                    <h3>Preventable with Intervention</h3>
+                    <p>Evidence shows that nearly one-third of these deaths could be prevented with timely, appropriate prehospital intervention.</p>
                 </div>
             </div>
             
-            <div class="glass-card" style="margin-top: var(--space-lg); text-align: center;">
-                <p style="font-size: 1.25rem; color: var(--color-yellow);">
-                    ⏱️ <strong>The Golden Hour:</strong> Most trauma deaths occur within the first hour. 
-                    Early intervention can save lives.
+            <div class="glass-card-light" style="margin-top: var(--space-2xl); padding: var(--space-xl); text-align: center;">
+                <p style="font-size: 1.25rem; color: var(--accent-orange); margin: 0;">
+                    ⏱️ <strong>The Golden Hour:</strong> Most trauma deaths occur within the first 60 minutes after injury. Early intervention saves lives.
                 </p>
             </div>
         </section>
 
         <!-- Components Section -->
         <section class="section">
-            <h2 class="section-title">
-                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14h-2V9h2v8zm4 0h-2V5h2v12zm-8 0H6v-4h2v4z"/></svg>
-                Kit Components
-            </h2>
+            <div class="section-header">
+                <span class="section-badge">Kit Components</span>
+                <h2 class="section-title">Three Essential Components</h2>
+                <p class="section-subtitle">Each component addresses a specific life-threatening condition</p>
+            </div>
             
-            <div class="components-grid">
+            <div class="components-overview">
                 <!-- CAT Tourniquet -->
-                <div class="component-card">
-                    <div class="icon" style="background: linear-gradient(135deg, #ef4444, #f97316);">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                <div class="component-item glass-card-light">
+                    <div class="component-header">
+                        <span class="component-price">₹300</span>
+                        <span class="component-tag red">Hemorrhage Control</span>
                     </div>
-                    <h3>CAT Tourniquet (Gen 7)</h3>
-                    <div class="price">₹300</div>
-                    <p>Combat Application Tourniquet for rapid hemorrhage control on extremities.</p>
-                    <div class="specs">
-                        <div class="spec-item">
-                            <span>Limb Range</span>
-                            <span>7-33 inches</span>
-                        </div>
-                        <div class="spec-item">
-                            <span>Application Time</span>
-                            <span>&lt;30 seconds</span>
-                        </div>
-                        <div class="spec-item">
-                            <span>Mortality Reduction</span>
-                            <span>16.8%</span>
-                        </div>
+                    <h3>🩸 CAT Tourniquet (Gen 7)</h3>
+                    <p>Combat Application Tourniquet - the gold standard for rapid extremity hemorrhage control used by military and emergency services worldwide.</p>
+                    
+                    <div style="margin: var(--space-lg) 0;">
+                        <table class="data-table">
+                            <tr>
+                                <td>Limb Range</td>
+                                <td><strong>7-33 inches</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Application Time</td>
+                                <td><strong>&lt;30 seconds</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Mortality Reduction</td>
+                                <td><strong style="color: var(--accent-green);">16.8%</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Survival Improvement</td>
+                                <td><strong style="color: var(--accent-green);">90%</strong></td>
+                            </tr>
+                        </table>
                     </div>
+                    
+                    <p style="font-size: 0.875rem; color: var(--text-muted);">
+                        <strong>Evidence:</strong> Kragh et al. (2009) demonstrated 90% survival improvement when tourniquets applied before shock onset.
+                    </p>
                 </div>
 
                 <!-- Ambu Bag + O2 -->
-                <div class="component-card">
-                    <div class="icon" style="background: linear-gradient(135deg, #06b6d4, #0ea5e9);">
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                <div class="component-item glass-card-light">
+                    <div class="component-header">
+                        <span class="component-price">₹700</span>
+                        <span class="component-tag blue">Respiratory Support</span>
                     </div>
-                    <h3>Ambu Bag + O₂ Reservoir</h3>
-                    <div class="price">₹700</div>
-                    <p>Manual resuscitator for artificial ventilation with oxygen reservoir.</p>
-                    <div class="specs">
-                        <div class="spec-item">
-                            <span>Volume</span>
-                            <span>1500-1600ml</span>
-                        </div>
-                        <div class="spec-item">
-                            <span>Valve</span>
-                            <span>One-way</span>
-                        </div>
-                        <div class="spec-item">
-                            <span>Mortality Reduction</span>
-                            <span>14.3%</span>
-                        </div>
+                    <h3>💨 Ambu Bag + O₂ Reservoir</h3>
+                    <p>Manual resuscitator (bag-valve-mask) for artificial ventilation with oxygen reservoir for enhanced FiO₂ delivery.</p>
+                    
+                    <div style="margin: var(--space-lg) 0;">
+                        <table class="data-table">
+                            <tr>
+                                <td>Bag Volume</td>
+                                <td><strong>1500-1600ml</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Valve Type</td>
+                                <td><strong>One-way (non-rebreathing)</strong></td>
+                            </tr>
+                            <tr>
+                                <td>FiO₂ with Reservoir</td>
+                                <td><strong>Up to 100%</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Anoxic Death Reduction</td>
+                                <td><strong style="color: var(--accent-green);">14.3%</strong></td>
+                            </tr>
+                        </table>
                     </div>
+                    
+                    <p style="font-size: 0.875rem; color: var(--text-muted);">
+                        <strong>Application:</strong> Essential for drowning, airway obstruction, and respiratory arrest scenarios.
+                    </p>
                 </div>
 
                 <!-- Smart Pad -->
-                <div class="component-card">
-                    <div class="icon" style="background: linear-gradient(135deg, #10b981, #14b8a6);">
-                        <svg viewBox="0 0 24 24"><path d="M17 2H7c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 18H7V4h10v16zm-5-3c.83 0 1.5-.67 1.5-1.5S12.83 14 12 14s-1.5.67-1.5 1.5.67 1.5 1.5 1.5z"/></svg>
+                <div class="component-item glass-card-light featured">
+                    <div class="component-header">
+                        <span class="component-price">₹1,500</span>
+                        <span class="component-tag green">Core Innovation</span>
                     </div>
-                    <h3>Smart Vital Monitoring Pad</h3>
-                    <div class="price">₹1,500</div>
-                    <p>ESP32-based vital signs monitor with real-time data transmission.</p>
-                    <div class="specs">
-                        <div class="spec-item">
-                            <span>Microcontroller</span>
-                            <span>ESP32</span>
-                        </div>
-                        <div class="spec-item">
-                            <span>Sensors</span>
-                            <span>MAX30102 PPG, DS18B20</span>
-                        </div>
-                        <div class="spec-item">
-                            <span>Connectivity</span>
-                            <span>Bluetooth 4.2</span>
-                        </div>
-                        <div class="spec-item">
-                            <span>Battery Life</span>
-                            <span>10+ hours</span>
-                        </div>
+                    <h3>📱 Smart Vital Monitoring Pad</h3>
+                    <p>ESP32-based wearable vital signs monitor with real-time Bluetooth data transmission to hospital receiving systems.</p>
+                    
+                    <div style="margin: var(--space-lg) 0;">
+                        <table class="data-table">
+                            <tr>
+                                <td>Microcontroller</td>
+                                <td><strong>ESP32-WROOM-32D</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Sensors</td>
+                                <td><strong>MAX30100 + DS18B20</strong></td>
+                            </tr>
+                            <tr>
+                                <td>SpO₂ Accuracy</td>
+                                <td><strong>±2%</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Heart Rate Accuracy</td>
+                                <td><strong>±3 BPM</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Connectivity</td>
+                                <td><strong>Bluetooth 4.2 BLE (100m)</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Battery Life</td>
+                                <td><strong>10+ hours</strong></td>
+                            </tr>
+                        </table>
                     </div>
+                    
+                    <a href="smart-pad.html" class="btn btn-primary" style="margin-top: var(--space-md);">
+                        View Technical Specifications →
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- Workflow Timeline -->
         <section class="section">
-            <h2 class="section-title">
-                <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
-                Response Workflow
-            </h2>
+            <div class="section-header">
+                <span class="section-badge">Deployment Protocol</span>
+                <h2 class="section-title">2-Minute Response Workflow</h2>
+                <p class="section-subtitle">Step-by-step protocol for rapid trauma response</p>
+            </div>
             
-            <div class="timeline">
-                <div class="timeline-item">
-                    <span class="time">T = 0-15s</span>
-                    <h4>Scene Safety Assessment</h4>
-                    <p>Ensure the scene is safe for both responder and patient. Identify hazards.</p>
+            <div class="workflow-container">
+                <div class="workflow-image-container glass-card-light">
+                    <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/4d09065746dcea5c95f67a6e374dd302/054e6a40-ef16-49f1-a665-fc6330793656/309c72d7.png" alt="2-Minute Deployment Workflow Timeline" class="workflow-image">
                 </div>
-                <div class="timeline-item">
-                    <span class="time">T = 15-30s</span>
-                    <h4>Check for Bleeding</h4>
-                    <p>Rapid assessment of visible hemorrhage and life-threatening bleeding.</p>
-                </div>
-                <div class="timeline-item active">
-                    <span class="time">T = 30-60s</span>
-                    <h4>Apply Tourniquet</h4>
-                    <p>If extremity hemorrhage detected, apply CAT tourniquet. Note time of application.</p>
-                </div>
-                <div class="timeline-item">
-                    <span class="time">T = 60-90s</span>
-                    <h4>Check Breathing</h4>
-                    <p>Assess airway patency and respiratory effort. Use Ambu bag if needed.</p>
-                </div>
-                <div class="timeline-item">
-                    <span class="time">T = 90-120s</span>
-                    <h4>Attach Smart Pad</h4>
-                    <p>Place Smart Vital Monitoring Pad on patient for continuous monitoring.</p>
-                </div>
-                <div class="timeline-item">
-                    <span class="time">T = 2+ min</span>
-                    <h4>Data Transmission</h4>
-                    <p>Vital signs automatically transmitted to receiving hospital for triage preparation.</p>
+                
+                <div class="workflow-steps">
+                    <div class="workflow-step glass-card-light">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <span class="time">T = 0-15s</span>
+                            <h4>Scene Safety Assessment</h4>
+                            <p>Ensure the scene is safe for both responder and patient. Identify hazards.</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step glass-card-light">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <span class="time">T = 15-30s</span>
+                            <h4>Check for Bleeding</h4>
+                            <p>Rapid assessment of visible hemorrhage and life-threatening bleeding.</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step glass-card-light active">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <span class="time">T = 30-60s</span>
+                            <h4>Apply Tourniquet</h4>
+                            <p>If extremity hemorrhage detected, apply CAT tourniquet. Note time of application.</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step glass-card-light">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <span class="time">T = 60-90s</span>
+                            <h4>Check Breathing</h4>
+                            <p>Assess airway patency and respiratory effort. Use Ambu bag if needed.</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step glass-card-light">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <span class="time">T = 90-120s</span>
+                            <h4>Attach Smart Pad</h4>
+                            <p>Place Smart Vital Monitoring Pad on patient for continuous monitoring.</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step glass-card-light">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <span class="time">T = 2+ min</span>
+                            <h4>Data Transmission</h4>
+                            <p>Vital signs automatically transmitted to receiving hospital for triage preparation.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Triage Section -->
         <section class="section">
-            <h2 class="section-title">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-                START Triage Protocol
-            </h2>
+            <div class="section-header">
+                <span class="section-badge">Clinical Protocol</span>
+                <h2 class="section-title">START Triage Protocol Integration</h2>
+                <p class="section-subtitle">AI-powered triage based on established medical guidelines</p>
+            </div>
             
             <div class="triage-cards">
-                <div class="triage-card red">
+                <div class="triage-card red glass-card-light">
                     <h4>🔴 RED - Immediate</h4>
+                    <p style="margin-bottom: var(--space-md); color: var(--text-secondary);">Life-threatening, requires immediate intervention</p>
                     <ul>
                         <li>Heart Rate &gt;120 BPM</li>
                         <li>SpO₂ &lt;90%</li>
                         <li>Systolic BP &lt;90 mmHg</li>
                         <li>GCS ≤8</li>
+                        <li>Capillary Refill &gt;2 seconds</li>
                     </ul>
                 </div>
-                <div class="triage-card yellow">
+                <div class="triage-card yellow glass-card-light">
                     <h4>🟡 YELLOW - Delayed</h4>
+                    <p style="margin-bottom: var(--space-md); color: var(--text-secondary);">Serious but stable, can wait for treatment</p>
                     <ul>
-                        <li>Stable but serious injuries</li>
                         <li>GCS 9-13</li>
                         <li>SpO₂ 90-94%</li>
-                        <li>Moderate blood loss</li>
+                        <li>Moderate blood loss (750-1500ml)</li>
+                        <li>Stable vital signs with abnormalities</li>
+                        <li>Non-ambulatory with stable condition</li>
                     </ul>
                 </div>
-                <div class="triage-card green">
+                <div class="triage-card green glass-card-light">
                     <h4>🟢 GREEN - Minor</h4>
+                    <p style="margin-bottom: var(--space-md); color: var(--text-secondary);">Walking wounded, minor injuries</p>
                     <ul>
                         <li>Normal vital signs</li>
-                        <li>Walking wounded</li>
                         <li>GCS 14-15</li>
+                        <li>SpO₂ ≥95%</li>
+                        <li>Ambulatory patient</li>
                         <li>Minor injuries only</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Impact Section -->
+        <!-- Cost Section -->
         <section class="section">
-            <h2 class="section-title">
-                <svg viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
-                Projected Impact
-            </h2>
+            <div class="section-header">
+                <span class="section-badge">Affordability</span>
+                <h2 class="section-title">Cost Breakdown</h2>
+                <p class="section-subtitle">Designed to be accessible for widespread deployment</p>
+            </div>
             
-            <div class="stats-grid" style="max-width: 100%;">
-                <div class="stat-item">
-                    <div class="stat-value" style="color: var(--color-green);">31.1%</div>
-                    <div class="stat-label">Mortality Reduction</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" style="color: var(--accent-blue);">1:186.6</div>
-                    <div class="stat-label">Return on Investment</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" style="color: var(--color-yellow);">3,110</div>
-                    <div class="stat-label">Lives Saved (10K kits)</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" style="color: var(--accent-cyan);">37%</div>
-                    <div class="stat-label">ER Chaos Reduction</div>
+            <div style="max-width: 700px; margin: 0 auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Cost (₹)</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CAT Tourniquet (Gen 7)</td>
+                            <td>₹300</td>
+                            <td>12%</td>
+                        </tr>
+                        <tr>
+                            <td>Ambu Bag + O₂ Reservoir</td>
+                            <td>₹700</td>
+                            <td>28%</td>
+                        </tr>
+                        <tr>
+                            <td>Smart Vital Monitoring Pad</td>
+                            <td>₹1,500</td>
+                            <td>60%</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total">
+                            <td><strong>Total Kit Cost</strong></td>
+                            <td><strong>₹2,500</strong></td>
+                            <td><strong>100%</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+                
+                <div class="glass-card-light" style="margin-top: var(--space-xl); padding: var(--space-lg); text-align: center;">
+                    <p style="margin: 0; color: var(--text-secondary);">
+                        <strong style="color: var(--accent-green);">66-79% cheaper</strong> than commercial alternatives (₹8,000-12,000)
+                    </p>
                 </div>
             </div>
         </section>
 
-        <!-- Cost Breakdown -->
-        <section class="section">
-            <h2 class="section-title">
-                <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
-                Cost Breakdown
-            </h2>
+        <!-- Impact Section -->
+        <section class="section metrics-section">
+            <div class="section-header">
+                <span class="section-badge">Evidence-Based</span>
+                <h2 class="section-title">Projected Impact</h2>
+            </div>
             
-            <table class="cost-table">
-                <thead>
-                    <tr>
-                        <th>Component</th>
-                        <th>Cost (₹)</th>
-                        <th>Percentage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>CAT Tourniquet (Gen 7)</td>
-                        <td>₹300</td>
-                        <td>12%</td>
-                    </tr>
-                    <tr>
-                        <td>Ambu Bag + O₂ Reservoir</td>
-                        <td>₹700</td>
-                        <td>28%</td>
-                    </tr>
-                    <tr>
-                        <td>Smart Vital Monitoring Pad</td>
-                        <td>₹1,500</td>
-                        <td>60%</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr class="total">
-                        <td><strong>Total Kit Cost</strong></td>
-                        <td><strong>₹2,500</strong></td>
-                        <td><strong>100%</strong></td>
-                    </tr>
-                </tfoot>
-            </table>
-        </section>
-
-        <!-- Image Gallery -->
-        <section class="section">
-            <h2 class="section-title">
-                <svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
-                Gallery
-            </h2>
-            
-            <div class="image-gallery">
-                <div class="gallery-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/CAT_Tourniquet.jpg/1200px-CAT_Tourniquet.jpg" alt="CAT Tourniquet" loading="lazy">
-                    <div class="caption">CAT Tourniquet (Gen 7)</div>
+            <div class="metrics-grid">
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value green">31.1%</div>
+                    <div class="metric-label">Mortality Reduction</div>
+                    <div class="metric-detail">Combined effect of all interventions</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Bag_valve_mask.jpg/1200px-Bag_valve_mask.jpg" alt="Ambu Bag" loading="lazy">
-                    <div class="caption">Ambu Bag with Reservoir</div>
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value blue">1:186.6</div>
+                    <div class="metric-label">Return on Investment</div>
+                    <div class="metric-detail">Economic benefit per rupee spent</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/ESP32_Espressif_ESP-WROOM-32_Dev_Board.jpg/1200px-ESP32_Espressif_ESP-WROOM-32_Dev_Board.jpg" alt="ESP32 Development Board" loading="lazy">
-                    <div class="caption">ESP32 Microcontroller</div>
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value purple">3,110</div>
+                    <div class="metric-label">Lives Saved Annually</div>
+                    <div class="metric-detail">With 10,000 kits deployed</div>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/MAX30100_sensor_board.jpg/800px-MAX30100_sensor_board.jpg" alt="MAX30102 Sensor" loading="lazy">
-                    <div class="caption">MAX30102 PPG Sensor</div>
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value orange">37%</div>
+                    <div class="metric-label">ER Chaos Reduction</div>
+                    <div class="metric-detail">Through pre-hospital triage data</div>
                 </div>
             </div>
         </section>
 
         <!-- Team Section -->
         <section class="section">
-            <h2 class="section-title">
-                <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
-                Our Team
-            </h2>
+            <div class="section-header">
+                <span class="section-badge">Our Team</span>
+                <h2 class="section-title">Research Team</h2>
+            </div>
             
             <div class="team-grid">
-                <div class="team-member">
-                    <div class="avatar">D</div>
+                <div class="team-member glass-card-light">
+                    <div class="member-avatar blue">D</div>
                     <h4>Denx</h4>
-                    <div class="role">Project Lead</div>
+                    <span class="member-role">Project Lead</span>
                     <p>Smart Pad Designer & System Architecture</p>
                 </div>
-                <div class="team-member">
-                    <div class="avatar">D</div>
+                <div class="team-member glass-card-light">
+                    <div class="member-avatar green">D</div>
                     <h4>Dhruv</h4>
-                    <div class="role">Hardware Lead</div>
+                    <span class="member-role">Hardware Lead</span>
                     <p>Hardware Assembly & Integration</p>
                 </div>
-                <div class="team-member">
-                    <div class="avatar">R</div>
+                <div class="team-member glass-card-light">
+                    <div class="member-avatar purple">R</div>
                     <h4>Raiyan</h4>
-                    <div class="role">Clinical Lead</div>
+                    <span class="member-role">Clinical Lead</span>
                     <p>Clinical Protocol & Medical Validation</p>
                 </div>
-                <div class="team-member">
-                    <div class="avatar">H</div>
+                <div class="team-member glass-card-light">
+                    <div class="member-avatar orange">H</div>
                     <h4>Harsh</h4>
-                    <div class="role">Operations Lead</div>
+                    <span class="member-role">Operations Lead</span>
                     <p>Supply Chain & Manufacturing</p>
                 </div>
             </div>
         </section>
 
-        <!-- Validation Timeline -->
-        <section class="section">
-            <h2 class="section-title">
-                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-                Validation Roadmap
-            </h2>
-            
-            <div class="timeline">
-                <div class="timeline-item active">
-                    <span class="time">Week 1-2</span>
-                    <h4>Bench Testing</h4>
-                    <p>Component validation, sensor accuracy testing, and system integration.</p>
-                </div>
-                <div class="timeline-item">
-                    <span class="time">Month 1-3</span>
-                    <h4>Ethics Approval</h4>
-                    <p>Institutional ethics board approval for simulation studies.</p>
-                </div>
-                <div class="timeline-item">
-                    <span class="time">Month 3-6</span>
-                    <h4>Simulation Study</h4>
-                    <p>Controlled environment testing with mannequins and simulation scenarios.</p>
-                </div>
-            </div>
-        </section>
-
         <!-- CTA Section -->
-        <section class="cta-section">
-            <h2>Join the Mission</h2>
-            <p>Help us bring affordable trauma response technology to first responders worldwide.</p>
-            <div class="cta-buttons">
-                <a href="https://github.com/DenxVil/Pulse-Protector-" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                    View on GitHub
-                </a>
-                <a href="index.html" class="btn btn-secondary">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-                        <path d="M19 12H5M12 19l-7-7 7-7"/>
-                    </svg>
-                    Try Triage Demo
-                </a>
+        <section class="section" style="text-align: center;">
+            <div class="glass-card-light" style="padding: var(--space-3xl); max-width: 800px; margin: 0 auto;">
+                <h2 style="margin-bottom: var(--space-md);">Join the Mission</h2>
+                <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">
+                    Help us bring affordable trauma response technology to first responders worldwide.
+                </p>
+                <div class="hero-cta" style="justify-content: center;">
+                    <a href="https://github.com/DenxVil/Pulse-Protector-" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                        View on GitHub →
+                    </a>
+                    <a href="smart-pad.html" class="btn btn-outline btn-lg">
+                        Explore Smart Pad
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="disclaimer-footer">
-        <div class="warning">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
-            </svg>
-            Research Prototype - Not for Clinical Use
+    <footer class="footer light" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">💓</span>
+                        <span>Pulse Protector</span>
+                    </div>
+                    <p>Smart Trauma Response System - A research prototype developed for Catalyst Hackathon 2025.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Products</h4>
+                        <a href="smart-kit.html">Smart Kit</a>
+                        <a href="smart-pad.html">Smart Pad</a>
+                        <a href="smart-triage.html">AI Triage</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Research</h4>
+                        <a href="economy.html">Economic Impact</a>
+                        <a href="effectiveness.html">Effectiveness</a>
+                        <a href="references.html">References</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Project</h4>
+                        <a href="roadmap.html">Roadmap</a>
+                        <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="disclaimer-badge">
+                    ⚠️ Research Prototype - Not for Clinical Use
+                </div>
+                <p>Based on <a href="https://www.facs.org/quality-programs/trauma/atls/" target="_blank" rel="noopener">ATLS</a> & <a href="https://www.remm.nlm.gov/startadult.htm" target="_blank" rel="noopener">START Protocol</a> guidelines</p>
+            </div>
         </div>
-        <p>This is a demonstration project developed for the Catalyst Hackathon 2025. 
-           The Smart Kit system requires formal clinical validation before any real-world deployment. 
-           Always consult qualified medical professionals for actual patient care.</p>
-        <p style="margin-top: var(--space-md);">
-            <a href="index.html">Triage Demo</a> · 
-            <a href="smart-pad.html">Smart Pad</a> · 
-            <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener noreferrer">GitHub</a>
-        </p>
     </footer>
+
+    <script src="navigation.js"></script>
 </body>
 </html>

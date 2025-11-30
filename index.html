@@ -3,560 +3,375 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Smart Trauma Vitals Assessment Pad - AI-powered trauma triage system demo using START protocol">
-    <meta name="keywords" content="trauma, triage, medical, AI, START protocol, vitals monitoring">
-    <title>Smart Trauma Assessment Pad - Interactive Demo</title>
+    <meta name="description" content="Pulse Protector - AI-Powered Smart Trauma Response System for reducing preventable trauma deaths">
+    <meta name="keywords" content="trauma care, smart kit, medical device, AI triage, emergency response, India healthcare">
+    <title>Pulse Protector - Smart Trauma Response System</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💓</text></svg>">
 </head>
-<body>
+<body class="light-theme">
     <!-- Header -->
-    <header class="header" role="banner">
+    <header class="header light" role="banner">
         <div class="header-content">
             <div class="logo">
                 <div class="logo-icon" aria-hidden="true">
                     <svg viewBox="0 0 24 24">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                     </svg>
                 </div>
                 <div>
-                    <h1>Smart Trauma Assessment Pad</h1>
-                    <span class="subtitle">AI-Powered Triage Demo</span>
+                    <h1>Pulse Protector</h1>
+                    <span class="subtitle">Smart Trauma Response System</span>
                 </div>
             </div>
             <nav class="main-nav" aria-label="Main navigation">
-                <a href="index.html" class="nav-link active">Triage Demo</a>
+                <a href="index.html" class="nav-link active">Home</a>
                 <a href="smart-kit.html" class="nav-link">Smart Kit</a>
                 <a href="smart-pad.html" class="nav-link">Smart Pad</a>
+                <a href="smart-triage.html" class="nav-link">AI Triage</a>
+                <a href="economy.html" class="nav-link">Economics</a>
+                <a href="effectiveness.html" class="nav-link">Effectiveness</a>
+                <a href="roadmap.html" class="nav-link">Roadmap</a>
+                <a href="references.html" class="nav-link">References</a>
             </nav>
-            <div class="header-actions">
-                <button class="btn btn-secondary" id="toggleContrastBtn" aria-label="Toggle high contrast mode">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M12 3a9 9 0 000 18 9 9 0 000-18zm0 16V5a7 7 0 010 14z"/>
-                    </svg>
-                    Contrast
-                </button>
-                <span class="simulation-status" aria-live="polite">
-                    <span class="simulation-indicator running" id="simIndicator"></span>
-                    <span id="simStatus">Simulation Running</span>
-                </span>
-            </div>
         </div>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background"></div>
+        <div class="hero-content">
+            <span class="badge-research">Catalyst Hackathon 2025 | MAMC SCISOC</span>
+            <h1 class="hero-title">Saving Lives Through<br><span class="gradient-text">Smart Trauma Response</span></h1>
+            <p class="hero-subtitle">An AI-powered, low-cost trauma response system designed to reduce preventable deaths in India's Golden Hour</p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat glass-card-light">
+                    <div class="stat-number">1.5M</div>
+                    <div class="stat-text">Trauma deaths per year in India</div>
+                </div>
+                <div class="hero-stat glass-card-light">
+                    <div class="stat-number">72%</div>
+                    <div class="stat-text">Occur before hospital arrival</div>
+                </div>
+                <div class="hero-stat glass-card-light highlight">
+                    <div class="stat-number">31.1%</div>
+                    <div class="stat-text">Preventable with early intervention</div>
+                </div>
+            </div>
+
+            <div class="hero-cta">
+                <a href="smart-kit.html" class="btn btn-primary btn-lg">
+                    Explore Smart Kit →
+                </a>
+                <a href="smart-triage.html" class="btn btn-outline btn-lg">
+                    Learn About AI Triage
+                </a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dcd5a51b-d8a1-4feb-bfa1-2fdb1d991500.png" alt="Smart Kit Product Shot" class="product-image floating">
+        </div>
+    </section>
+
     <main class="container" role="main">
-        <!-- Scenario Selector -->
-        <section class="scenario-section" aria-labelledby="scenario-heading">
-            <div class="scenario-selector">
-                <div class="scenario-header">
-                    <h2 id="scenario-heading">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                        </svg>
-                        Trauma Scenario Simulator
-                    </h2>
-                    <div class="scenario-controls">
-                        <div class="select-wrapper">
-                            <select id="scenarioSelect" aria-label="Select trauma scenario">
-                                <option value="">-- Select a Scenario --</option>
-                                <option value="rta_shock">Road Traffic Accident - Hemorrhagic Shock</option>
-                                <option value="drowning">Drowning Victim - Respiratory Distress</option>
-                                <option value="electrocution">Electrocution - Cardiac Arrest</option>
-                                <option value="fall_head_injury">Fall from Height - Head Injury</option>
-                                <option value="mci_multiple">Mass Casualty - Explosion Victim</option>
-                                <option value="minor_injury">Minor Trauma - Stable Patient</option>
-                            </select>
-                        </div>
-                        <button class="btn btn-primary" id="loadScenarioBtn">
-                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/>
-                            </svg>
-                            Load Scenario
-                        </button>
-                    </div>
+        <!-- Problem Statement Section -->
+        <section class="section" id="problem">
+            <div class="section-header">
+                <span class="section-badge">The Challenge</span>
+                <h2 class="section-title">The Golden Hour Problem</h2>
+                <p class="section-subtitle">In trauma care, time is the most critical factor. Most deaths occur within the first hour after injury.</p>
+            </div>
+            
+            <div class="problem-grid">
+                <div class="problem-card glass-card-light">
+                    <div class="problem-icon red">⏱️</div>
+                    <h3>Delayed Response</h3>
+                    <p>Average emergency response time in urban India exceeds 15 minutes, far beyond critical intervention windows.</p>
                 </div>
-                <div class="scenario-description" id="scenarioDescription" aria-live="polite">
-                    Select a trauma scenario to begin the simulation. Each scenario demonstrates different vital sign patterns and triage decisions based on START protocol.
+                <div class="problem-card glass-card-light">
+                    <div class="problem-icon orange">🏥</div>
+                    <h3>Lack of Equipment</h3>
+                    <p>First responders often lack essential trauma equipment. Commercial kits cost ₹8,000-12,000, limiting accessibility.</p>
+                </div>
+                <div class="problem-card glass-card-light">
+                    <div class="problem-icon blue">📊</div>
+                    <h3>No Real-time Data</h3>
+                    <p>Hospitals receive patients with no prior vital sign data, delaying triage and appropriate treatment allocation.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Alerts Panel -->
-        <section class="alerts-panel" id="alertsPanel" aria-label="Critical Alerts" role="alert">
-            <!-- Dynamic alerts will be inserted here -->
+        <!-- Solution Section -->
+        <section class="section" id="solution">
+            <div class="section-header">
+                <span class="section-badge">Our Solution</span>
+                <h2 class="section-title">The Pulse Protector System</h2>
+                <p class="section-subtitle">A comprehensive, affordable, and intelligent trauma response system</p>
+            </div>
+
+            <div class="solution-cards">
+                <a href="smart-kit.html" class="solution-card glass-card-light hoverable">
+                    <div class="solution-icon blue">🧰</div>
+                    <h3>Smart Kit</h3>
+                    <p class="solution-price">₹2,500 Total</p>
+                    <p>Complete trauma response kit with CAT Tourniquet, Ambu Bag, and Smart Pad for comprehensive care.</p>
+                    <span class="learn-more">Learn More →</span>
+                </a>
+                <a href="smart-pad.html" class="solution-card glass-card-light hoverable">
+                    <div class="solution-icon green">📱</div>
+                    <h3>Smart Pad</h3>
+                    <p class="solution-price">₹1,500</p>
+                    <p>ESP32-based vital monitoring with real-time SpO₂, heart rate, and temperature transmission.</p>
+                    <span class="learn-more">Learn More →</span>
+                </a>
+                <a href="smart-triage.html" class="solution-card glass-card-light hoverable">
+                    <div class="solution-icon purple">🤖</div>
+                    <h3>AI Triage Engine</h3>
+                    <p class="solution-price">94% Accuracy</p>
+                    <p>Machine learning-powered START protocol implementation for automated patient prioritization.</p>
+                    <span class="learn-more">Learn More →</span>
+                </a>
+            </div>
         </section>
 
-        <!-- Vitals Grid -->
-        <section class="vitals-grid" aria-label="Vital Signs Monitoring">
-            <!-- CNS Card -->
-            <article class="vital-card" id="cnsCard">
-                <div class="vital-card-header">
-                    <div class="vital-card-title">
-                        <div class="icon cns" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 2a9 9 0 00-9 9c0 4.97 9 13 9 13s9-8.03 9-13a9 9 0 00-9-9zm0 11a2 2 0 110-4 2 2 0 010 4z"/>
-                            </svg>
-                        </div>
-                        <span>Central Nervous System</span>
-                    </div>
-                    <div class="vital-card-status">
-                        <span class="status-indicator normal" id="cnsStatus"></span>
-                        <span id="cnsStatusText">Normal</span>
-                    </div>
+        <!-- Key Metrics Section -->
+        <section class="section metrics-section">
+            <div class="section-header">
+                <span class="section-badge">Evidence-Based Impact</span>
+                <h2 class="section-title">Projected Clinical Impact</h2>
+            </div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value green">31.1%</div>
+                    <div class="metric-label">Mortality Reduction</div>
+                    <div class="metric-detail">Based on ATLS 10th Edition guidelines</div>
                 </div>
-                <div class="vital-card-body">
-                    <div class="vital-items">
-                        <div class="vital-item tooltip" data-tooltip="Glasgow Coma Scale: 3-15, measures consciousness level">
-                            <span class="vital-item-label">GCS Score</span>
-                            <span class="vital-item-value normal" id="gcsValue">15</span>
-                        </div>
-                        <div class="gcs-breakdown" aria-label="GCS Component Scores">
-                            <div class="gcs-component">
-                                <div class="gcs-component-label">Eye</div>
-                                <div class="gcs-component-value" id="gcsEye">4</div>
-                            </div>
-                            <div class="gcs-component">
-                                <div class="gcs-component-label">Verbal</div>
-                                <div class="gcs-component-value" id="gcsVerbal">5</div>
-                            </div>
-                            <div class="gcs-component">
-                                <div class="gcs-component-label">Motor</div>
-                                <div class="gcs-component-value" id="gcsMotor">6</div>
-                            </div>
-                        </div>
-                        <div class="vital-item tooltip" data-tooltip="Pupil response to light: reactive, sluggish, or fixed">
-                            <span class="vital-item-label">Pupil Reactivity</span>
-                            <span class="vital-item-value normal" id="pupilsValue">Reactive</span>
-                        </div>
-                        <div class="vital-item tooltip" data-tooltip="AVPU scale: Alert, Verbal, Pain, Unresponsive">
-                            <span class="vital-item-label">Consciousness</span>
-                            <span class="vital-item-value normal" id="consciousnessValue">Alert</span>
-                        </div>
-                    </div>
-                    <div class="mini-chart" id="cnsChart" aria-label="GCS trend chart">
-                        <svg viewBox="0 0 200 50" preserveAspectRatio="none">
-                            <polyline id="gcsLine" fill="none" stroke="#10b981" stroke-width="2" points=""/>
-                        </svg>
-                    </div>
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value blue">1:186.6</div>
+                    <div class="metric-label">Return on Investment</div>
+                    <div class="metric-detail">Economic benefit per rupee spent</div>
                 </div>
-            </article>
-
-            <!-- Respiratory Card -->
-            <article class="vital-card" id="respiratoryCard">
-                <div class="vital-card-header">
-                    <div class="vital-card-title">
-                        <div class="icon respiratory" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                            </svg>
-                        </div>
-                        <span>Respiratory System</span>
-                    </div>
-                    <div class="vital-card-status">
-                        <span class="status-indicator normal" id="respStatus"></span>
-                        <span id="respStatusText">Normal</span>
-                    </div>
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value purple">3,110</div>
+                    <div class="metric-label">Lives Saved Annually</div>
+                    <div class="metric-detail">With 10,000 kits deployed</div>
                 </div>
-                <div class="vital-card-body">
-                    <div class="vital-items">
-                        <div class="vital-item tooltip" data-tooltip="Normal: 12-20 breaths/min. <10 or >29 is critical">
-                            <span class="vital-item-label">Respiratory Rate</span>
-                            <span class="vital-item-value normal" id="rrValue">16<span class="vital-item-unit">breaths/min</span></span>
-                        </div>
-                        <div class="vital-item tooltip" data-tooltip="Oxygen saturation. Normal: 95-100%. <90% is critical">
-                            <span class="vital-item-label">SpO2</span>
-                            <span class="vital-item-value normal" id="spo2Value">98<span class="vital-item-unit">%</span></span>
-                        </div>
-                        <div class="vital-item tooltip" data-tooltip="Breathing pattern assessment">
-                            <span class="vital-item-label">Breathing Pattern</span>
-                            <span class="vital-item-value normal" id="breathingPatternValue">Normal</span>
-                        </div>
-                    </div>
-                    <div class="mini-chart" id="respChart" aria-label="SpO2 trend chart">
-                        <svg viewBox="0 0 200 50" preserveAspectRatio="none">
-                            <polyline id="spo2Line" fill="none" stroke="#06b6d4" stroke-width="2" points=""/>
-                        </svg>
-                    </div>
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value orange">2 min</div>
+                    <div class="metric-label">Deployment Time</div>
+                    <div class="metric-detail">Complete kit activation</div>
                 </div>
-            </article>
-
-            <!-- Cardiovascular Card -->
-            <article class="vital-card" id="cardioCard">
-                <div class="vital-card-header">
-                    <div class="vital-card-title">
-                        <div class="icon cardio" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </svg>
-                        </div>
-                        <span>Cardiovascular System</span>
-                    </div>
-                    <div class="vital-card-status">
-                        <span class="status-indicator normal" id="cardioStatus"></span>
-                        <span id="cardioStatusText">Normal</span>
-                    </div>
-                </div>
-                <div class="vital-card-body">
-                    <div class="vital-items">
-                        <div class="vital-item tooltip" data-tooltip="Normal: 60-100 BPM. <40 or >150 is critical">
-                            <span class="vital-item-label">Heart Rate</span>
-                            <span class="vital-item-value normal" id="hrValue">75<span class="vital-item-unit">BPM</span></span>
-                        </div>
-                        <div class="vital-item tooltip" data-tooltip="Normal: 90-140/60-90 mmHg. <90 systolic is hypotension">
-                            <span class="vital-item-label">Blood Pressure</span>
-                            <span class="vital-item-value normal" id="bpValue">120/80<span class="vital-item-unit">mmHg</span></span>
-                        </div>
-                        <div class="vital-item tooltip" data-tooltip="Normal: ≤2 seconds. >2s indicates poor perfusion">
-                            <span class="vital-item-label">Capillary Refill</span>
-                            <span class="vital-item-value normal" id="crtValue">2<span class="vital-item-unit">seconds</span></span>
-                        </div>
-                        <div class="vital-item tooltip" data-tooltip="Pulse strength assessment">
-                            <span class="vital-item-label">Pulse Strength</span>
-                            <span class="vital-item-value normal" id="pulseValue">Strong</span>
-                        </div>
-                    </div>
-                    <div class="mini-chart" id="cardioChart" aria-label="Heart rate trend chart">
-                        <svg viewBox="0 0 200 50" preserveAspectRatio="none">
-                            <polyline id="hrLine" fill="none" stroke="#ef4444" stroke-width="2" points=""/>
-                        </svg>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Circulation Card -->
-            <article class="vital-card" id="circulationCard">
-                <div class="vital-card-header">
-                    <div class="vital-card-title">
-                        <div class="icon circulation" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9A7.902 7.902 0 014 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1A7.902 7.902 0 0120 12c0 4.42-3.58 8-8 8z"/>
-                            </svg>
-                        </div>
-                        <span>Circulation Assessment</span>
-                    </div>
-                    <div class="vital-card-status">
-                        <span class="status-indicator normal" id="circStatus"></span>
-                        <span id="circStatusText">Normal</span>
-                    </div>
-                </div>
-                <div class="vital-card-body">
-                    <div class="vital-items">
-                        <div class="vital-item tooltip" data-tooltip="Skin color assessment for perfusion">
-                            <span class="vital-item-label">Skin Color</span>
-                            <span class="vital-item-value normal" id="skinColorValue">Normal</span>
-                        </div>
-                        <div class="vital-item tooltip" data-tooltip="Normal: 36.1-37.2°C. <35°C is hypothermia">
-                            <span class="vital-item-label">Temperature</span>
-                            <span class="vital-item-value normal" id="tempValue">36.8<span class="vital-item-unit">°C</span></span>
-                        </div>
-                        <div class="vital-item tooltip" data-tooltip="Estimated blood loss. >1500ml is Class III hemorrhage">
-                            <span class="vital-item-label">Est. Blood Loss</span>
-                            <span class="vital-item-value normal" id="bloodLossValue">0<span class="vital-item-unit">ml</span></span>
-                        </div>
-                    </div>
-                    <div class="mini-chart" id="circChart" aria-label="Temperature trend chart">
-                        <svg viewBox="0 0 200 50" preserveAspectRatio="none">
-                            <polyline id="tempLine" fill="none" stroke="#10b981" stroke-width="2" points=""/>
-                        </svg>
-                    </div>
-                </div>
-            </article>
+            </div>
         </section>
 
-        <!-- Triage Panel -->
-        <section class="triage-panel" id="triagePanel" aria-labelledby="triage-heading">
-            <div class="triage-header triage-GREEN" id="triageHeader">
-                <div class="triage-category">
-                    <span class="triage-badge GREEN" id="triageBadge">GREEN</span>
-                    <div>
-                        <div class="triage-name" id="triageName">MINOR</div>
-                        <div class="triage-description" id="triageDesc">Walking wounded, minor injuries</div>
+        <!-- Components Overview -->
+        <section class="section" id="components">
+            <div class="section-header">
+                <span class="section-badge">Kit Components</span>
+                <h2 class="section-title">What's Inside the Smart Kit</h2>
+            </div>
+            
+            <div class="components-overview">
+                <div class="component-item glass-card-light">
+                    <div class="component-header">
+                        <span class="component-price">₹300</span>
+                        <span class="component-tag red">Hemorrhage Control</span>
+                    </div>
+                    <h3>CAT Tourniquet (Gen 7)</h3>
+                    <p>Combat Application Tourniquet for rapid hemorrhage control. Reduces hemorrhage-related mortality by 16.8%.</p>
+                    <div class="component-stat">
+                        <span class="stat-highlight">90%</span>
+                        <span>Survival improvement with proper application</span>
                     </div>
                 </div>
-                <div class="triage-confidence">
-                    <div class="confidence-label">Confidence</div>
-                    <div class="confidence-value" id="confidenceValue">95%</div>
-                    <div class="confidence-bar">
-                        <div class="confidence-bar-fill GREEN" id="confidenceBar" style="width: 95%"></div>
+                <div class="component-item glass-card-light">
+                    <div class="component-header">
+                        <span class="component-price">₹700</span>
+                        <span class="component-tag blue">Respiratory Support</span>
+                    </div>
+                    <h3>Ambu Bag + O₂ Reservoir</h3>
+                    <p>Manual resuscitator for artificial ventilation with oxygen reservoir. Reduces anoxic death by 14.3%.</p>
+                    <div class="component-stat">
+                        <span class="stat-highlight">1500ml</span>
+                        <span>Volume capacity with one-way valve</span>
+                    </div>
+                </div>
+                <div class="component-item glass-card-light featured">
+                    <div class="component-header">
+                        <span class="component-price">₹1,500</span>
+                        <span class="component-tag green">Core Innovation</span>
+                    </div>
+                    <h3>Smart Vital Monitoring Pad</h3>
+                    <p>ESP32-based real-time vital signs monitor with Bluetooth transmission to hospital dashboard.</p>
+                    <div class="component-stat">
+                        <span class="stat-highlight">10+ hrs</span>
+                        <span>Battery life with continuous monitoring</span>
                     </div>
                 </div>
             </div>
-            <div class="triage-body">
-                <!-- Guideline Badge -->
-                <div class="guideline-badge" id="guidelineBadge">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
-                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
-                    </svg>
-                    Applied Guideline: <strong id="guidelineName">START Protocol</strong>
-                </div>
+        </section>
 
-                <!-- Reasoning Section -->
-                <div class="triage-section">
-                    <h3 class="triage-section-title" id="triage-heading">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-                        </svg>
-                        AI Reasoning
-                    </h3>
-                    <div class="reasoning-text" id="reasoningText">
-                        Patient has MINOR injuries. GCS 15 with alert mental status. All vital signs within acceptable limits. Patient is ambulatory and can wait for treatment. Overall assessment score: 95/100. Low acuity case.
-                    </div>
+        <!-- How It Works -->
+        <section class="section" id="workflow">
+            <div class="section-header">
+                <span class="section-badge">Deployment Protocol</span>
+                <h2 class="section-title">2-Minute Response Workflow</h2>
+            </div>
+            
+            <div class="workflow-container">
+                <div class="workflow-image-container glass-card-light">
+                    <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/4d09065746dcea5c95f67a6e374dd302/054e6a40-ef16-49f1-a665-fc6330793656/309c72d7.png" alt="2-Minute Deployment Workflow" class="workflow-image">
                 </div>
-
-                <!-- KPI Scores Section -->
-                <div class="triage-section">
-                    <h3 class="triage-section-title">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
-                        </svg>
-                        KPI Model Scores
-                    </h3>
-                    <div class="kpi-grid">
-                        <div class="kpi-item">
-                            <div class="kpi-header">
-                                <span class="kpi-name">CNS Score</span>
-                                <span class="kpi-weight">30% weight</span>
-                            </div>
-                            <div class="kpi-bar">
-                                <div class="kpi-bar-fill" id="cnsKpiBar" style="width: 100%; background: var(--color-green)"></div>
-                            </div>
-                            <div class="kpi-score" id="cnsKpiScore">100/100</div>
-                        </div>
-                        <div class="kpi-item">
-                            <div class="kpi-header">
-                                <span class="kpi-name">Respiratory Score</span>
-                                <span class="kpi-weight">25% weight</span>
-                            </div>
-                            <div class="kpi-bar">
-                                <div class="kpi-bar-fill" id="respKpiBar" style="width: 100%; background: var(--color-green)"></div>
-                            </div>
-                            <div class="kpi-score" id="respKpiScore">100/100</div>
-                        </div>
-                        <div class="kpi-item">
-                            <div class="kpi-header">
-                                <span class="kpi-name">Cardiovascular Score</span>
-                                <span class="kpi-weight">25% weight</span>
-                            </div>
-                            <div class="kpi-bar">
-                                <div class="kpi-bar-fill" id="cardioKpiBar" style="width: 100%; background: var(--color-green)"></div>
-                            </div>
-                            <div class="kpi-score" id="cardioKpiScore">100/100</div>
-                        </div>
-                        <div class="kpi-item">
-                            <div class="kpi-header">
-                                <span class="kpi-name">Circulation Score</span>
-                                <span class="kpi-weight">20% weight</span>
-                            </div>
-                            <div class="kpi-bar">
-                                <div class="kpi-bar-fill" id="circKpiBar" style="width: 100%; background: var(--color-green)"></div>
-                            </div>
-                            <div class="kpi-score" id="circKpiScore">100/100</div>
+                
+                <div class="workflow-steps">
+                    <div class="workflow-step glass-card-light">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Scene Safety (0-15s)</h4>
+                            <p>Assess scene for hazards, ensure responder and patient safety</p>
                         </div>
                     </div>
-                </div>
-
-                <!-- Interventions Section -->
-                <div class="triage-section">
-                    <h3 class="triage-section-title">
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                        </svg>
-                        Recommended Interventions
-                    </h3>
-                    <div class="interventions-list" id="interventionsList">
-                        <div class="intervention-item routine">
-                            <span class="intervention-priority routine">Routine</span>
-                            <div class="intervention-content">
-                                <div class="intervention-action">Continue monitoring vital signs</div>
-                                <div class="intervention-reason">Patient stable - routine observation recommended</div>
-                            </div>
-                            <span class="intervention-category">General</span>
+                    <div class="workflow-step glass-card-light">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Bleeding Check (15-30s)</h4>
+                            <p>Identify life-threatening hemorrhage requiring immediate intervention</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step glass-card-light active">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Tourniquet Application (30-60s)</h4>
+                            <p>Apply CAT tourniquet if extremity bleeding detected</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step glass-card-light">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Airway Management (60-90s)</h4>
+                            <p>Assess breathing, apply Ambu bag ventilation if needed</p>
+                        </div>
+                    </div>
+                    <div class="workflow-step glass-card-light">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h4>Smart Pad Activation (90-120s)</h4>
+                            <p>Attach monitoring pad for continuous vital sign transmission</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Action Bar -->
-        <section class="action-bar" aria-label="Control Actions">
-            <div class="action-group">
-                <button class="btn btn-secondary" id="pauseSimBtn">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                    </svg>
-                    Pause
-                </button>
-                <button class="btn btn-secondary" id="resetBtn">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z"/>
-                    </svg>
-                    Reset
-                </button>
-                <button class="btn btn-primary" id="overrideBtn">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-                    </svg>
-                    Manual Override
-                </button>
+        <!-- Quick Links Section -->
+        <section class="section" id="explore">
+            <div class="section-header">
+                <span class="section-badge">Learn More</span>
+                <h2 class="section-title">Explore Our Research</h2>
             </div>
-            <div class="action-group">
-                <button class="btn btn-success" id="exportJsonBtn">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
-                    </svg>
-                    Export JSON
-                </button>
-                <button class="btn btn-success" id="exportHtmlBtn">
-                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-                    </svg>
-                    Export Report
-                </button>
+            
+            <div class="quick-links-grid">
+                <a href="economy.html" class="quick-link-card glass-card-light hoverable">
+                    <div class="quick-link-icon blue">💰</div>
+                    <h3>Economic Impact</h3>
+                    <p>Cost-benefit analysis and ROI projections for nationwide deployment</p>
+                </a>
+                <a href="effectiveness.html" class="quick-link-card glass-card-light hoverable">
+                    <div class="quick-link-icon green">📈</div>
+                    <h3>Clinical Effectiveness</h3>
+                    <p>Evidence-based outcomes and mortality reduction metrics</p>
+                </a>
+                <a href="roadmap.html" class="quick-link-card glass-card-light hoverable">
+                    <div class="quick-link-icon purple">🗓️</div>
+                    <h3>Implementation Roadmap</h3>
+                    <p>Phased deployment plan from pilot to national rollout</p>
+                </a>
+                <a href="references.html" class="quick-link-card glass-card-light hoverable">
+                    <div class="quick-link-icon orange">📚</div>
+                    <h3>Academic References</h3>
+                    <p>Peer-reviewed sources and clinical guidelines</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="section" id="team">
+            <div class="section-header">
+                <span class="section-badge">Our Team</span>
+                <h2 class="section-title">Research Team</h2>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-member glass-card-light">
+                    <div class="member-avatar blue">D</div>
+                    <h4>Denx</h4>
+                    <span class="member-role">Project Lead</span>
+                    <p>Smart Pad Designer & System Architecture</p>
+                </div>
+                <div class="team-member glass-card-light">
+                    <div class="member-avatar green">D</div>
+                    <h4>Dhruv</h4>
+                    <span class="member-role">Hardware Lead</span>
+                    <p>Hardware Assembly & Integration</p>
+                </div>
+                <div class="team-member glass-card-light">
+                    <div class="member-avatar purple">R</div>
+                    <h4>Raiyan</h4>
+                    <span class="member-role">Clinical Lead</span>
+                    <p>Clinical Protocol & Medical Validation</p>
+                </div>
+                <div class="team-member glass-card-light">
+                    <div class="member-avatar orange">H</div>
+                    <h4>Harsh</h4>
+                    <span class="member-role">Operations Lead</span>
+                    <p>Supply Chain & Manufacturing</p>
+                </div>
             </div>
         </section>
     </main>
 
-    <!-- Manual Override Modal -->
-    <div class="modal-overlay" id="overrideModal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
-        <div class="modal">
-            <div class="modal-header">
-                <h2 class="modal-title" id="modal-title">Manual Vital Signs Override</h2>
-                <button class="modal-close" id="closeModalBtn" aria-label="Close modal">
-                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                    </svg>
-                </button>
+    <!-- Footer -->
+    <footer class="footer light" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">💓</span>
+                        <span>Pulse Protector</span>
+                    </div>
+                    <p>Smart Trauma Response System - A research prototype developed for Catalyst Hackathon 2025.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Products</h4>
+                        <a href="smart-kit.html">Smart Kit</a>
+                        <a href="smart-pad.html">Smart Pad</a>
+                        <a href="smart-triage.html">AI Triage</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Research</h4>
+                        <a href="economy.html">Economic Impact</a>
+                        <a href="effectiveness.html">Effectiveness</a>
+                        <a href="references.html">References</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Project</h4>
+                        <a href="roadmap.html">Roadmap</a>
+                        <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <form id="overrideForm">
-                    <!-- CNS Section -->
-                    <h3 style="margin-bottom: var(--space-md); color: var(--text-secondary);">Central Nervous System</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="overrideGcs">GCS Score (3-15)</label>
-                            <input type="number" class="form-input" id="overrideGcs" min="3" max="15" value="15">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="overridePupils">Pupil Reactivity</label>
-                            <select class="form-select" id="overridePupils">
-                                <option value="reactive">Reactive</option>
-                                <option value="sluggish">Sluggish</option>
-                                <option value="unequal">Unequal</option>
-                                <option value="fixed">Fixed</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="overrideConsciousness">Consciousness</label>
-                            <select class="form-select" id="overrideConsciousness">
-                                <option value="alert">Alert</option>
-                                <option value="confused">Confused</option>
-                                <option value="responds_to_voice">Responds to Voice</option>
-                                <option value="responds_to_pain">Responds to Pain</option>
-                                <option value="unresponsive">Unresponsive</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Respiratory Section -->
-                    <h3 style="margin: var(--space-lg) 0 var(--space-md); color: var(--text-secondary);">Respiratory System</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="overrideRr">Respiratory Rate (0-60)</label>
-                            <input type="number" class="form-input" id="overrideRr" min="0" max="60" value="16">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="overrideSpo2">SpO2 (0-100%)</label>
-                            <input type="number" class="form-input" id="overrideSpo2" min="0" max="100" value="98">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="overrideBreathingPattern">Breathing Pattern</label>
-                            <select class="form-select" id="overrideBreathingPattern">
-                                <option value="normal">Normal</option>
-                                <option value="labored">Labored</option>
-                                <option value="irregular">Irregular</option>
-                                <option value="absent">Absent</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Cardiovascular Section -->
-                    <h3 style="margin: var(--space-lg) 0 var(--space-md); color: var(--text-secondary);">Cardiovascular System</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="overrideHr">Heart Rate (0-200)</label>
-                            <input type="number" class="form-input" id="overrideHr" min="0" max="200" value="75">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="overrideBpSystolic">BP Systolic (0-250)</label>
-                            <input type="number" class="form-input" id="overrideBpSystolic" min="0" max="250" value="120">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="overrideBpDiastolic">BP Diastolic (0-150)</label>
-                            <input type="number" class="form-input" id="overrideBpDiastolic" min="0" max="150" value="80">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="overrideCrt">Capillary Refill (0-10s)</label>
-                            <input type="number" class="form-input" id="overrideCrt" min="0" max="10" step="0.5" value="2">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="overridePulse">Pulse Strength</label>
-                            <select class="form-select" id="overridePulse">
-                                <option value="strong">Strong</option>
-                                <option value="weak">Weak</option>
-                                <option value="thready">Thready</option>
-                                <option value="absent">Absent</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Circulation Section -->
-                    <h3 style="margin: var(--space-lg) 0 var(--space-md); color: var(--text-secondary);">Circulation Assessment</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="overrideSkin">Skin Color</label>
-                            <select class="form-select" id="overrideSkin">
-                                <option value="normal">Normal</option>
-                                <option value="pale">Pale</option>
-                                <option value="mottled">Mottled</option>
-                                <option value="cyanotic">Cyanotic</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="overrideTemp">Temperature (32-42°C)</label>
-                            <input type="number" class="form-input" id="overrideTemp" min="32" max="42" step="0.1" value="36.8">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="overrideBloodLoss">Est. Blood Loss (ml)</label>
-                            <input type="number" class="form-input" id="overrideBloodLoss" min="0" max="5000" step="50" value="0">
-                        </div>
-                    </div>
-
-                    <!-- Justification -->
-                    <div class="form-group" style="margin-top: var(--space-lg);">
-                        <label class="form-label" for="overrideJustification">Override Justification (required)</label>
-                        <textarea class="form-textarea" id="overrideJustification" placeholder="Explain the reason for this manual override..." required></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" id="cancelOverrideBtn">Cancel</button>
-                <button class="btn btn-primary" id="applyOverrideBtn">Apply Override</button>
+            <div class="footer-bottom">
+                <div class="disclaimer-badge">
+                    ⚠️ Research Prototype - Not for Clinical Use
+                </div>
+                <p>Based on <a href="https://www.facs.org/quality-programs/trauma/atls/" target="_blank" rel="noopener">ATLS</a> & <a href="https://www.remm.nlm.gov/startadult.htm" target="_blank" rel="noopener">START Protocol</a> guidelines</p>
             </div>
         </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer" role="contentinfo">
-        <p>Smart Trauma Assessment Pad - Demo Version</p>
-        <p>Based on <a href="https://www.facs.org/quality-programs/trauma/atls/" target="_blank" rel="noopener">ATLS</a> & <a href="https://www.remm.nlm.gov/startadult.htm" target="_blank" rel="noopener">START Protocol</a> guidelines</p>
-        <p style="margin-top: var(--space-sm); color: var(--text-muted);">For demonstration purposes only. Not for clinical use.</p>
     </footer>
 
-    <!-- Scripts -->
-    <script src="scenarios.js"></script>
-    <script src="triage-engine.js"></script>
-    <script src="app.js"></script>
+    <script src="navigation.js"></script>
 </body>
 </html>
