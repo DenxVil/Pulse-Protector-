@@ -13,6 +13,16 @@
     --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --bg-gradient-soft: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
     
+    /* Dark theme colors */
+    --dark-bg-primary: #1e293b;
+    --dark-bg-secondary: #0f172a;
+    --dark-bg-tertiary: #334155;
+    --dark-text-primary: #f1f5f9;
+    --dark-text-secondary: #cbd5e1;
+    --dark-text-muted: #94a3b8;
+    --dark-border-color: rgba(255, 255, 255, 0.1);
+    --dark-glass-bg: rgba(30, 41, 59, 0.8);
+    
     /* Text colors */
     --text-primary: #1e293b;
     --text-secondary: #475569;
@@ -80,6 +90,7 @@
 html {
     font-size: 16px;
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -88,12 +99,83 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     min-height: 100vh;
+    min-height: 100dvh;
     overflow-x: hidden;
+}
+
+/* Dark mode theme */
+body.dark-theme {
+    background: var(--dark-bg-primary);
+    color: var(--dark-text-primary);
+}
+
+body.dark-theme .glass-card-light {
+    background: var(--dark-glass-bg);
+    border-color: var(--dark-border-color);
+}
+
+body.dark-theme .header,
+body.dark-theme .header.light {
+    background: rgba(30, 41, 59, 0.9);
+    border-color: var(--dark-border-color);
+}
+
+body.dark-theme .nav-link {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-theme .nav-link:hover,
+body.dark-theme .nav-link.active {
+    color: var(--accent-primary);
 }
 
 body.light-theme {
     background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
     background-attachment: fixed;
+}
+
+/* Light shining background effect */
+body.light-theme::before {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.04) 0%, transparent 60%);
+    animation: shimmer 15s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+    will-change: transform;
+}
+
+@keyframes shimmer {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-5%, -5%) rotate(3deg); }
+}
+
+/* Light orbs floating effect */
+body.light-theme::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.04) 0%, transparent 25%);
+    animation: floatOrbs 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+    will-change: transform;
+}
+
+@keyframes floatOrbs {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+    50% { transform: translateY(-20px) scale(1.05); opacity: 1; }
 }
 
 /* =============================================
@@ -219,6 +301,7 @@ body.light-theme {
 .hero-section {
     position: relative;
     min-height: 90vh;
+    min-height: 90dvh;
     display: flex;
     align-items: center;
     padding: var(--space-3xl) var(--space-xl);
@@ -351,6 +434,33 @@ body.light-theme {
     height: auto;
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-xl);
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Global image fixes */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Image container alignment */
+.hero-image,
+.page-hero-image,
+.workflow-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.workflow-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
 }
 
 .product-image.floating {
@@ -1479,6 +1589,283 @@ body.light-theme {
 }
 
 /* =============================================
+   SAFARI/WEBKIT SPECIFIC FIXES
+   ============================================= */
+
+/* Smooth scrolling for iOS */
+html {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Glass effect WebKit fixes */
+.glass-card-light,
+.header,
+.header.light {
+    -webkit-backdrop-filter: blur(20px);
+}
+
+/* Touch-friendly tap targets for mobile */
+@media (max-width: 1024px) {
+    .btn,
+    .nav-link,
+    .quick-link-card,
+    .solution-card {
+        min-height: 44px;
+        touch-action: manipulation;
+    }
+}
+
+/* Fix Safari flexbox bugs */
+.hero-section,
+.hero-content,
+.hero-image,
+.hero-stats,
+.hero-cta {
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+}
+
+/* =============================================
+   iPHONE BREAKPOINTS
+   ============================================= */
+
+/* iPhone SE (375px) */
+@media (max-width: 375px) {
+    .hero-title {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-sm);
+    }
+    
+    .stat-value {
+        font-size: 1.25rem;
+    }
+    
+    .stat-label {
+        font-size: 0.625rem;
+    }
+    
+    .metric-value {
+        font-size: 1.75rem;
+    }
+    
+    .badge-research,
+    .badge {
+        font-size: 0.625rem;
+        padding: var(--space-xs) var(--space-sm);
+    }
+    
+    .nav-link {
+        padding: var(--space-xs);
+        font-size: 0.75rem;
+    }
+    
+    .page-hero {
+        padding: var(--space-xl) var(--space-md);
+    }
+    
+    .page-hero h1 {
+        font-size: 1.75rem;
+    }
+}
+
+/* iPhone 12/13/14 (390px) */
+@media (min-width: 376px) and (max-width: 390px) {
+    .hero-title {
+        font-size: 1.625rem;
+    }
+    
+    .section-title {
+        font-size: 1.625rem;
+    }
+}
+
+/* iPhone 14 Pro Max (430px) */
+@media (min-width: 391px) and (max-width: 430px) {
+    .hero-title {
+        font-size: 1.75rem;
+    }
+}
+
+/* =============================================
+   iPAD BREAKPOINTS
+   ============================================= */
+
+/* iPad Mini (768px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hero-section {
+        flex-direction: row;
+        text-align: left;
+        padding: var(--space-2xl);
+    }
+    
+    .hero-content {
+        flex: 1;
+        padding-right: var(--space-xl);
+    }
+    
+    .hero-image {
+        flex: 1;
+        order: 1;
+    }
+    
+    .hero-title {
+        font-size: 2.25rem;
+    }
+    
+    .workflow-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+    
+    .components-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .problem-grid,
+    .solution-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .triage-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .triage-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 50%;
+        justify-self: center;
+    }
+}
+
+/* iPad Pro 11" (1024px) */
+@media (min-width: 1024px) and (max-width: 1365px) {
+    .hero-title {
+        font-size: 2.75rem;
+    }
+    
+    .hero-section {
+        padding: var(--space-3xl);
+    }
+    
+    .product-image {
+        max-width: 450px;
+    }
+}
+
+/* iPad Pro 12.9" (1366px) */
+@media (min-width: 1366px) {
+    .hero-title {
+        font-size: 3.25rem;
+    }
+    
+    .container {
+        max-width: 1300px;
+    }
+}
+
+/* =============================================
+   ANDROID CHROME OPTIMIZATIONS
+   ============================================= */
+
+/* Proper viewport handling for Android */
+@media screen and (max-width: 767px) {
+    html {
+        scroll-padding-top: 80px;
+    }
+    
+    /* Touch-friendly interactive elements */
+    .btn,
+    .nav-link,
+    a {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Ensure tap targets are at least 44x44px */
+    .nav-link {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+    
+    .quick-link-card,
+    .solution-card,
+    .component-item {
+        padding: var(--space-lg);
+    }
+}
+
+/* Mobile-first hero section optimization */
+@media (max-width: 767px) {
+    .hero-section {
+        flex-direction: column;
+        padding: var(--space-xl) var(--space-md);
+        min-height: auto;
+        text-align: center;
+    }
+    
+    .hero-image {
+        order: -1;
+        width: 100%;
+        margin-bottom: var(--space-xl);
+    }
+    
+    .hero-content {
+        max-width: 100%;
+    }
+    
+    .product-image {
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: var(--space-sm);
+    }
+    
+    .hero-stat {
+        min-width: auto;
+        padding: var(--space-md);
+    }
+}
+
+/* Tablet and up - restore desktop layout */
+@media (min-width: 768px) {
+    .hero-section {
+        flex-direction: row;
+        text-align: left;
+        padding: var(--space-3xl) var(--space-xl);
+    }
+    
+    .hero-image {
+        order: 1;
+        width: 50%;
+        margin-bottom: 0;
+    }
+    
+    .hero-content {
+        flex: 1;
+    }
+    
+    .product-image {
+        max-width: 500px;
+    }
+}
+
+/* =============================================
    ANIMATIONS
    ============================================= */
 
@@ -1495,6 +1882,146 @@ body.light-theme {
 
 .animate-fade-in {
     animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Smooth page load animation */
+.fade-in {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+    will-change: opacity, transform;
+}
+
+.fade-in:nth-child(1) { animation-delay: 0.1s; }
+.fade-in:nth-child(2) { animation-delay: 0.2s; }
+.fade-in:nth-child(3) { animation-delay: 0.3s; }
+.fade-in:nth-child(4) { animation-delay: 0.4s; }
+.fade-in:nth-child(5) { animation-delay: 0.5s; }
+
+/* Page content reveal animation */
+.page-loaded .fade-in {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Staggered section animations */
+.section.fade-in {
+    animation-delay: 0.2s;
+}
+
+/* Hero animations */
+.hero-content.fade-in {
+    animation-delay: 0.1s;
+}
+
+.hero-image.fade-in {
+    animation-delay: 0.3s;
+}
+
+/* =============================================
+   VITAL SIGNS DISPLAY
+   ============================================= */
+
+/* Tabular numbers for vital signs - prevents jitter when updating */
+.vital-value,
+.stat-number,
+.stat-value,
+.metric-value,
+.component-price,
+.stat-highlight {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+}
+
+/* Connection status indicator */
+.connection-status {
+    position: fixed;
+    top: var(--space-md);
+    right: var(--space-md);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-sm);
+}
+
+.connection-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-red);
+}
+
+.connection-dot.connected {
+    background: var(--accent-green);
+    animation: pulse-connected 2s ease-in-out infinite;
+}
+
+.connection-dot.disconnected {
+    background: var(--accent-red);
+}
+
+@keyframes pulse-connected {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+    }
+    50% {
+        opacity: 0.8;
+        box-shadow: 0 0 0 4px rgba(16, 185, 129, 0);
+    }
+}
+
+/* Mock mode toggle */
+.mock-mode-toggle {
+    position: fixed;
+    bottom: var(--space-md);
+    right: var(--space-md);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.mock-mode-toggle:hover {
+    background: var(--bg-secondary);
+    box-shadow: var(--shadow-lg);
+}
+
+.mock-mode-toggle.active {
+    background: rgba(99, 102, 241, 0.1);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+/* Dark mode adjustments for vitals */
+body.dark-theme .connection-status,
+body.dark-theme .mock-mode-toggle {
+    background: var(--dark-glass-bg);
+    border-color: var(--dark-border-color);
+    color: var(--dark-text-secondary);
+}
+
+body.dark-theme .mock-mode-toggle.active {
+    background: rgba(99, 102, 241, 0.2);
 }
 
 /* =============================================
