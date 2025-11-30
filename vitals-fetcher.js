@@ -16,7 +16,7 @@
     // CONFIGURATION
     // =============================================
     const config = {
-        esp32Url: 'http://192.168.1.100/vitals', // Default ESP32 endpoint - update as needed
+        esp32Url: 'http://YOUR_ESP32_IP/vitals', // Update with your ESP32's IP address
         fetchInterval: 2000, // 2 seconds
         connectionTimeout: 5000, // 5 seconds
         mockMode: true, // Default to mock mode for HTTPS compatibility
@@ -266,8 +266,8 @@
                 config.mockMode ? 'Mock Mode ON' : 'Mock Mode OFF';
         }
 
-        // Reset phase for fresh sine wave when toggling
-        state.mockPhase = 0;
+        // Note: Preserving mockPhase for continuity in sine wave generation
+        // This prevents jarring jumps when toggling mock mode
         
         // Immediate fetch to update display
         fetchVitals();
@@ -280,10 +280,23 @@
     // =============================================
 
     /**
-     * Set ESP32 URL
+     * Set ESP32 URL with validation
      */
     function setEsp32Url(url) {
-        config.esp32Url = url;
+        // Basic URL validation
+        try {
+            const parsedUrl = new URL(url);
+            if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
+                console.warn('Invalid protocol for ESP32 URL. Use http:// or https://');
+                return false;
+            }
+            config.esp32Url = url;
+            console.log('ESP32 URL set to:', url);
+            return true;
+        } catch (e) {
+            console.warn('Invalid ESP32 URL format:', url);
+            return false;
+        }
     }
 
     /**
