@@ -1,184 +1,213 @@
-# Smart Trauma Vitals Assessment Pad 🏥
+# Pulse Protector — Smart Trauma Response System 💓
 
-[![Demo](https://img.shields.io/badge/Demo-Live-brightgreen)](https://denxvil.github.io/Pulse-Protector-/)
+[![Live Demo](https://img.shields.io/badge/Demo-Live-brightgreen)](https://denxvil.github.io/Pulse-Protector-/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Tech](https://img.shields.io/badge/HTML%20%7C%20CSS%20%7C%20JS-Frontend-orange.svg)](https://github.com/DenxVil/Pulse-Protector-/)
 
-An AI-powered trauma assessment pad demonstration that monitors patient vitals, analyzes patient condition using clinical parameters, and provides automated triage recommendations based on START (Simple Triage and Rapid Treatment) protocol with adaptive guidelines.
+SAVE THE LIFE — An AI-assisted research prototype for rapid trauma assessment, vitals monitoring and START-based triage. This repository contains the static front-end demo used to showcase the Smart Kit, Smart Pad and AI Triage Engine.
 
-## 🚀 Live Demo
+---
 
-**[View Live Demo](https://denxvil.github.io/Pulse-Protector-/)**
+## Quick links
+- Live demo: https://denxvil.github.io/Pulse-Protector-/
+- Repo: https://github.com/DenxVil/Pulse-Protector-/
+- Pages: index.html · smart-kit.html · smart-pad.html · smart-triage.html · economy.html · effectiveness.html · roadmap.html · references.html
 
-## ✨ Features
+---
 
-### Real-time Vital Signs Monitoring
-- **Central Nervous System (CNS)**: GCS Score with E/V/M breakdown, pupil reactivity, consciousness level
-- **Respiratory System**: Respiratory rate, SpO2, breathing pattern
-- **Cardiovascular System**: Heart rate, blood pressure, capillary refill time, pulse strength
-- **Circulation Assessment**: Skin color, temperature, estimated blood loss
+## Hero summary — what this project does
+Pulse Protector is a lightweight, offline-capable front-end prototype that simulates:
+- Real-time vital-sign monitoring (HR, RR, SpO₂, BP, GCS, temperature, pupils)
+- START-inspired automated triage (RED / YELLOW / GREEN / BLACK)
+- An AI triage engine that uses a weighted KPI scoring model and returns:
+  - triage category
+  - confidence score
+  - human-readable reasoning
+  - prioritized intervention recommendations
+- Pre-loaded trauma scenarios for demo playback and exportable JSON/HTML reports
 
-### Intelligent Triage Engine
-- Implements START (Simple Triage and Rapid Treatment) protocol
-- Four triage categories: RED (Immediate), YELLOW (Delayed), GREEN (Minor), BLACK (Expectant)
-- Weighted KPI model for clinical scoring:
-  - CNS Score: 30%
-  - Respiratory Score: 25%
-  - Cardiovascular Score: 25%
-  - Circulation Score: 20%
+This is a research/demo prototype (Catalyst Hackathon 2025 / MAMC SCISOC) — not for clinical use.
 
-### Pre-loaded Trauma Scenarios
-1. **Road Traffic Accident** - Hemorrhagic Shock
-2. **Drowning Victim** - Respiratory Distress
-3. **Electrocution** - Cardiac Arrest
-4. **Fall from Height** - Head Injury
-5. **Mass Casualty Incident** - Explosion Victim
-6. **Minor Trauma** - Stable Patient
+---
 
-### Demo Features
-- Real-time vital signs simulation with realistic fluctuations
-- Trend graphs showing vital sign history (last 5 minutes)
-- Alert system for critical value changes
-- Manual override controls with justification logging
-- Pause/Resume simulation controls
+## Visual & UI design highlights
+Pulse Protector's UI uses:
+- Glassmorphism (blurred translucent cards, accent gradients)
+- Subtle animated backgrounds (floating orbs and slow parallax)
+- Floating product image with a soft vertical “floating” animation
+- 3D-like interactive card hover transforms for emphasis and affordance
+- Mobile-first responsive layout with a light and dark theme toggle
 
-### AI Decision Support
-- Confidence scoring (0-100%)
-- Clinical reasoning explanation
-- Guideline attribution (START/ATLS/SALT)
-- Intervention recommendations with priority levels
+If you want to try a small 3D card demo locally, paste the snippet below into a file and open it:
 
-### Data Export
-- JSON export with complete assessment data
-- HTML report generation (print-ready)
+```html
+<!-- 3D demo card: paste into a file and open in browser -->
+<style>
+  body { background:#0f172a; display:flex;min-height:100vh;align-items:center;justify-content:center;font-family:Inter,system-ui; }
+  .card { width:360px;height:220px;perspective:1000px; }
+  .card-inner {
+    width:100%;height:100%; border-radius:14px;
+    background:linear-gradient(135deg,#0ea5a4,#6366f1);
+    color:#fff;padding:20px;box-shadow:0 20px 40px rgba(2,6,23,.6);
+    transform-style:preserve-3d;transition:transform .45s cubic-bezier(.2,.8,.2,1)
+  }
+  .card:hover .card-inner { transform: rotateY(12deg) rotateX(6deg) translateZ(6px); }
+  .title { font-weight:800; font-size:20px; }
+  .sub { opacity:.9;margin-top:8px }
+</style>
+<div class="card">
+  <div class="card-inner">
+    <div class="title">Pulse Protector</div>
+    <div class="sub">AI Trauma Vitals • START triage • Live simulation</div>
+  </div>
+</div>
+```
 
-## 🛠️ Technical Stack
+---
 
-- **Pure HTML5, CSS3, JavaScript (ES6+)**
-- **No external dependencies** - Works offline, no CDN required
-- **Mobile-first responsive design**
-- **Dark theme medical UI**
-- **Works on GitHub Pages**
-
-## 📁 Project Structure
-
+## Project structure (what's where)
 ```
 /
-├── index.html          # Main HTML page
-├── styles.css          # All CSS styling
-├── app.js              # Core application logic
-├── triage-engine.js    # AI triage decision algorithm
-├── scenarios.js        # Pre-loaded trauma scenarios
-└── README.md           # Documentation
+├── index.html            # Landing + hero + site nav
+├── styles.css            # UI, animations, glassmorphism
+├── app.js                # Core application UI & simulation glue
+├── triage-engine.js      # Decision logic: scoring, triage, interventions
+├── scenarios.js          # Preloaded demo scenarios
+├── vitals-fetcher.js     # (simulated) vitals stream + exporter
+├── navigation.js         # small nav helpers
+├── *.html                # detailed pages: smart-kit, smart-pad, smart-triage, economy, etc
+└── README.md
 ```
 
-## 🚦 Triage Categories
+---
 
-### RED - Immediate
-- Respiratory rate <10 or >29
-- Capillary refill >2 seconds
-- Unable to follow simple commands
-- GCS ≤8
-- SpO2 <90%
-- Severe hemorrhage
+## Triage engine — how decisions are made (concise)
+The triage engine implements a START-like approach combined with a weighted KPI model:
 
-### YELLOW - Delayed
-- Respiratory rate 10-29
-- Can follow simple commands
-- GCS 9-13
-- SpO2 90-94%
-- Moderate injuries
+- KPI weights:
+  - CNS (Central Nervous System): 30%
+  - Respiratory: 25%
+  - Cardiovascular: 25%
+  - Circulation: 20%
 
-### GREEN - Minor
-- Walking wounded
-- Respiratory rate normal
-- GCS 14-15
-- SpO2 >95%
-- Minor injuries
+- Each subsystem returns:
+  - raw score (0–100)
+  - issues list
+  - alerts (severity-coded)
+  - weightedScore = rawScore * subsystemWeight
 
-### BLACK - Expectant
-- No respiratory effort after airway positioning
-- No pulse
-- Injuries incompatible with survival
+- Overall score = sum(weightedScore of subsystems)  
+  Category decisions use START criteria + thresholds and an overallScore fallback:
+  - BLACK: no respiratory effort + no pulse
+  - RED: critical RR (<10 or >29), CRT > 2 s, GCS ≤ 8, SpO₂ < 90, systolic < 70, massive blood loss, fixed pupils, unresponsive
+  - YELLOW: intermediate abnormalities, overallScore < threshold, or specific borderline findings
+  - GREEN: ambulatory / minor injuries / normal ranges
 
-## 📊 Clinical Algorithm
+- Interventions generation:
+  - Outcomes produce prioritized interventions (immediate / urgent / routine) such as airway protection, high-flow oxygen, IV access, warmed fluids, tourniquet/MTP activation, neurosurgical referral triggers, etc.
 
-The triage engine uses a weighted scoring system based on:
+(The complete logic is implemented in triage-engine.js — it exports the main calculateTriageCategory function and per-system calculators for testability.)
 
-1. **CNS Assessment (30%)**
-   - Glasgow Coma Scale (3-15)
-   - Pupil reactivity
-   - Level of consciousness (AVPU)
+---
 
-2. **Respiratory Assessment (25%)**
-   - Respiratory rate
-   - Oxygen saturation (SpO2)
-   - Breathing pattern
+## Valid ranges & validation rules
+| Parameter | Acceptable Range |
+|---:|:---|
+| Heart rate | 30–200 BPM |
+| Respiratory rate | 0–60 breaths/min |
+| SpO₂ | 0–100% |
+| Blood pressure | 40/20 – 250/150 mmHg |
+| GCS | 3–15 |
+| Temperature | 32–42 °C |
+| Capillary refill time (CRT) | 0–10 s (CRT >2 s considered delayed) |
 
-3. **Cardiovascular Assessment (25%)**
-   - Heart rate
-   - Blood pressure
-   - Capillary refill time
-   - Pulse quality
+---
 
-4. **Circulation Assessment (20%)**
-   - Skin color/perfusion
-   - Temperature
-   - Estimated blood loss
+## Demo scenarios (built-in)
+- Road Traffic Accident — hemorrhagic shock
+- Drowning Victim — respiratory compromise
+- Electrocution — cardiac arrest / severe arrhythmia
+- Fall from Height — head injury
+- Mass Casualty Incident — explosion victim
+- Minor Trauma — stable walking wounded
 
-## 🔧 Usage Instructions
+Each scenario animates vitals over time to emulate realistic fluctuations and show triage updates, alerts and intervention suggestions.
 
-### Loading a Scenario
-1. Select a scenario from the dropdown menu
-2. Click "Load Scenario" or the scenario will auto-load
-3. Watch vital signs gradually change to match the scenario
-4. Observe the triage category and recommendations update
+---
 
-### Manual Override
-1. Click "Manual Override" button
-2. Adjust any vital sign values
-3. Provide a justification for the override
-4. Click "Apply Override" to see updated triage
+## Exports & reporting
+- JSON export of complete assessment (vitals, timestamped system scores, triage result, interventions)
+- Printable HTML report snapshot with timestamps and triage explanation
+- Manual override facility in UI: change a vital, provide justification, and log the override with timestamp for audit
 
-### Exporting Data
-- **Export JSON**: Downloads complete assessment data as JSON
-- **Export Report**: Generates a printable HTML report
+---
 
-### Controls
-- **Pause/Resume**: Toggle simulation updates
-- **Reset**: Return to default healthy values
-- **Contrast**: Toggle high contrast mode for accessibility
+## Accessibility & UX
+- Mobile-first responsive layout
+- High-contrast mode toggle
+- Reduced-motion support expected (CSS uses prefers-reduced-motion in places where required)
+- Clear color-coding for triage bands with text + numeric redundancy (color + labels)
 
-## 📋 Validation Rules
+---
 
-| Parameter | Valid Range |
-|-----------|-------------|
-| Heart Rate | 30-200 BPM |
-| Respiratory Rate | 0-60 breaths/min |
-| SpO2 | 0-100% |
-| Blood Pressure | 40/20 - 250/150 mmHg |
-| GCS | 3-15 |
-| Temperature | 32-42°C |
+## How to run the demo
+No build required — this is a static front-end prototype:
 
-## 📚 Clinical References
+```bash
+git clone https://github.com/DenxVil/Pulse-Protector-.git
+cd Pulse-Protector-
+# Open index.html in your browser (or host via simple file server)
+# e.g. Python local server:
+python3 -m http.server 8000
+# then open http://localhost:8000
+```
 
-- **ATLS**: American College of Surgeons Committee on Trauma. ATLS Student Course Manual, 10th edition
-- **START Protocol**: Benson M, Koenig KL, Schultz CH. Disaster triage: START, then SAVE. Ann Emerg Med. 1996
-- **SALT Triage**: Lerner EB, et al. Mass casualty triage: An evaluation of the SALT triage guideline. Ann Emerg Med. 2008
+Live demo is hosted on GitHub Pages: https://denxvil.github.io/Pulse-Protector-/
 
-## ⚠️ Disclaimer
+---
 
-**This is a demonstration application for educational purposes only.**
+## Development notes & tips
+- UI is pure HTML/CSS/JS — keep dependencies zero for offline usage
+- triage-engine.js is modular and exportable — unit tests can import the calculators and verify expected triage for test cases
+- scenarios.js contains preconfigured scenario sequences (useful to author more cases)
+- vitals-fetcher.js simulates device/ESP32 streaming; to test with real hardware, swap the simulation layer for WebBluetooth / WebSocket ingestion
+- For 3D / subtle motion improvements, prefer transform-based animations (translateZ/rotate) and limit heavy blur on mobile
 
-This software is NOT intended for clinical use, medical diagnosis, or treatment decisions. Always consult qualified medical professionals for actual patient care.
+---
 
-## 📄 License
+## Clinical references
+- ATLS — American College of Surgeons Committee on Trauma. ATLS Student Course Manual (10th ed.)
+- START Protocol — Benson M, Koenig KL, Schultz CH. "Disaster triage: START, then SAVE." Ann Emerg Med. 1996
+- SALT Triage — Lerner EB, et al. "Mass casualty triage: An evaluation of the SALT triage guideline." Ann Emerg Med. 2008
 
-This project is open source and available under the MIT License.
+---
 
-## 🤝 Contributing
+## License & disclaimer
+This project is open-source under the MIT License.
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+**Disclaimer:** This is a research prototype and educational demonstration. It is NOT intended for clinical use, medical diagnosis, or patient treatment decisions. Always consult qualified clinical professionals for real patient care.
 
-## 📧 Contact
+---
 
-For questions or feedback, please open an issue on GitHub
+## Contributing
+Contributions welcome:
+1. Fork the repo
+2. Create a branch for your feature
+3. Open a PR with a clear description and screenshots / demo
+4. Add unit tests for triage logic when modifying triage-engine.js
+
+Suggested contribution areas:
+- More realistic vitals generative model
+- FHIR-compliant export format
+- Offline-first PWA support + service worker
+- Accessibility improvements & ARIA roles
+- Unit tests for triage rules and scenario playback determinism
+
+---
+
+## Contact
+Open an issue or PR on GitHub: https://github.com/DenxVil/Pulse-Protector-/issues
+
+---
+
+Thank you for working on Pulse Protector — together we can make better tools for early trauma recognition and education. 💙
