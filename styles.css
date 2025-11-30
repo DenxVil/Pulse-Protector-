@@ -488,6 +488,38 @@ body.light-theme {
 .problem-icon.red { color: var(--accent-red); }
 .problem-icon.orange { color: var(--accent-orange); }
 .problem-icon.blue { color: var(--accent-blue); }
+.problem-icon.green { color: var(--accent-green); }
+.problem-icon.purple { color: var(--accent-purple); }
+
+.problem-card.blue-bg {
+    background: rgba(59, 130, 246, 0.05);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+}
+
+.problem-card.green-bg {
+    background: rgba(16, 185, 129, 0.05);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+}
+
+.problem-card.purple-bg {
+    background: rgba(139, 92, 246, 0.05);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+}
+
+.problem-card.orange-bg {
+    background: rgba(245, 158, 11, 0.05);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+}
+
+.problem-card.red-bg {
+    background: rgba(239, 68, 68, 0.05);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+}
 
 .problem-card h3 {
     font-size: 1.25rem;
@@ -1025,6 +1057,15 @@ body.light-theme {
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+/* Code highlight inline */
+.code-highlight {
+    background: rgba(99, 102, 241, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.875rem;
 }
 
 /* =============================================

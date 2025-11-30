@@ -96,9 +96,6 @@
         initSmoothScroll();
         initScrollHeader();
         initMobileMenu();
-        
-        // Optional: Enable scroll animations
-        // initScrollAnimations();
     }
 
     // Run initialization
