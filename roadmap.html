@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Implementation Roadmap - Phased deployment plan from pilot to national rollout for Pulse Protector">
+    <meta name="keywords" content="implementation roadmap, deployment plan, healthcare scaling, India healthcare">
+    <title>Implementation Roadmap | Pulse Protector</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💓</text></svg>">
+</head>
+<body class="light-theme">
+    <!-- Header -->
+    <header class="header light" role="banner">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1>Pulse Protector</h1>
+                    <span class="subtitle">Smart Trauma Response System</span>
+                </div>
+            </div>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="smart-kit.html" class="nav-link">Smart Kit</a>
+                <a href="smart-pad.html" class="nav-link">Smart Pad</a>
+                <a href="smart-triage.html" class="nav-link">AI Triage</a>
+                <a href="economy.html" class="nav-link">Economics</a>
+                <a href="effectiveness.html" class="nav-link">Effectiveness</a>
+                <a href="roadmap.html" class="nav-link active">Roadmap</a>
+                <a href="references.html" class="nav-link">References</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <span class="badge">Strategic Planning</span>
+        <h1>Implementation Roadmap</h1>
+        <p class="subtitle">From Hackathon Prototype to National Healthcare Infrastructure</p>
+        
+        <div class="stats-grid">
+            <div class="stat-item glass-card-light">
+                <div class="stat-value">Q1 2026</div>
+                <div class="stat-label">Hackathon Launch</div>
+            </div>
+            <div class="stat-item glass-card-light">
+                <div class="stat-value">Q2 2026</div>
+                <div class="stat-label">Delhi Pilot</div>
+            </div>
+            <div class="stat-item glass-card-light">
+                <div class="stat-value">2027</div>
+                <div class="stat-label">10-City Expansion</div>
+            </div>
+            <div class="stat-item glass-card-light">
+                <div class="stat-value">2028+</div>
+                <div class="stat-label">National Rollout</div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container" role="main">
+        <!-- Phase 1 Section -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-badge">Phase 1</span>
+                <h2 class="section-title">Hackathon to Pilot (Q1 2026)</h2>
+                <p class="section-subtitle">Prototype development and initial validation</p>
+            </div>
+            
+            <div style="max-width: 900px; margin: 0 auto;">
+                <div class="timeline">
+                    <div class="timeline-item active">
+                        <span class="time">January 2026</span>
+                        <h4>🏆 Catalyst Hackathon</h4>
+                        <p>Present working prototype at MAMC SCISOC Catalyst Hackathon. Demonstrate Smart Pad functionality and AI triage engine with live scenarios.</p>
+                    </div>
+                    <div class="timeline-item active">
+                        <span class="time">February 2026</span>
+                        <h4>📋 Design Refinement</h4>
+                        <p>Incorporate hackathon feedback. Finalize PCB design and enclosure for manufacturing. Complete firmware optimization.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time">March 2026</span>
+                        <h4>🏥 Clinical Partnership</h4>
+                        <p>Establish formal partnership with MAMC for clinical oversight. Begin IRB application for pilot study.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time">April 2026</span>
+                        <h4>📜 Regulatory Pathway</h4>
+                        <p>Initiate CDSCO (Central Drugs Standard Control Organisation) registration process for Class B medical device.</p>
+                    </div>
+                </div>
+                
+                <div class="glass-card-light" style="margin-top: var(--space-2xl); padding: var(--space-xl);">
+                    <h4 style="margin-bottom: var(--space-md);">Phase 1 Deliverables</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
+                        <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                            <span style="color: var(--accent-green);">✓</span> Working prototype
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                            <span style="color: var(--accent-green);">✓</span> Technical documentation
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                            <span style="color: var(--text-muted);">○</span> IRB approval
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                            <span style="color: var(--text-muted);">○</span> CDSCO submission
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                            <span style="color: var(--text-muted);">○</span> Clinical partner MOU
+                        </div>
+                        <div style="display: flex; align-items: center; gap: var(--space-sm);">
+                            <span style="color: var(--text-muted);">○</span> Seed funding secured
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 2 Section -->
+        <section class="section metrics-section">
+            <div class="section-header">
+                <span class="section-badge">Phase 2</span>
+                <h2 class="section-title">Delhi Pilot (Q2-Q4 2026)</h2>
+                <p class="section-subtitle">Real-world validation with Delhi ambulance services</p>
+            </div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value blue">1,000</div>
+                    <div class="metric-label">Kits Deployed</div>
+                    <div class="metric-detail">Delhi NCR region</div>
+                </div>
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value green">50</div>
+                    <div class="metric-label">Ambulances</div>
+                    <div class="metric-detail">CATS Delhi fleet</div>
+                </div>
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value purple">200</div>
+                    <div class="metric-label">Responders Trained</div>
+                    <div class="metric-detail">8-hour certification</div>
+                </div>
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value orange">6</div>
+                    <div class="metric-label">Months Duration</div>
+                    <div class="metric-detail">Study period</div>
+                </div>
+            </div>
+            
+            <div style="max-width: 900px; margin: var(--space-2xl) auto 0;">
+                <div class="components-overview">
+                    <div class="component-item glass-card-light">
+                        <h3>🚑 Partner Organizations</h3>
+                        <ul style="color: var(--text-secondary); margin-top: var(--space-md);">
+                            <li>CATS Delhi (Centralized Accident & Trauma Services)</li>
+                            <li>AIIMS Trauma Centre</li>
+                            <li>Safdarjung Hospital Emergency</li>
+                            <li>Delhi State Health Mission</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="component-item glass-card-light">
+                        <h3>📊 Study Endpoints</h3>
+                        <ul style="color: var(--text-secondary); margin-top: var(--space-md);">
+                            <li><strong>Primary:</strong> Triage accuracy vs. ER assessment</li>
+                            <li><strong>Secondary:</strong> Time to intervention metrics</li>
+                            <li><strong>Exploratory:</strong> 30-day mortality outcomes</li>
+                            <li><strong>Usability:</strong> Responder satisfaction scores</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="component-item glass-card-light">
+                        <h3>📋 Success Criteria</h3>
+                        <ul style="color: var(--text-secondary); margin-top: var(--space-md);">
+                            <li>≥90% triage concordance with ER</li>
+                            <li>≥85% responder usability score</li>
+                            <li>≥95% device reliability</li>
+                            <li>&lt;1% critical alert false negative rate</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phase 3 Section -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-badge">Phase 3</span>
+                <h2 class="section-title">National Expansion (2027+)</h2>
+                <p class="section-subtitle">Scaling from pilot success to national infrastructure</p>
+            </div>
+            
+            <div style="max-width: 900px; margin: 0 auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Cities</th>
+                            <th>Kits Deployed</th>
+                            <th>Lives Saved (Est.)</th>
+                            <th>Investment</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>2027 Q1-Q2</strong></td>
+                            <td>10 Metro Cities</td>
+                            <td>10,000</td>
+                            <td>3,110</td>
+                            <td>₹3 Cr</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2027 Q3-Q4</strong></td>
+                            <td>25 Cities</td>
+                            <td>25,000</td>
+                            <td>7,775</td>
+                            <td>₹6.25 Cr</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2028</strong></td>
+                            <td>50 Cities</td>
+                            <td>50,000</td>
+                            <td>15,550</td>
+                            <td>₹12.5 Cr</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2029+</strong></td>
+                            <td>National</td>
+                            <td>500,000</td>
+                            <td>155,500</td>
+                            <td>₹125 Cr</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="glass-card-light" style="margin-top: var(--space-2xl); padding: var(--space-xl);">
+                    <h4 style="margin-bottom: var(--space-lg);">Target Metro Cities (Phase 3a)</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-md); color: var(--text-secondary);">
+                        <div>🏙️ Delhi NCR</div>
+                        <div>🏙️ Mumbai</div>
+                        <div>🏙️ Bangalore</div>
+                        <div>🏙️ Chennai</div>
+                        <div>🏙️ Kolkata</div>
+                        <div>🏙️ Hyderabad</div>
+                        <div>🏙️ Pune</div>
+                        <div>🏙️ Ahmedabad</div>
+                        <div>🏙️ Jaipur</div>
+                        <div>🏙️ Lucknow</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Risk Mitigation Section -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-badge">Risk Management</span>
+                <h2 class="section-title">Risk Mitigation Matrix</h2>
+            </div>
+            
+            <div style="max-width: 900px; margin: 0 auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Risk Category</th>
+                            <th>Risk</th>
+                            <th>Impact</th>
+                            <th>Mitigation Strategy</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Regulatory</strong></td>
+                            <td>CDSCO approval delays</td>
+                            <td style="color: var(--accent-orange);">High</td>
+                            <td>Early engagement, phased submission, regulatory consultant</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Technical</strong></td>
+                            <td>Device reliability in field</td>
+                            <td style="color: var(--accent-orange);">High</td>
+                            <td>Extensive beta testing, ruggedized design, OTA updates</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Clinical</strong></td>
+                            <td>Training compliance</td>
+                            <td style="color: var(--accent-yellow);">Medium</td>
+                            <td>Simplified UI, video tutorials, recertification program</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Financial</strong></td>
+                            <td>Funding gap</td>
+                            <td style="color: var(--accent-orange);">High</td>
+                            <td>Diversified funding (govt, CSR, grants), milestone-based releases</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Operational</strong></td>
+                            <td>Supply chain disruption</td>
+                            <td style="color: var(--accent-yellow);">Medium</td>
+                            <td>Local manufacturing partnerships, buffer inventory</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Market</strong></td>
+                            <td>Competitor entry</td>
+                            <td style="color: var(--accent-green);">Low</td>
+                            <td>IP protection, first-mover advantage, government partnerships</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Regulatory Pathway Section -->
+        <section class="section metrics-section">
+            <div class="section-header">
+                <span class="section-badge">Compliance</span>
+                <h2 class="section-title">Regulatory Pathway</h2>
+            </div>
+            
+            <div class="metrics-grid">
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value">🏛️</div>
+                    <div class="metric-label">CDSCO</div>
+                    <div class="metric-detail">Class B Medical Device Registration</div>
+                </div>
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value">📋</div>
+                    <div class="metric-label">ISO 13485</div>
+                    <div class="metric-detail">Quality Management System</div>
+                </div>
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value">🔬</div>
+                    <div class="metric-label">IEC 62304</div>
+                    <div class="metric-detail">Medical Device Software</div>
+                </div>
+                <div class="metric-card glass-card-light">
+                    <div class="metric-value">⚡</div>
+                    <div class="metric-label">IEC 60601</div>
+                    <div class="metric-detail">Electrical Safety Standards</div>
+                </div>
+            </div>
+            
+            <div class="glass-card-light" style="max-width: 800px; margin: var(--space-2xl) auto 0; padding: var(--space-xl);">
+                <h4 style="margin-bottom: var(--space-lg);">Regulatory Timeline</h4>
+                <div class="timeline">
+                    <div class="timeline-item active">
+                        <span class="time">Q1 2026</span>
+                        <h4>Documentation Preparation</h4>
+                        <p>Technical file, risk management file, clinical evidence dossier</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time">Q2 2026</span>
+                        <h4>CDSCO Submission</h4>
+                        <p>Submit application for Class B registration with NABL-accredited test reports</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time">Q3 2026</span>
+                        <h4>Review & Response</h4>
+                        <p>Address any queries from CDSCO review team</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time">Q4 2026</span>
+                        <h4>Approval & Commercial Launch</h4>
+                        <p>Receive registration certificate and begin commercial deployment</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section" style="text-align: center;">
+            <div class="glass-card-light" style="padding: var(--space-3xl); max-width: 800px; margin: 0 auto;">
+                <h2 style="margin-bottom: var(--space-md);">Join Our Journey</h2>
+                <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">
+                    We're looking for partners, investors, and healthcare institutions to help bring affordable trauma care to millions.
+                </p>
+                <div class="hero-cta" style="justify-content: center;">
+                    <a href="https://github.com/DenxVil/Pulse-Protector-" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                        View on GitHub →
+                    </a>
+                    <a href="references.html" class="btn btn-outline btn-lg">
+                        View Research References
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer light" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">💓</span>
+                        <span>Pulse Protector</span>
+                    </div>
+                    <p>Smart Trauma Response System - A research prototype developed for Catalyst Hackathon 2025.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Products</h4>
+                        <a href="smart-kit.html">Smart Kit</a>
+                        <a href="smart-pad.html">Smart Pad</a>
+                        <a href="smart-triage.html">AI Triage</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Research</h4>
+                        <a href="economy.html">Economic Impact</a>
+                        <a href="effectiveness.html">Effectiveness</a>
+                        <a href="references.html">References</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Project</h4>
+                        <a href="roadmap.html">Roadmap</a>
+                        <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="disclaimer-badge">
+                    ⚠️ Research Prototype - Not for Clinical Use
+                </div>
+                <p>Based on <a href="https://www.facs.org/quality-programs/trauma/atls/" target="_blank" rel="noopener">ATLS</a> & <a href="https://www.remm.nlm.gov/startadult.htm" target="_blank" rel="noopener">START Protocol</a> guidelines</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="navigation.js"></script>
+</body>
+</html>
