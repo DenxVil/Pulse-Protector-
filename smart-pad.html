@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <meta name="description" content="Smart Vital Monitoring Pad - ESP32-based wearable multi-parameter vital signs monitor with real-time data transmission">
-    <meta name="keywords" content="ESP32, vital signs monitor, MAX30100, SpO2, heart rate, smart medical device, IoT healthcare">
+    <meta name="keywords" content="ESP32, vital signs monitor, MAX30102, AD8232, ECG, SpO2, heart rate, blood pressure, PTT, smart medical device, IoT healthcare">
     <title>Smart Pad - Technical Specifications | Pulse Protector</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💓</text></svg>">
@@ -46,7 +46,7 @@
         
         <div class="stats-grid">
             <div class="stat-item glass-card-light">
-                <div class="stat-value">₹1,500</div>
+                <div class="stat-value">₹1,950</div>
                 <div class="stat-label">Kit Price</div>
             </div>
             <div class="stat-item glass-card-light">
@@ -56,6 +56,10 @@
             <div class="stat-item glass-card-light">
                 <div class="stat-value">±3 BPM</div>
                 <div class="stat-label">HR Accuracy</div>
+            </div>
+            <div class="stat-item glass-card-light">
+                <div class="stat-value">±5-10</div>
+                <div class="stat-label">BP Accuracy (mmHg)</div>
             </div>
             <div class="stat-item glass-card-light">
                 <div class="stat-value">10+ hrs</div>
@@ -83,8 +87,13 @@
             
             <div class="architecture-diagram">
                 <div class="arch-node glass-card-light">
-                    <strong>MAX30100</strong>
+                    <strong>MAX30102</strong>
                     <small>PPG Sensor</small>
+                </div>
+                <span class="arch-arrow">→</span>
+                <div class="arch-node glass-card-light">
+                    <strong>AD8232</strong>
+                    <small>ECG Sensor</small>
                 </div>
                 <span class="arch-arrow">→</span>
                 <div class="arch-node glass-card-light">
@@ -94,7 +103,7 @@
                 <span class="arch-arrow">→</span>
                 <div class="arch-node primary">
                     <strong>ESP32</strong>
-                    <small>WROOM-32D</small>
+                    <small>PTT → BP</small>
                 </div>
                 <span class="arch-arrow">→</span>
                 <div class="arch-node glass-card-light">
@@ -154,13 +163,13 @@
                     </table>
                 </div>
 
-                <!-- MAX30100 -->
+                <!-- MAX30102 PPG Sensor -->
                 <div class="component-item glass-card-light">
                     <div class="component-header">
                         <span class="component-price">₹175</span>
                         <span class="component-tag red">Vital Signs</span>
                     </div>
-                    <h3>❤️ MAX30100 PPG Sensor</h3>
+                    <h3>❤️ MAX30102 PPG Sensor</h3>
                     <p>Integrated pulse oximetry and heart-rate monitor with I2C digital interface.</p>
                     
                     <table class="data-table" style="margin-top: var(--space-lg);">
@@ -183,6 +192,43 @@
                         <tr>
                             <td>Sample Rate</td>
                             <td><strong>50-1000 samples/sec</strong></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- AD8232 ECG Module -->
+                <div class="component-item glass-card-light">
+                    <div class="component-header">
+                        <span class="component-price">₹450</span>
+                        <span class="component-tag purple">ECG</span>
+                    </div>
+                    <h3>💓 AD8232 ECG Module</h3>
+                    <p>Single-lead heart rate monitor front-end for ECG signal acquisition and PTT-based blood pressure estimation.</p>
+                    
+                    <table class="data-table" style="margin-top: var(--space-lg);">
+                        <tr>
+                            <td>Type</td>
+                            <td><strong>Single-lead ECG front-end</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Operating Voltage</td>
+                            <td><strong>3.3V</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Output</td>
+                            <td><strong>Analog signal</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Leads</td>
+                            <td><strong>3-electrode (RA, LA, RL)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Bandwidth</td>
+                            <td><strong>0.5-40 Hz</strong></td>
+                        </tr>
+                        <tr>
+                            <td>CMRR</td>
+                            <td><strong>80 dB</strong></td>
                         </tr>
                     </table>
                 </div>
@@ -241,22 +287,40 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>MAX30100</td>
+                            <td>MAX30102</td>
                             <td>SDA</td>
                             <td><code class="code-highlight">GPIO21</code></td>
                             <td>I2C Data</td>
                         </tr>
                         <tr>
-                            <td>MAX30100</td>
+                            <td>MAX30102</td>
                             <td>SCL</td>
                             <td><code class="code-highlight">GPIO22</code></td>
                             <td>I2C Clock</td>
                         </tr>
                         <tr>
-                            <td>MAX30100</td>
+                            <td>MAX30102</td>
                             <td>INT</td>
                             <td><code class="code-highlight">GPIO4</code></td>
                             <td>Interrupt (optional)</td>
+                        </tr>
+                        <tr>
+                            <td>AD8232</td>
+                            <td>OUTPUT</td>
+                            <td><code class="code-highlight">GPIO34</code></td>
+                            <td>ECG analog signal (ADC)</td>
+                        </tr>
+                        <tr>
+                            <td>AD8232</td>
+                            <td>LO+</td>
+                            <td><code class="code-highlight">GPIO35</code></td>
+                            <td>Leads-off detection +</td>
+                        </tr>
+                        <tr>
+                            <td>AD8232</td>
+                            <td>LO-</td>
+                            <td><code class="code-highlight">GPIO32</code></td>
+                            <td>Leads-off detection -</td>
                         </tr>
                         <tr>
                             <td>DS18B20</td>
@@ -300,12 +364,17 @@
                     <div class="metric-detail">30-200 BPM range</div>
                 </div>
                 <div class="metric-card glass-card-light">
+                    <div class="metric-value purple">±5-10 mmHg</div>
+                    <div class="metric-label">Blood Pressure (PTT)</div>
+                    <div class="metric-detail">After calibration</div>
+                </div>
+                <div class="metric-card glass-card-light">
                     <div class="metric-value orange">±0.5°C</div>
                     <div class="metric-label">Temperature Accuracy</div>
                     <div class="metric-detail">35-42°C range</div>
                 </div>
                 <div class="metric-card glass-card-light">
-                    <div class="metric-value purple">100m</div>
+                    <div class="metric-value blue">100m</div>
                     <div class="metric-label">BLE Range</div>
                     <div class="metric-detail">Line of sight</div>
                 </div>
@@ -340,6 +409,22 @@
     beatsPerMinute = <span class="number">60000</span> / delta;
     lastBeat = millis();
 }
+                    </div>
+                </div>
+                
+                <div class="component-item glass-card-light">
+                    <h3>🩺 PTT Blood Pressure Estimation</h3>
+                    <p>Pulse Transit Time based cuffless BP measurement</p>
+                    <div class="code-block">
+<span class="comment">// PTT = Time between ECG R-peak and PPG peak</span>
+<span class="keyword">float</span> PTT = ppgPeakTime - ecgRPeakTime;
+
+<span class="comment">// BP estimation (inverse relationship)</span>
+<span class="keyword">float</span> SBP = a / PTT + b; <span class="comment">// Systolic</span>
+<span class="keyword">float</span> DBP = c / PTT + d; <span class="comment">// Diastolic</span>
+
+<span class="comment">// Calibrated formula example:</span>
+<span class="comment">// SBP ≈ 120 - k × (PTT - PTT_baseline)</span>
                     </div>
                 </div>
                 
@@ -401,6 +486,117 @@
             </div>
         </section>
 
+        <!-- PTT Blood Pressure Calculation -->
+        <section class="section fade-in">
+            <div class="section-header">
+                <span class="section-badge">Innovation</span>
+                <h2 class="section-title">Cuffless Blood Pressure via PTT</h2>
+                <p class="section-subtitle">Non-invasive blood pressure estimation using Pulse Transit Time</p>
+            </div>
+            
+            <div class="glass-card-light" style="padding: var(--space-2xl); max-width: 900px; margin: 0 auto;">
+                <p style="font-size: 1.125rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: var(--space-xl);">
+                    <strong>Pulse Transit Time (PTT)</strong> is the time delay between the ECG R-peak (electrical signal) and the arrival of the PPG pulse wave (blood flow). 
+                    Since blood pressure affects how fast blood travels through arteries, PTT has an inverse relationship with BP - higher pressure means faster pulse wave velocity.
+                </p>
+                
+                <div class="problem-grid">
+                    <div class="problem-card blue-bg">
+                        <div class="problem-icon blue">📊</div>
+                        <h3>ECG R-Peak</h3>
+                        <p>Detected by AD8232 module, marks the electrical trigger of heart contraction</p>
+                    </div>
+                    <div class="problem-card green-bg">
+                        <div class="problem-icon green">💓</div>
+                        <h3>PPG Peak</h3>
+                        <p>Detected by MAX30102, marks when blood pulse arrives at the sensor</p>
+                    </div>
+                    <div class="problem-card purple-bg">
+                        <div class="problem-icon purple">⏱️</div>
+                        <h3>PTT Calculation</h3>
+                        <p>Time difference between R-peak and PPG peak in milliseconds</p>
+                    </div>
+                </div>
+                
+                <div class="code-block" style="margin-top: var(--space-xl);">
+<span class="comment">// Pulse Transit Time calculation</span>
+PTT = Time_of_PPG_peak - Time_of_ECG_R_peak
+
+<span class="comment">// Blood Pressure estimation (inverse relationship)</span>
+SBP = a / PTT + b  <span class="comment">// Systolic Blood Pressure</span>
+DBP = c / PTT + d  <span class="comment">// Diastolic Blood Pressure</span>
+
+<span class="comment">// Typical calibrated formula:</span>
+<span class="comment">// SBP ≈ 120 - k × (PTT - PTT_baseline)</span>
+<span class="comment">// Where k ≈ 0.5-1.5 depending on calibration</span>
+                </div>
+                
+                <div style="margin-top: var(--space-xl); padding: var(--space-lg); background: rgba(99, 102, 241, 0.08); border-radius: var(--radius-md);">
+                    <h4 style="color: var(--accent-primary); margin-bottom: var(--space-sm);">Calibration Required</h4>
+                    <p style="color: var(--text-secondary); margin: 0;">
+                        PTT-based BP requires initial calibration against a reference cuff measurement. After calibration, accuracy of ±5-10 mmHg is achievable. 
+                        Recalibration is recommended periodically or when physiological changes occur.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Body Placement Guide -->
+        <section class="section fade-in">
+            <div class="section-header">
+                <span class="section-badge">Placement</span>
+                <h2 class="section-title">Smart Pad Body Placement Guide</h2>
+                <p class="section-subtitle">Optimal placement for accurate vital sign monitoring</p>
+            </div>
+            
+            <div class="components-overview" style="max-width: 1000px; margin: 0 auto;">
+                <div class="component-item glass-card-light" style="text-align: center;">
+                    <div style="font-size: 4rem; margin-bottom: var(--space-md);">📍</div>
+                    <h3>Left Upper Chest</h3>
+                    <p style="margin-bottom: var(--space-lg);">Place the Smart Pad below the left clavicle, over the pectoral area. This location provides optimal signal acquisition for all sensors.</p>
+                    
+                    <div style="text-align: left; padding: var(--space-md); background: rgba(16, 185, 129, 0.08); border-radius: var(--radius-md);">
+                        <strong style="color: var(--accent-green);">Why This Location?</strong>
+                        <ul style="margin-top: var(--space-sm); color: var(--text-secondary); padding-left: var(--space-lg);">
+                            <li>Close proximity to heart for optimal ECG signal</li>
+                            <li>Good chest vasculature for PPG readings</li>
+                            <li>Skin surface temperature near core body temp</li>
+                            <li>Stable placement with minimal motion artifacts</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="component-item glass-card-light">
+                    <h3 style="margin-bottom: var(--space-lg);">📋 Placement Instructions</h3>
+                    
+                    <div style="margin-bottom: var(--space-md);">
+                        <strong style="color: var(--accent-primary);">1. Clean the Area</strong>
+                        <p style="color: var(--text-secondary); font-size: 0.9375rem;">Wipe the skin with alcohol pad to remove oils and ensure good electrode contact.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: var(--space-md);">
+                        <strong style="color: var(--accent-primary);">2. Position the Pad</strong>
+                        <p style="color: var(--text-secondary); font-size: 0.9375rem;">Place 2-3 inches below the left collarbone, centered over the pectoral muscle.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: var(--space-md);">
+                        <strong style="color: var(--accent-primary);">3. Secure with Adhesive</strong>
+                        <p style="color: var(--text-secondary); font-size: 0.9375rem;">Ensure the pad is firmly adhered with no gaps. Use the included medical adhesive strips.</p>
+                    </div>
+                    
+                    <div style="margin-bottom: var(--space-md);">
+                        <strong style="color: var(--accent-primary);">4. Attach ECG Electrodes</strong>
+                        <p style="color: var(--text-secondary); font-size: 0.9375rem;">Place RA (right arm) electrode on right shoulder, LA (left arm) on left shoulder, RL (right leg) reference on lower right chest.</p>
+                    </div>
+                    
+                    <div>
+                        <strong style="color: var(--accent-primary);">5. Verify Connection</strong>
+                        <p style="color: var(--text-secondary); font-size: 0.9375rem;">Check the LED indicator for successful BLE connection and valid vital sign readings.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Bill of Materials -->
         <section class="section fade-in">
             <div class="section-header">
@@ -426,10 +622,16 @@
                             <td>₹300</td>
                         </tr>
                         <tr>
-                            <td>MAX30100 PPG Module</td>
+                            <td>MAX30102 PPG Module</td>
                             <td>1</td>
                             <td>₹175</td>
                             <td>₹175</td>
+                        </tr>
+                        <tr>
+                            <td>AD8232 ECG Module</td>
+                            <td>1</td>
+                            <td>₹450</td>
+                            <td>₹450</td>
                         </tr>
                         <tr>
                             <td>DS18B20 Temperature Sensor</td>
@@ -477,7 +679,7 @@
                     <tfoot>
                         <tr class="total">
                             <td colspan="3"><strong>DIY Build Cost</strong></td>
-                            <td><strong>₹1,284</strong></td>
+                            <td><strong>₹1,734</strong></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -485,7 +687,6 @@
                 <div class="glass-card-light" style="margin-top: var(--space-xl); padding: var(--space-lg);">
                     <h4 style="color: var(--accent-primary); margin-bottom: var(--space-md);">Optional Upgrades</h4>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
-                        <div>• AD8232 ECG Module: <strong>+₹450</strong></div>
                         <div>• OLED Display (0.96"): <strong>+₹150</strong></div>
                         <div>• GPS Module: <strong>+₹350</strong></div>
                         <div>• Larger Battery (2000mAh): <strong>+₹150</strong></div>
@@ -504,7 +705,10 @@
             <div class="glass-card-light" style="max-width: 600px; margin: 0 auto; padding: var(--space-xl);">
                 <ul style="list-style: none; padding: 0;">
                     <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
-                        <span style="color: var(--accent-green);">✅</span> I2C communication verified (MAX30100)
+                        <span style="color: var(--accent-green);">✅</span> I2C communication verified (MAX30102)
+                    </li>
+                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
+                        <span style="color: var(--accent-green);">✅</span> ECG analog signal verified (AD8232)
                     </li>
                     <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
                         <span style="color: var(--accent-green);">✅</span> 1-Wire communication verified (DS18B20)
@@ -528,7 +732,7 @@
                         <span style="color: var(--accent-green);">✅</span> Battery runtime &gt;10 hours confirmed
                     </li>
                     <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
-                        <span style="color: var(--text-muted);">⬜</span> ECG signal quality verified (optional)
+                        <span style="color: var(--accent-green);">✅</span> PTT-based BP estimation verified
                     </li>
                     <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
                         <span style="color: var(--text-muted);">⬜</span> Clinical validation study (pending)

@@ -371,6 +371,100 @@
             </div>
         </section>
 
+        <!-- Interactive Smart Pad Demo Section -->
+        <section class="section fade-in" id="smart-pad-demo">
+            <div class="section-header">
+                <span class="section-badge">Interactive Demo</span>
+                <h2 class="section-title">Try Smart Pad Triage Demo</h2>
+                <p class="section-subtitle">Experience simulated vital signs from Smart Pad and real-time AI triage assessment</p>
+            </div>
+            
+            <div class="glass-card-light" style="padding: var(--space-2xl); max-width: 1000px; margin: 0 auto;">
+                <!-- Data Flow Visualization -->
+                <div style="margin-bottom: var(--space-2xl);">
+                    <h4 style="text-align: center; margin-bottom: var(--space-lg); color: var(--text-primary);">Data Flow: Smart Pad → BLE → Dashboard → AI Triage</h4>
+                    <div class="architecture-diagram">
+                        <div class="arch-node glass-card-light">
+                            <strong>Smart Pad</strong>
+                            <small>Sensors</small>
+                        </div>
+                        <span class="arch-arrow">→</span>
+                        <div class="arch-node glass-card-light">
+                            <strong>BLE 4.2</strong>
+                            <small>Transmit</small>
+                        </div>
+                        <span class="arch-arrow">→</span>
+                        <div class="arch-node glass-card-light">
+                            <strong>Dashboard</strong>
+                            <small>Display</small>
+                        </div>
+                        <span class="arch-arrow">→</span>
+                        <div class="arch-node primary">
+                            <strong>AI Triage</strong>
+                            <small>Assessment</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Demo Vitals Display -->
+                <div id="demo-vitals-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-md); margin-bottom: var(--space-xl);">
+                    <div class="metric-card glass-card-light" style="padding: var(--space-lg);">
+                        <div class="metric-value green" id="demo-hr">78</div>
+                        <div class="metric-label">Heart Rate</div>
+                        <div class="metric-detail">BPM</div>
+                    </div>
+                    <div class="metric-card glass-card-light" style="padding: var(--space-lg);">
+                        <div class="metric-value blue" id="demo-spo2">98</div>
+                        <div class="metric-label">SpO₂</div>
+                        <div class="metric-detail">%</div>
+                    </div>
+                    <div class="metric-card glass-card-light" style="padding: var(--space-lg);">
+                        <div class="metric-value purple" id="demo-bp">120/80</div>
+                        <div class="metric-label">Blood Pressure</div>
+                        <div class="metric-detail">mmHg (via PTT)</div>
+                    </div>
+                    <div class="metric-card glass-card-light" style="padding: var(--space-lg);">
+                        <div class="metric-value orange" id="demo-temp">36.8</div>
+                        <div class="metric-label">Temperature</div>
+                        <div class="metric-detail">°C</div>
+                    </div>
+                    <div class="metric-card glass-card-light" style="padding: var(--space-lg);">
+                        <div class="metric-value blue" id="demo-ecg">Normal Sinus</div>
+                        <div class="metric-label">ECG Rhythm</div>
+                        <div class="metric-detail">Rhythm</div>
+                    </div>
+                </div>
+                
+                <!-- Patient Profile Selector -->
+                <div style="margin-bottom: var(--space-xl);">
+                    <h4 style="margin-bottom: var(--space-md);">Select Patient Profile</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
+                        <button class="btn btn-outline demo-profile-btn active" data-profile="healthy" onclick="selectDemoProfile('healthy')">
+                            🟢 Healthy Adult
+                        </button>
+                        <button class="btn btn-outline demo-profile-btn" data-profile="trauma" onclick="selectDemoProfile('trauma')">
+                            🔴 Trauma Patient
+                        </button>
+                        <button class="btn btn-outline demo-profile-btn" data-profile="cardiac" onclick="selectDemoProfile('cardiac')">
+                            🟡 Cardiac Event
+                        </button>
+                        <button class="btn btn-outline demo-profile-btn" data-profile="respiratory" onclick="selectDemoProfile('respiratory')">
+                            🟡 Respiratory Distress
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Triage Result Display -->
+                <div id="demo-triage-result" style="padding: var(--space-xl); background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green); border-radius: var(--radius-md);">
+                    <div style="display: flex; align-items: center; gap: var(--space-md); margin-bottom: var(--space-md);">
+                        <span id="demo-triage-badge" style="background: var(--accent-green); color: white; padding: var(--space-sm) var(--space-md); border-radius: var(--radius-sm); font-weight: 700;">GREEN</span>
+                        <span id="demo-triage-name" style="font-size: 1.25rem; font-weight: 600;">Minor - Walking Wounded</span>
+                    </div>
+                    <p id="demo-triage-desc" style="color: var(--text-secondary); margin: 0;">All vital signs within normal limits. Patient is stable and can wait for routine assessment.</p>
+                </div>
+            </div>
+        </section>
+
         <!-- CTA Section -->
         <section class="section" style="text-align: center;">
             <div class="glass-card-light" style="padding: var(--space-3xl); max-width: 800px; margin: 0 auto;">
@@ -432,5 +526,139 @@
 
     <script src="navigation.js"></script>
     <script src="vitals-fetcher.js"></script>
+    <script>
+        // Smart Pad Demo - Patient Profiles and Triage Logic
+        
+        // Medical threshold constants for vital sign assessment
+        const VITAL_THRESHOLDS = {
+            HR_HIGH: 100,      // Heart rate above this is tachycardia
+            HR_LOW: 60,        // Heart rate below this is bradycardia
+            HR_MIN: 40,        // Minimum plausible heart rate
+            HR_MAX: 180,       // Maximum plausible heart rate
+            SPO2_NORMAL: 95,   // SpO2 >= this is normal
+            SPO2_WARNING: 90   // SpO2 < this is critical
+        };
+        
+        const demoProfiles = {
+            healthy: {
+                hr: 78,
+                spo2: 98,
+                bp: '120/80',
+                temp: 36.8,
+                ecg: 'Normal Sinus',
+                triage: {
+                    code: 'GREEN',
+                    name: 'Minor - Walking Wounded',
+                    desc: 'All vital signs within normal limits. Patient is stable and can wait for routine assessment.',
+                    color: 'var(--accent-green)',
+                    bgColor: 'rgba(16, 185, 129, 0.1)'
+                }
+            },
+            trauma: {
+                hr: 130,
+                spo2: 85,
+                bp: '80/50',
+                temp: 35.2,
+                ecg: 'Sinus Tachycardia',
+                triage: {
+                    code: 'RED',
+                    name: 'Immediate - Life Threatening',
+                    desc: 'Critical hemorrhagic shock indicators. SpO₂ < 90%, hypotension, tachycardia. Requires immediate intervention and fluid resuscitation.',
+                    color: 'var(--accent-red)',
+                    bgColor: 'rgba(239, 68, 68, 0.1)'
+                }
+            },
+            cardiac: {
+                hr: 48,
+                spo2: 92,
+                bp: '150/95',
+                temp: 37.0,
+                ecg: 'Bradycardia',
+                triage: {
+                    code: 'YELLOW',
+                    name: 'Delayed - Serious but Stable',
+                    desc: 'Bradycardia with mild hypoxemia. Patient stable but requires monitoring and may need intervention. SpO₂ borderline.',
+                    color: 'var(--accent-orange)',
+                    bgColor: 'rgba(245, 158, 11, 0.1)'
+                }
+            },
+            respiratory: {
+                hr: 110,
+                spo2: 88,
+                bp: '135/85',
+                temp: 38.5,
+                ecg: 'Sinus Tachycardia',
+                triage: {
+                    code: 'YELLOW',
+                    name: 'Delayed - Respiratory Compromise',
+                    desc: 'Hypoxemia with tachycardia and fever. Supplemental oxygen required. Monitor for deterioration to RED category.',
+                    color: 'var(--accent-orange)',
+                    bgColor: 'rgba(245, 158, 11, 0.1)'
+                }
+            }
+        };
+
+        function selectDemoProfile(profile) {
+            const data = demoProfiles[profile];
+            if (!data) return;
+
+            // Update vital signs display
+            document.getElementById('demo-hr').textContent = data.hr;
+            document.getElementById('demo-spo2').textContent = data.spo2;
+            document.getElementById('demo-bp').textContent = data.bp;
+            document.getElementById('demo-temp').textContent = data.temp;
+            document.getElementById('demo-ecg').textContent = data.ecg;
+
+            // Update vital colors based on values using threshold constants
+            const hrEl = document.getElementById('demo-hr');
+            const spo2El = document.getElementById('demo-spo2');
+            
+            const hrAbnormal = data.hr > VITAL_THRESHOLDS.HR_HIGH || data.hr < VITAL_THRESHOLDS.HR_LOW;
+            hrEl.className = 'metric-value ' + (hrAbnormal ? 'orange' : 'green');
+            
+            const spo2Critical = data.spo2 < VITAL_THRESHOLDS.SPO2_WARNING;
+            const spo2Warning = data.spo2 < VITAL_THRESHOLDS.SPO2_NORMAL;
+            spo2El.className = 'metric-value ' + (spo2Critical ? 'orange' : spo2Warning ? 'blue' : 'green');
+
+            // Update triage result
+            const triageResult = document.getElementById('demo-triage-result');
+            const triageBadge = document.getElementById('demo-triage-badge');
+            const triageName = document.getElementById('demo-triage-name');
+            const triageDesc = document.getElementById('demo-triage-desc');
+
+            triageResult.style.background = data.triage.bgColor;
+            triageResult.style.borderColor = data.triage.color;
+            triageBadge.style.background = data.triage.color;
+            triageBadge.textContent = data.triage.code;
+            triageName.textContent = data.triage.name;
+            triageDesc.textContent = data.triage.desc;
+
+            // Update button states
+            document.querySelectorAll('.demo-profile-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.profile === profile) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Add slight fluctuation to vitals for realism
+        let demoInterval;
+        function startDemoFluctuation() {
+            if (demoInterval) clearInterval(demoInterval);
+            demoInterval = setInterval(() => {
+                const hrEl = document.getElementById('demo-hr');
+                const currentHr = parseInt(hrEl.textContent);
+                const fluctuation = Math.floor(Math.random() * 5) - 2;
+                hrEl.textContent = Math.max(VITAL_THRESHOLDS.HR_MIN, Math.min(VITAL_THRESHOLDS.HR_MAX, currentHr + fluctuation));
+            }, 2000);
+        }
+
+        // Initialize demo
+        document.addEventListener('DOMContentLoaded', function() {
+            selectDemoProfile('healthy');
+            startDemoFluctuation();
+        });
+    </script>
 </body>
 </html>
