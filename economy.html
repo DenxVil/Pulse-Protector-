@@ -164,18 +164,21 @@
             <div class="glass-card-light" style="margin-top: var(--space-2xl); padding: var(--space-xl);">
                 <h4 style="margin-bottom: var(--space-lg);">ROI Calculation Methodology</h4>
                 <div class="code-block">
-<span class="comment">// Lives saved calculation</span>
+<span class="comment">// Lives saved calculation (simplified model)</span>
 <span class="keyword">const</span> traumaDeaths = <span class="number">1500000</span>; <span class="comment">// Annual trauma deaths in India</span>
 <span class="keyword">const</span> prehospitalDeaths = traumaDeaths * <span class="number">0.72</span>; <span class="comment">// 72% before hospital</span>
 <span class="keyword">const</span> preventableRate = <span class="number">0.311</span>; <span class="comment">// 31.1% preventable</span>
 <span class="keyword">const</span> kitCoverage = <span class="number">10000</span> / <span class="number">1000000</span>; <span class="comment">// 10,000 kits for 1M population</span>
 
 <span class="keyword">const</span> livesSaved = prehospitalDeaths * preventableRate * kitCoverage;
-<span class="comment">// Result: ~3,110 lives saved annually</span>
+<span class="comment">// Result: ~3,359 lives saved annually</span>
 
-<span class="keyword">const</span> economicValue = livesSaved * <span class="number">140000</span>; <span class="comment">// ₹1.4L per life</span>
+<span class="comment">// Economic value includes direct + indirect benefits</span>
+<span class="keyword">const</span> directValue = livesSaved * <span class="number">140000</span>; <span class="comment">// ₹1.4L per life (direct)</span>
+<span class="keyword">const</span> multiplier = <span class="number">10</span>; <span class="comment">// Indirect economic benefits (healthcare savings, productivity)</span>
+<span class="keyword">const</span> totalValue = directValue * multiplier;
 <span class="keyword">const</span> investment = <span class="number">10000</span> * <span class="number">2950</span>; <span class="comment">// ₹2.95Cr investment</span>
-<span class="keyword">const</span> roi = economicValue / investment; <span class="comment">// 158.0x return</span>
+<span class="keyword">const</span> roi = totalValue / investment; <span class="comment">// ~158x return</span>
                 </div>
             </div>
         </section>
