@@ -46,15 +46,15 @@
         
         <div class="stats-grid">
             <div class="stat-item glass-card-light">
-                <div class="stat-value">₹2,500</div>
+                <div class="stat-value">₹2,950</div>
                 <div class="stat-label">Kit Cost</div>
             </div>
             <div class="stat-item glass-card-light">
-                <div class="stat-value">1:186.6</div>
+                <div class="stat-value">1:158.0</div>
                 <div class="stat-label">ROI Ratio</div>
             </div>
             <div class="stat-item glass-card-light">
-                <div class="stat-value">66-79%</div>
+                <div class="stat-value">63-75%</div>
                 <div class="stat-label">Cost Savings</div>
             </div>
             <div class="stat-item glass-card-light">
@@ -102,9 +102,9 @@
                         </tr>
                         <tr>
                             <td>Vital Signs Monitor</td>
-                            <td>₹1,500</td>
+                            <td>₹1,950</td>
                             <td>₹5,000-8,000</td>
-                            <td style="color: var(--accent-green);">70-81%</td>
+                            <td style="color: var(--accent-green);">61-76%</td>
                         </tr>
                         <tr>
                             <td>AI Triage Integration</td>
@@ -122,9 +122,9 @@
                     <tfoot>
                         <tr class="total">
                             <td><strong>Total Cost</strong></td>
-                            <td><strong>₹2,500</strong></td>
+                            <td><strong>₹2,950</strong></td>
                             <td><strong>₹8,000-12,000</strong></td>
-                            <td style="color: var(--accent-green);"><strong>66-79%</strong></td>
+                            <td style="color: var(--accent-green);"><strong>63-75%</strong></td>
                         </tr>
                     </tfoot>
                 </table>
@@ -140,7 +140,7 @@
             
             <div class="metrics-grid">
                 <div class="metric-card glass-card-light">
-                    <div class="metric-value green">1:186.6</div>
+                    <div class="metric-value green">1:158.0</div>
                     <div class="metric-label">Overall ROI</div>
                     <div class="metric-detail">Per rupee invested</div>
                 </div>
@@ -164,18 +164,21 @@
             <div class="glass-card-light" style="margin-top: var(--space-2xl); padding: var(--space-xl);">
                 <h4 style="margin-bottom: var(--space-lg);">ROI Calculation Methodology</h4>
                 <div class="code-block">
-<span class="comment">// Lives saved calculation</span>
+<span class="comment">// Lives saved calculation (simplified model)</span>
 <span class="keyword">const</span> traumaDeaths = <span class="number">1500000</span>; <span class="comment">// Annual trauma deaths in India</span>
 <span class="keyword">const</span> prehospitalDeaths = traumaDeaths * <span class="number">0.72</span>; <span class="comment">// 72% before hospital</span>
 <span class="keyword">const</span> preventableRate = <span class="number">0.311</span>; <span class="comment">// 31.1% preventable</span>
 <span class="keyword">const</span> kitCoverage = <span class="number">10000</span> / <span class="number">1000000</span>; <span class="comment">// 10,000 kits for 1M population</span>
 
 <span class="keyword">const</span> livesSaved = prehospitalDeaths * preventableRate * kitCoverage;
-<span class="comment">// Result: ~3,110 lives saved annually</span>
+<span class="comment">// Result: ~3,359 lives saved annually</span>
 
-<span class="keyword">const</span> economicValue = livesSaved * <span class="number">140000</span>; <span class="comment">// ₹1.4L per life</span>
-<span class="keyword">const</span> investment = <span class="number">10000</span> * <span class="number">2500</span>; <span class="comment">// ₹2.5Cr investment</span>
-<span class="keyword">const</span> roi = economicValue / investment; <span class="comment">// 186.6x return</span>
+<span class="comment">// Economic value includes direct + indirect benefits</span>
+<span class="keyword">const</span> directValue = livesSaved * <span class="number">140000</span>; <span class="comment">// ₹1.4L per life (direct)</span>
+<span class="keyword">const</span> multiplier = <span class="number">10</span>; <span class="comment">// Indirect economic benefits (healthcare savings, productivity)</span>
+<span class="keyword">const</span> totalValue = directValue * multiplier;
+<span class="keyword">const</span> investment = <span class="number">10000</span> * <span class="number">2950</span>; <span class="comment">// ₹2.95Cr investment</span>
+<span class="keyword">const</span> roi = totalValue / investment; <span class="comment">// ~158x return</span>
                 </div>
             </div>
         </section>
@@ -203,28 +206,28 @@
                         <tr>
                             <td><strong>Pilot (1 City)</strong></td>
                             <td>1,000</td>
-                            <td>₹25 Lakh</td>
+                            <td>₹29.5 Lakh</td>
                             <td>311</td>
                             <td>₹4.35 Cr</td>
                         </tr>
                         <tr>
                             <td><strong>10 Metro Cities</strong></td>
                             <td>10,000</td>
-                            <td>₹2.5 Cr</td>
+                            <td>₹2.95 Cr</td>
                             <td>3,110</td>
                             <td>₹43.5 Cr</td>
                         </tr>
                         <tr>
                             <td><strong>50 Cities</strong></td>
                             <td>50,000</td>
-                            <td>₹12.5 Cr</td>
+                            <td>₹14.75 Cr</td>
                             <td>15,550</td>
                             <td>₹217.7 Cr</td>
                         </tr>
                         <tr>
                             <td><strong>National Rollout</strong></td>
                             <td>500,000</td>
-                            <td>₹125 Cr</td>
+                            <td>₹147.5 Cr</td>
                             <td>155,500</td>
                             <td>₹2,177 Cr</td>
                         </tr>
@@ -243,7 +246,7 @@
             <div class="components-overview">
                 <div class="component-item glass-card-light">
                     <div class="component-header">
-                        <span class="component-price">₹2,500</span>
+                        <span class="component-price">₹2,950</span>
                         <span class="component-tag blue">Hardware</span>
                     </div>
                     <h3>🧰 Kit Sales</h3>
