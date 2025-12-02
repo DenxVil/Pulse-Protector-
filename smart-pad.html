@@ -12,16 +12,7 @@
     
     <base href="https://denx.me/Pulse-Protector-/">
     
-    <!-- Safari-Specific CSS Fixes -->
-    <style>
-        .glass-card-light {
-            background: rgba(255, 255, 255, 0.7);
-            -webkit-backdrop-filter: blur(12px);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        a { pointer-events: auto !important; }
-    </style>
+    <!-- Safari CSS fixes now consolidated in styles.css -->
 </head>
 <body class="light-theme">
     <header class="header light" role="banner">
@@ -34,11 +25,14 @@
                 </div>
             </div>
             <nav class="main-nav" aria-label="Main navigation">
-                <a href="./index.html" class="nav-link">Home</a>
-                <a href="./smart-kit.html" class="nav-link">Smart Kit</a>
-                <a href="./smart-pad.html" class="nav-link active">Smart Pad</a>
-                <a href="./smart-triage.html" class="nav-link">AI Triage</a>
-                <a href="./references.html" class="nav-link">References</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="smart-kit.html" class="nav-link">Smart Kit</a>
+                <a href="smart-pad.html" class="nav-link active">Smart Pad</a>
+                <a href="smart-triage.html" class="nav-link">AI Triage</a>
+                <a href="economy.html" class="nav-link">Economics</a>
+                <a href="effectiveness.html" class="nav-link">Effectiveness</a>
+                <a href="roadmap.html" class="nav-link">Roadmap</a>
+                <a href="references.html" class="nav-link">References</a>
                 <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub ↗</a>
             </nav>
         </div>
@@ -73,7 +67,7 @@
         </div>
         
         <div class="page-hero-image">
-            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/70b53ada-882c-481c-af86-2445f9f8b44d.png" alt="Smart Pad Exploded View" loading="lazy" decoding="async">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/70b53ada-882c-481c-af86-2445f9f8b44d.png" alt="Smart Pad Exploded View" loading="lazy" decoding="async" width="500" height="500">
         </div>
     </section>
 
@@ -276,56 +270,56 @@
             </div>
             
             <div style="max-width: 800px; margin: 0 auto;">
-                <table class="data-table">
+                <table class="data-table" aria-label="Pin mapping for ESP32-C3 connections">
                     <thead>
                         <tr>
-                            <th>Component</th>
-                            <th>Pin</th>
-                            <th>ESP32-C3 GPIO</th>
-                            <th>Notes</th>
+                            <th scope="col">Component</th>
+                            <th scope="col">Pin</th>
+                            <th scope="col">ESP32-C3 GPIO</th>
+                            <th scope="col">Notes</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>MAX30102</td>
+                            <td scope="row">MAX30102</td>
                             <td>SDA</td>
-                            <td>de class="code-highlight">GPIO1</code></td>
+                            <td><code class="code-highlight">GPIO1</code></td>
                             <td>I2C Data</td>
                         </tr>
                         <tr>
-                            <td>MAX30102</td>
+                            <td scope="row">MAX30102</td>
                             <td>SCL</td>
-                            <td>de class="code-highlight">GPIO0</code></td>
+                            <td><code class="code-highlight">GPIO0</code></td>
                             <td>I2C Clock</td>
                         </tr>
                         <tr>
-                            <td>MAX30102</td>
+                            <td scope="row">MAX30102</td>
                             <td>INT</td>
-                            <td>de class="code-highlight">GPIO3</code></td>
+                            <td><code class="code-highlight">GPIO3</code></td>
                             <td>Interrupt (optional)</td>
                         </tr>
                         <tr>
-                            <td>INA128 ECG</td>
+                            <td scope="row">INA128 ECG</td>
                             <td>OUTPUT</td>
-                            <td>de class="code-highlight">GPIO4</code></td>
+                            <td><code class="code-highlight">GPIO4</code></td>
                             <td>Analog signal (ADC)</td>
                         </tr>
                         <tr>
-                            <td>DS18B20</td>
+                            <td scope="row">DS18B20</td>
                             <td>DQ</td>
-                            <td>de class="code-highlight">GPIO5</code></td>
+                            <td><code class="code-highlight">GPIO5</code></td>
                             <td>1-Wire, 4.7kΩ pull-up</td>
                         </tr>
                         <tr>
-                            <td>Battery Monitor</td>
+                            <td scope="row">Battery Monitor</td>
                             <td>VBAT</td>
-                            <td>de class="code-highlight">GPIO6</code></td>
+                            <td><code class="code-highlight">GPIO6</code></td>
                             <td>ADC for voltage monitoring</td>
                         </tr>
                         <tr>
-                            <td>Status LED</td>
+                            <td scope="row">Status LED</td>
                             <td>LED</td>
-                            <td>de class="code-highlight">GPIO8</code></td>
+                            <td><code class="code-highlight">GPIO8</code></td>
                             <td>Built-in LED</td>
                         </tr>
                     </tbody>
@@ -341,48 +335,48 @@
             </div>
             
             <div style="max-width: 800px; margin: 0 auto;">
-                <table class="data-table">
+                <table class="data-table" aria-label="Bill of materials with component costs">
                     <thead>
                         <tr>
-                            <th>Component</th>
-                            <th>Qty</th>
-                            <th>Unit Price</th>
-                            <th>Total</th>
+                            <th scope="col">Component</th>
+                            <th scope="col">Qty</th>
+                            <th scope="col">Unit Price</th>
+                            <th scope="col">Total</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>ESP32-C3 Mini DevKit</td>
+                            <td scope="row">ESP32-C3 Mini DevKit</td>
                             <td>1</td>
                             <td>₹220</td>
                             <td>₹220</td>
                         </tr>
                         <tr>
-                            <td>MAX30102 PPG Module</td>
+                            <td scope="row">MAX30102 PPG Module</td>
                             <td>1</td>
                             <td>₹175</td>
                             <td>₹175</td>
                         </tr>
                         <tr>
-                            <td>INA128 + Discrete ECG Circuit</td>
+                            <td scope="row">INA128 + Discrete ECG Circuit</td>
                             <td>1</td>
                             <td>₹120</td>
                             <td>₹120</td>
                         </tr>
                         <tr>
-                            <td>DS18B20 Temperature Sensor</td>
+                            <td scope="row">DS18B20 Temperature Sensor</td>
                             <td>1</td>
                             <td>₹75</td>
                             <td>₹75</td>
                         </tr>
                         <tr>
-                            <td>Li-Po Battery 800mAh</td>
+                            <td scope="row">Li-Po Battery 800mAh</td>
                             <td>1</td>
                             <td>₹180</td>
                             <td>₹180</td>
                         </tr>
                         <tr>
-                            <td>TP4056 Charging Module</td>
+                            <td scope="row">TP4056 Charging Module</td>
                             <td>1</td>
                             <td>₹50</td>
                             <td>₹50</td>
@@ -499,16 +493,19 @@
                 <div class="footer-links">
                     <div class="footer-column">
                         <h4>Products</h4>
-                        <a href="./smart-kit.html">Smart Kit</a>
-                        <a href="./smart-pad.html">Smart Pad</a>
-                        <a href="./smart-triage.html">AI Triage</a>
+                        <a href="smart-kit.html">Smart Kit</a>
+                        <a href="smart-pad.html">Smart Pad</a>
+                        <a href="smart-triage.html">AI Triage</a>
                     </div>
                     <div class="footer-column">
                         <h4>Research</h4>
-                        <a href="./references.html">References</a>
+                        <a href="economy.html">Economic Impact</a>
+                        <a href="effectiveness.html">Effectiveness</a>
+                        <a href="references.html">References</a>
                     </div>
                     <div class="footer-column">
                         <h4>Project</h4>
+                        <a href="roadmap.html">Roadmap</a>
                         <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
@@ -522,12 +519,6 @@
         </div>
     </footer>
 
-    <script>
-        document.querySelectorAll('a[href]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                console.log(`🔗 Clicked: ${e.target.href}`);
-            });
-        });
-    </script>
+    <script src="navigation.js"></script>
 </body>
 </html>
