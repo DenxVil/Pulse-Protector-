@@ -3,14 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Smart Vital Monitoring Pad - ESP32-C3 based wearable multi-parameter vital signs monitor with PTT-based blood pressure estimation">
-    <meta name="keywords" content="ESP32-C3, vital signs monitor, MAX30102, INA128, ECG, SpO2, heart rate, blood pressure, PTT, pulse transit time">
-    <title>Smart Pad - PTT Blood Pressure Method | Pulse Protector</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/svg+xml" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💓</text></svg>">
-    
-    <base href="https://denx.me/Pulse-Protector-/">
-    
+    <meta name="description" content="Smart Vital Monitoring Pad - Complete sensor placement guide and calculation methodologies">
+    <title>Smart Pad - Sensor Placement & Methods | Pulse Protector</title>
     <style>
         .glass-card-light {
             background: rgba(255, 255, 255, 0.7);
@@ -18,7 +12,6 @@
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
-        a { pointer-events: auto !important; }
         .formula-box {
             background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
             border-left: 5px solid #667eea;
@@ -34,10 +27,87 @@
             border-radius: 8px;
             margin: 20px 0;
         }
+        .method-box {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+            border-left: 5px solid #4caf50;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .placement-diagram {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .body-map {
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+            background: white;
+            border-radius: 50% 50% 40% 40%;
+            height: 500px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .sensor-point {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 12px;
+        }
+        .ecg-point { background: #e74c3c; }
+        .ppg-point { background: #3498db; }
+        .temp-point { background: #f39c12; }
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        table.data-table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        table.data-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
     </style>
 </head>
 <body class="light-theme">
-    <!-- Header (same as before) -->
+    <!-- Header -->
     <header class="header light" role="banner">
         <div class="header-content">
             <div class="logo">
@@ -60,32 +130,18 @@
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="page-hero">
         <span class="badge">Open Source Hardware Project</span>
         <h1>Smart Vital Monitoring Pad</h1>
         <p class="subtitle">Wearable Multi-Parameter Vital Signs Monitor with PTT-Based Blood Pressure Estimation</p>
         
         <div class="stats-grid">
-            <div class="stat-item glass-card-light">
-                <div class="stat-value">₹1,500</div>
-                <div class="stat-label">Kit Price</div>
-            </div>
-            <div class="stat-item glass-card-light">
-                <div class="stat-value">±2%</div>
-                <div class="stat-label">SpO₂ Accuracy</div>
-            </div>
-            <div class="stat-item glass-card-light">
-                <div class="stat-value">±3 BPM</div>
-                <div class="stat-label">HR Accuracy</div>
-            </div>
-            <div class="stat-item glass-card-light">
-                <div class="stat-value">±5-10</div>
-                <div class="stat-label">BP Accuracy (mmHg)</div>
-            </div>
-            <div class="stat-item glass-card-light">
-                <div class="stat-value">8+ hrs</div>
-                <div class="stat-label">Battery Life</div>
-            </div>
+            <div class="stat-item glass-card-light"><div class="stat-value">₹1,500</div><div class="stat-label">Kit Price</div></div>
+            <div class="stat-item glass-card-light"><div class="stat-value">±2%</div><div class="stat-label">SpO₂ Accuracy</div></div>
+            <div class="stat-item glass-card-light"><div class="stat-value">±3 BPM</div><div class="stat-label">HR Accuracy</div></div>
+            <div class="stat-item glass-card-light"><div class="stat-value">±5-10</div><div class="stat-label">BP Accuracy (mmHg)</div></div>
+            <div class="stat-item glass-card-light"><div class="stat-value">8+ hrs</div><div class="stat-label">Battery Life</div></div>
         </div>
         
         <div class="page-hero-image">
@@ -94,213 +150,25 @@
     </section>
 
     <main class="container" role="main">
-        <!-- ... (previous sections: System Architecture, Body Placement, Hardware Specs, Wiring, Build Guide) ... -->
-
-        <!-- NEW SECTION: PTT Blood Pressure Method -->
+        <!-- System Architecture -->
         <section class="section fade-in">
             <div class="section-header">
-                <span class="section-badge">Innovation</span>
-                <h2 class="section-title">PTT-Based Blood Pressure Estimation</h2>
-                <p class="section-subtitle">Non-invasive BP measurement using Pulse Transit Time from ECG and PPG</p>
+                <span class="section-badge">System Design</span>
+                <h2 class="section-title">System Architecture</h2>
+                <p class="section-subtitle">End-to-end data flow from sensors to hospital dashboard</p>
             </div>
-            
             <div class="glass-card-light" style="padding: var(--space-xl); margin-bottom: var(--space-2xl);">
-                <h3 style="color: var(--accent-primary); margin-bottom: var(--space-md);">How PTT Measures Blood Pressure</h3>
-                <p style="margin-bottom: var(--space-lg);">
-                    Pulse Transit Time (PTT) is the time it takes for a pulse wave to travel between two arterial sites. 
-                    We measure PTT as the time delay between the R-peak of the ECG (cardiac electrical activity) and 
-                    the arrival of the pulse wave at the finger (detected by PPG sensor). This delay is inversely 
-                    related to blood pressure - higher BP = faster pulse wave = shorter PTT.
-                </p>
-
-                <div class="formula-box">
-                    <strong>Mathematical Relationship:</strong><br><br>
-                    PTT = t<sub>PPG</sub> - t<sub>ECG_R_peak</sub><br><br>
-                    BP ≈ α / PTT + β<br><br>
-                    Where α and β are patient-specific calibration coefficients
-                </div>
-
-                <h4 style="margin-top: var(--space-2xl); margin-bottom: var(--space-md); color: var(--text-primary);">Implementation Steps:</h4>
-                <ol style="margin-left: var(--space-lg); line-height: 1.8;">
-                    <li><strong>ECG Acquisition:</strong> Detect R-peaks using INA128 ECG front-end</li>
-                    <li><strong>PPG Acquisition:</strong> Capture pulse wave arrival via MAX30102</li>
-                    <li><strong>PTT Calculation:</strong> Measure time difference between R-peak and PPG foot</li>
-                    <li><strong>Calibration:</strong> Use reference BP measurement to determine α and β coefficients</li>
-                    <li><strong>BP Estimation:</strong> Apply coefficients to convert PTT to systolic/diastolic BP</li>
-                </ol>
-
-                <div class="reference-box">
-                    <h4>📚 Research Evidence:</h4>
-                    <p style="margin-bottom: var(--space-sm);">
-                        <strong>1. Gesche et al. (2012)</strong> - "Continuous blood pressure measurement by using the pulse transit time: comparison to intra-arterial measurement"
-                        <br><em>European Journal of Applied Physiology</em> - Demonstrated strong correlation (r=0.89) between PTT and systolic BP
-                    </p>
-                    <p style="margin-bottom: var(--space-sm);">
-                        <strong>2. Mukkamala et al. (2015)</strong> - "Toward Ubiquitous Blood Pressure Monitoring via Pulse Transit Time"
-                        <br><em>IEEE Transactions on Biomedical Engineering</em> - Established theoretical foundation for PTT-BP relationship
-                    </p>
-                    <p style="margin-bottom: var(--space-sm);">
-                        <strong>3. He et al. (2014)</strong> - "Blood pressure estimation using pulse transit time and heart rate"
-                        <br><em>Biomedical Engineering Online</em> - Proposed dual-parameter model improving accuracy
-                    </p>
-                    <p>
-                        <strong>4. Nitzan et al. (2018)</strong> - "Continuous non-invasive blood pressure monitoring using pulse transit time"
-                        <br><em>Current Cardiology Reviews</em> - Reviewed clinical validation studies
-                    </p>
-                </div>
-
-                <h4 style="margin-top: var(--space-2xl); margin-bottom: var(--space-md);">Accuracy & Limitations:</h4>
-                <div class="glass-card-light" style="padding: var(--space-lg); margin-top: var(--space-md);">
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: var(--space-sm);">
-                            <span style="color: var(--accent-green);">✅</span> <strong>Expected Accuracy:</strong> ±5-10 mmHg (clinically acceptable range)
-                        </li>
-                        <li style="margin-bottom: var(--space-sm);">
-                            <span style="color: var(--accent-orange);">⚠️</span> <strong>Calibration Required:</strong> Needs initial reference BP measurement for each patient
-                        </li>
-                        <li style="margin-bottom: var(--space-sm);">
-                            <span style="color: var(--accent-orange);">⚠️</span> <strong>Individual Variation:</strong> Coefficients vary by age, vessel stiffness, health status
-                        </li>
-                        <li style="margin-bottom: var(--space-sm);">
-                            <span style="color: var(--accent-orange);">⚠️</span> <strong>Motion Artifacts:</strong> Movement can affect ECG and PPG signal quality
-                        </li>
-                        <li>
-                            <span style="color: var(--accent-green);">✅</span> <strong>Trend Monitoring:</strong> Excellent for BP trend analysis in trauma patients
-                        </li>
-                    </ul>
-                </div>
-
-                <h4 style="margin-top: var(--space-2xl); margin-bottom: var(--space-md);">Firmware Implementation (ESP32-C3):</h4>
-                <div class="formula-box">
-                    <strong>Core Algorithm (C++ Pseudocode):</strong><br><br>
-                    <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto;">
-// Detect R-peak from ECG
-if (ecgSample > rPeakThreshold) {
-    rPeakTime = currentTime;
-}
-
-// Detect PPG foot (pulse arrival)
-if (ppgSample < ppgFootThreshold) {
-    ppgFootTime = currentTime;
-}
-
-// Calculate PTT
-ptt = ppgFootTime - rPeakTime;
-
-// Estimate BP using calibrated coefficients
-systolicBP = alphaSys / ptt + betaSys;
-diastolicBP = alphaDia / ptt + betaDia;
-
-// Smoothing filter
-bpFiltered = (0.8 * previousBP) + (0.2 * currentBP);
-                    </pre>
-                </div>
+                <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/4d09065746dcea5c95f67a6e374dd302/9fabb7bf-3891-4508-9e8c-f2475fbeb66c/afb56f12.png" alt="System Architecture Block Diagram" style="width: 100%; border-radius: var(--radius-md);" loading="lazy" decoding="async">
             </div>
         </section>
 
-        <!-- Validation Checklist (same as before) -->
+        <!-- Sensor & Electrode Placement (NEW SECTION) -->
         <section class="section fade-in">
             <div class="section-header">
-                <span class="section-badge">Quality Assurance</span>
-                <h2 class="section-title">Validation Checklist</h2>
-                <p class="section-subtitle">All functionality verified with optimized hardware design</p>
+                <span class="section-badge">Placement</span>
+                <h2 class="section-title">Sensor & Electrode Placement</h2>
+                <p class="section-subtitle">Optimal positioning for reliable signal acquisition across all vital signs</p>
             </div>
-            
-            <div class="glass-card-light" style="max-width: 600px; margin: 0 auto; padding: var(--space-xl);">
-                <ul style="list-style: none; padding: 0;">
-                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
-                        <span style="color: var(--accent-green);">✅</span> I2C communication verified (MAX30102)
-                    </li>
-                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
-                        <span style="color: var(--accent-green);">✅</span> INA128 ECG circuit operational (discrete design)
-                    </li>
-                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
-                        <span style="color: var(--accent-green);">✅</span> 1-Wire communication verified (DS18B20)
-                    </li>
-                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
-                        <span style="color: var(--accent-green);">✅</span> BLE 5.0 data transmission working
-                    </li>
-                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
-                        <span style="color: var(--accent-green);">✅</span> SpO₂ accuracy ±2% validated
-                    </li>
-                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
-                        <span style="color: var(--accent-green);">✅</span> Heart rate accuracy ±3 BPM validated
-                    </li>
-                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
-                        <span style="color: var(--accent-green);">✅</span> Temperature accuracy ±0.5°C validated
-                    </li>
-                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
-                        <span style="color: var(--accent-green);">✅</span> Battery runtime 8+ hours confirmed
-                    </li>
-                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
-                        <span style="color: var(--accent-green);">✅</span> PTT-based BP estimation verified (±5-10 mmHg)
-                    </li>
-                </ul>
-            </div>
-        </section>
 
-        <!-- Call to Action (same as before) -->
-        <section class="section" style="text-align: center;">
-            <div class="glass-card-light" style="padding: var(--space-3xl); max-width: 800px; margin: 0 auto;">
-                <h2 style="margin-bottom: var(--space-md);">Build Your Own</h2>
-                <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">
-                    All schematics, firmware, and documentation are open source. Start building your Smart Vital Monitoring Pad today.
-                </p>
-                <div class="hero-cta" style="justify-content: center;">
-                    <a href="https://github.com/DenxVil/Pulse-Protector-" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
-                        View Source Code →
-                    </a>
-                    <a href="./smart-kit.html" class="btn btn-outline btn-lg">
-                        View Full Kit
-                    </a>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer (same as before) -->
-    <footer class="footer light" role="contentinfo">
-        <div class="footer-content">
-            <div class="footer-main">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <span class="logo-icon">💓</span>
-                        <span>Pulse Protector</span>
-                    </div>
-                    <p>Research prototype for Catalyst Hackathon 2025. Professional-grade vital signs monitoring.</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Products</h4>
-                        <a href="./smart-kit.html">Smart Kit</a>
-                        <a href="./smart-pad.html">Smart Pad</a>
-                        <a href="./smart-triage.html">AI Triage</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Research</h4>
-                        <a href="./references.html">References</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Project</h4>
-                        <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="disclaimer-badge">
-                    ⚠️ Research Prototype - Not for Clinical Use
-                </div>
-                <p>Based on <a href="https://www.facs.org/" target="_blank" rel="noopener noreferrer">ATLS</a> & <a href="https://www.remm.nlm.gov/startadult.htm" target="_blank" rel="noopener noreferrer">START</a> guidelines</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        document.querySelectorAll('a[href]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                console.log(`🔗 Clicked: ${e.target.href}`);
-            });
-        });
-    </script>
-</body>
-</html>
+            <div class="placement-diagram">
+                <h3 style
