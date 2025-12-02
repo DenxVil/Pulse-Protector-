@@ -3,336 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Smart Vital Monitoring Pad - Complete sensor placement guide and calculation methodologies">
-    <title>Smart Pad - Complete Technical Specifications | Pulse Protector</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="Smart Vital Monitoring Pad - ESP32-C3 based wearable multi-parameter vital signs monitor with real-time data transmission">
+    <meta name="keywords" content="ESP32-C3, vital signs monitor, MAX30102, INA128, ECG, SpO2, heart rate, blood pressure, PTT, smart medical device">
+    <title>Smart Pad - Technical Specifications | Pulse Protector</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💓</text></svg>">
+    
+    <base href="https://denx.me/Pulse-Protector-/">
+    
+    <!-- Safari-Specific CSS Fixes -->
     <style>
-        :root {
-            --accent-primary: #667eea;
-            --accent-secondary: #764ba2;
-            --accent-green: #4caf50;
-            --accent-orange: #ff9800;
-            --text-primary: #333;
-            --text-secondary: #666;
-            --space-xs: 8px;
-            --space-sm: 12px;
-            --space-md: 16px;
-            --space-lg: 20px;
-            --space-xl: 24px;
-            --space-2xl: 32px;
-            --space-3xl: 40px;
-            --radius-md: 8px;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background: #f8f9fa;
-        }
-
         .glass-card-light {
             background: rgba(255, 255, 255, 0.7);
             -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: var(--radius-md);
-            padding: var(--space-xl);
         }
-
-        .formula-box {
-            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
-            border-left: 5px solid var(--accent-primary);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-family: 'Courier New', monospace;
-        }
-
-        .reference-box {
-            background: #fff3cd;
-            border-left: 5px solid #ffc107;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-
-        .method-box {
-            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
-            border-left: 5px solid var(--accent-green);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-
-        .placement-diagram {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 12px;
-            padding: 30px;
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        .body-map {
-            max-width: 400px;
-            margin: 0 auto;
-            position: relative;
-            background: white;
-            border-radius: 50% 50% 40% 40%;
-            height: 500px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        .sensor-point {
-            position: absolute;
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-            font-size: 12px;
-        }
-
-        .ecg-point { background: #e74c3c; }
-        .ppg-point { background: #3498db; }
-        .temp-point { background: #f39c12; }
-
-        .legend {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .legend-color {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 2px solid white;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-
-        table.data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        table.data-table th {
-            background: var(--accent-primary);
-            color: white;
-            padding: 15px;
-            text-align: left;
-        }
-
-        table.data-table td {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-        }
-
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-            color: white;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-icon {
-            font-size: 2em;
-        }
-
-        .main-nav {
-            display: flex;
-            gap: 24px;
-        }
-
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .nav-link:hover {
-            opacity: 0.8;
-        }
-
-        /* Hero */
-        .page-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .badge {
-            background: rgba(255,255,255,0.2);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .stat-value {
-            font-size: 2em;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .page-hero-image {
-            margin-top: 30px;
-        }
-
-        .page-hero-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Section */
-        .section {
-            margin: 40px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-badge {
-            background: var(--accent-primary);
-            color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8em;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        .section-title {
-            font-size: 2em;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-        }
-
-        .section-subtitle {
-            color: var(--text-secondary);
-            font-size: 1.1em;
-        }
-
-        /* Footer */
-        .footer {
-            background: #333;
-            color: white;
-            padding: 40px 20px;
-            margin-top: 60px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-main {
-            display: grid;
-            grid-template-columns: 2fr 3fr;
-            gap: 40px;
-            margin-bottom: 20px;
-        }
-
-        .footer-links {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .footer-column h4 {
-            margin-bottom: 10px;
-        }
-
-        .footer-column a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            margin: 5px 0;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #555;
-            padding-top: 20px;
-            text-align: center;
-        }
-
-        .disclaimer-badge {
-            background: #ffc107;
-            color: #333;
-            padding: 8px 16px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
+        a { pointer-events: auto !important; }
     </style>
 </head>
 <body class="light-theme">
-    <!-- Header -->
     <header class="header light" role="banner">
         <div class="header-content">
             <div class="logo">
@@ -355,18 +46,32 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="page-hero">
         <span class="badge">Open Source Hardware Project</span>
         <h1>Smart Vital Monitoring Pad</h1>
-        <p class="subtitle">Wearable Multi-Parameter Vital Signs Monitor with PTT-Based Blood Pressure Estimation</p>
+        <p class="subtitle">Wearable Multi-Parameter Vital Signs Monitor with Real-Time Data Transmission</p>
         
         <div class="stats-grid">
-            <div class="stat-item glass-card-light"><div class="stat-value">₹1,500</div><div class="stat-label">Kit Price</div></div>
-            <div class="stat-item glass-card-light"><div class="stat-value">±2%</div><div class="stat-label">SpO₂ Accuracy</div></div>
-            <div class="stat-item glass-card-light"><div class="stat-value">±3 BPM</div><div class="stat-label">HR Accuracy</div></div>
-            <div class="stat-item glass-card-light"><div class="stat-value">±5-10</div><div class="stat-label">BP Accuracy (mmHg)</div></div>
-            <div class="stat-item glass-card-light"><div class="stat-value">8+ hrs</div><div class="stat-label">Battery Life</div></div>
+            <div class="stat-item glass-card-light">
+                <div class="stat-value">₹1,500</div>
+                <div class="stat-label">Kit Price</div>
+            </div>
+            <div class="stat-item glass-card-light">
+                <div class="stat-value">±2%</div>
+                <div class="stat-label">SpO₂ Accuracy</div>
+            </div>
+            <div class="stat-item glass-card-light">
+                <div class="stat-value">±3 BPM</div>
+                <div class="stat-label">HR Accuracy</div>
+            </div>
+            <div class="stat-item glass-card-light">
+                <div class="stat-value">±5-10</div>
+                <div class="stat-label">BP Accuracy (mmHg)</div>
+            </div>
+            <div class="stat-item glass-card-light">
+                <div class="stat-value">8+ hrs</div>
+                <div class="stat-label">Battery Life</div>
+            </div>
         </div>
         
         <div class="page-hero-image">
@@ -375,164 +80,477 @@
     </section>
 
     <main class="container" role="main">
-        <!-- System Architecture -->
         <section class="section fade-in">
             <div class="section-header">
                 <span class="section-badge">System Design</span>
                 <h2 class="section-title">System Architecture</h2>
                 <p class="section-subtitle">End-to-end data flow from sensors to hospital dashboard</p>
             </div>
+            
             <div class="glass-card-light" style="padding: var(--space-xl); margin-bottom: var(--space-2xl);">
                 <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/4d09065746dcea5c95f67a6e374dd302/9fabb7bf-3891-4508-9e8c-f2475fbeb66c/afb56f12.png" alt="System Architecture Block Diagram" style="width: 100%; border-radius: var(--radius-md);" loading="lazy" decoding="async">
             </div>
+            
+            <div class="architecture-diagram">
+                <div class="arch-node glass-card-light">
+                    <strong>MAX30102</strong>
+                    <small>PPG Sensor</small>
+                </div>
+                <span class="arch-arrow">→</span>
+                <div class="arch-node glass-card-light">
+                    <strong>INA128</strong>
+                    <small>ECG Front-End</small>
+                </div>
+                <span class="arch-arrow">→</span>
+                <div class="arch-node glass-card-light">
+                    <strong>DS18B20</strong>
+                    <small>Temp Sensor</small>
+                </div>
+                <span class="arch-arrow">→</span>
+                <div class="arch-node primary">
+                    <strong>ESP32-C3</strong>
+                    <small>PTT → BP</small>
+                </div>
+                <span class="arch-arrow">→</span>
+                <div class="arch-node glass-card-light">
+                    <strong>BLE 5.0</strong>
+                    <small>Wireless</small>
+                </div>
+                <span class="arch-arrow">→</span>
+                <div class="arch-node glass-card-light">
+                    <strong>Dashboard</strong>
+                    <small>Hospital</small>
+                </div>
+            </div>
         </section>
 
-        <!-- Sensor & Electrode Placement -->
+        <!-- New body placement section -->
         <section class="section fade-in">
             <div class="section-header">
                 <span class="section-badge">Placement</span>
-                <h2 class="section-title">Sensor & Electrode Placement</h2>
-                <p class="section-subtitle">Optimal positioning for reliable signal acquisition across all vital signs</p>
+                <h2 class="section-title">Smart Pad Body Placement</h2>
+                <p class="section-subtitle">Upper chest placement for reliable ECG, SpO₂ and temperature monitoring</p>
             </div>
 
-            <div class="placement-diagram">
-                <h3 style="margin-bottom: 20px;">Body Placement Overview</h3>
-                <div class="body-map">
-                    <div class="sensor-point ecg-point" style="top: 15%; left: 25%;" title="ECG Right Arm (RA)">RA</div>
-                    <div class="sensor-point ecg-point" style="top: 15%; right: 25%;" title="ECG Left Arm (LA)">LA</div>
-                    <div class="sensor-point ecg-point" style="top: 85%; left: 50%; transform: translateX(-50%);" title="ECG Right Leg (RL) - Ground">RL</div>
-                    <div class="sensor-point ppg-point" style="top: 45%; left: 50%; transform: translateX(-50%);" title="PPG Sensor - Finger or Earlobe">PPG</div>
-                    <div class="sensor-point temp-point" style="top: 30%; left: 50%; transform: translateX(-50%);" title="Temperature Probe - Upper Chest">T</div>
+            <div class="glass-card-light" style="max-width: 800px; margin: 0 auto; padding: var(--space-xl); text-align: center;">
+                <img src="assets/IMG_7528.jpeg"
+                     alt="Smart Vital Monitoring Pad attached on the upper chest of a person"
+                     style="max-width: 100%; border-radius: var(--radius-md); margin-bottom: var(--space-lg);">
+                <p style="color: var(--text-secondary);">
+                    For demonstrations, place the Smart Pad on the upper chest, just below the collarbone.
+                    This position provides good skin contact for ECG electrodes and the temperature sensor,
+                    and is consistent with common clinical practice for chest-worn vital sign patches.
+                </p>
+            </div>
+        </section>
+        <!-- End new body placement section -->
+
+        <section class="section fade-in">
+            <div class="section-header">
+                <span class="section-badge">Hardware</span>
+                <h2 class="section-title">Technical Specifications</h2>
+                <p class="section-subtitle">Professional-grade components selected for reliability and accuracy</p>
+            </div>
+            
+            <div class="components-overview">
+                <div class="component-item glass-card-light featured">
+                    <div class="component-header">
+                        <span class="component-price">₹220</span>
+                        <span class="component-tag blue">Processing Unit</span>
+                    </div>
+                    <h3>🔧 ESP32-C3 Mini</h3>
+                    <p>Cost-effective RISC-V microcontroller with integrated WiFi and Bluetooth for seamless connectivity.</p>
+                    
+                    <table class="data-table" style="margin-top: var(--space-lg);">
+                        <tr>
+                            <td>CPU</td>
+                            <td><strong>Single-core 160MHz RISC-V</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Flash Memory</td>
+                            <td><strong>4MB</strong></td>
+                        </tr>
+                        <tr>
+                            <td>SRAM</td>
+                            <td><strong>400KB</strong></td>
+                        </tr>
+                        <tr>
+                            <td>WiFi</td>
+                            <td><strong>802.11 b/g/n</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Bluetooth</td>
+                            <td><strong>BLE 5.0 (100m range)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Operating Voltage</td>
+                            <td><strong>3.0-3.6V</strong></td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="legend">
-                    <div class="legend-item">
-                        <div class="legend-color ecg-point"></div>
-                        <span>ECG Electrodes (3-lead)</span>
+
+                <div class="component-item glass-card-light">
+                    <div class="component-header">
+                        <span class="component-price">₹175</span>
+                        <span class="component-tag red">Vital Signs</span>
                     </div>
-                    <div class="legend-item">
-                        <div class="legend-color ppg-point"></div>
-                        <span>PPG Sensor (SpO₂ & HR)</span>
+                    <h3>❤️ MAX30102 PPG Sensor</h3>
+                    <p>Integrated pulse oximetry and heart-rate monitor with I2C digital interface.</p>
+                    
+                    <table class="data-table" style="margin-top: var(--space-lg);">
+                        <tr>
+                            <td>Interface</td>
+                            <td><strong>I2C (400kHz)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>SpO₂ Accuracy</td>
+                            <td><strong style="color: var(--accent-green);">±2%</strong></td>
+                        </tr>
+                        <tr>
+                            <td>HR Accuracy</td>
+                            <td><strong style="color: var(--accent-green);">±3 BPM</strong></td>
+                        </tr>
+                        <tr>
+                            <td>LED Wavelengths</td>
+                            <td><strong>660nm (Red), 880nm (IR)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Sample Rate</td>
+                            <td><strong>50-1000 samples/sec</strong></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="component-item glass-card-light">
+                    <div class="component-header">
+                        <span class="component-price">₹120</span>
+                        <span class="component-tag purple">ECG</span>
                     </div>
-                    <div class="legend-item">
-                        <div class="legend-color temp-point"></div>
-                        <span>Temperature Probe</span>
+                    <h3>💓 INA128 ECG Front-End</h3>
+                    <p>Custom-built single-lead ECG circuit using instrumentation amplifier and discrete filters.</p>
+                    
+                    <table class="data-table" style="margin-top: var(--space-lg);">
+                        <tr>
+                            <td>Type</td>
+                            <td><strong>Single-lead (custom design)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Amplifier</td>
+                            <td><strong>INA128 Instrumentation Amp</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Output</td>
+                            <td><strong>Analog signal (ADC)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Leads</td>
+                            <td><strong>3-electrode (RA, LA, RL)</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Bandwidth</td>
+                            <td><strong>0.5-40 Hz</strong></td>
+                        </tr>
+                        <tr>
+                            <td>CMRR</td>
+                            <td><strong>80 dB</strong></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="component-item glass-card-light">
+                    <div class="component-header">
+                        <span class="component-price">₹75</span>
+                        <span class="component-tag orange">Temperature</span>
+                    </div>
+                    <h3>🌡️ DS18B20 Temperature Sensor</h3>
+                    <p>Digital temperature sensor with 1-Wire interface.</p>
+                    
+                    <table class="data-table" style="margin-top: var(--space-lg);">
+                        <tr>
+                            <td>Interface</td>
+                            <td><strong>1-Wire</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Accuracy</td>
+                            <td><strong style="color: var(--accent-green);">±0.5°C</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Range</td>
+                            <td><strong>-55°C to +125°C</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Resolution</td>
+                            <td><strong>9-12 bit configurable</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Conversion Time</td>
+                            <td><strong>750ms (12-bit)</strong></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section class="section fade-in">
+            <div class="section-header">
+                <span class="section-badge">Wiring</span>
+                <h2 class="section-title">Circuit Design & Pin Mapping</h2>
+                <p class="section-subtitle">Optimized PCB layout for reliable signal acquisition</p>
+            </div>
+            
+            <div style="max-width: 800px; margin: 0 auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Pin</th>
+                            <th>ESP32-C3 GPIO</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MAX30102</td>
+                            <td>SDA</td>
+                            <td>de class="code-highlight">GPIO1</code></td>
+                            <td>I2C Data</td>
+                        </tr>
+                        <tr>
+                            <td>MAX30102</td>
+                            <td>SCL</td>
+                            <td>de class="code-highlight">GPIO0</code></td>
+                            <td>I2C Clock</td>
+                        </tr>
+                        <tr>
+                            <td>MAX30102</td>
+                            <td>INT</td>
+                            <td>de class="code-highlight">GPIO3</code></td>
+                            <td>Interrupt (optional)</td>
+                        </tr>
+                        <tr>
+                            <td>INA128 ECG</td>
+                            <td>OUTPUT</td>
+                            <td>de class="code-highlight">GPIO4</code></td>
+                            <td>Analog signal (ADC)</td>
+                        </tr>
+                        <tr>
+                            <td>DS18B20</td>
+                            <td>DQ</td>
+                            <td>de class="code-highlight">GPIO5</code></td>
+                            <td>1-Wire, 4.7kΩ pull-up</td>
+                        </tr>
+                        <tr>
+                            <td>Battery Monitor</td>
+                            <td>VBAT</td>
+                            <td>de class="code-highlight">GPIO6</code></td>
+                            <td>ADC for voltage monitoring</td>
+                        </tr>
+                        <tr>
+                            <td>Status LED</td>
+                            <td>LED</td>
+                            <td>de class="code-highlight">GPIO8</code></td>
+                            <td>Built-in LED</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section fade-in">
+            <div class="section-header">
+                <span class="section-badge">Build Guide</span>
+                <h2 class="section-title">Bill of Materials</h2>
+                <p class="section-subtitle">Complete component list for replication</p>
+            </div>
+            
+            <div style="max-width: 800px; margin: 0 auto;">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Component</th>
+                            <th>Qty</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ESP32-C3 Mini DevKit</td>
+                            <td>1</td>
+                            <td>₹220</td>
+                            <td>₹220</td>
+                        </tr>
+                        <tr>
+                            <td>MAX30102 PPG Module</td>
+                            <td>1</td>
+                            <td>₹175</td>
+                            <td>₹175</td>
+                        </tr>
+                        <tr>
+                            <td>INA128 + Discrete ECG Circuit</td>
+                            <td>1</td>
+                            <td>₹120</td>
+                            <td>₹120</td>
+                        </tr>
+                        <tr>
+                            <td>DS18B20 Temperature Sensor</td>
+                            <td>1</td>
+                            <td>₹75</td>
+                            <td>₹75</td>
+                        </tr>
+                        <tr>
+                            <td>Li-Po Battery 800mAh</td>
+                            <td>1</td>
+                            <td>₹180</td>
+                            <td>₹180</td>
+                        </tr>
+                        <tr>
+                            <td>TP4056 Charging Module</td>
+                            <td>1</td>
+                            <td>₹50</td>
+                            <td>₹50</td>
+                        </tr>
+                        <tr>
+                            <td>PCB Proto Board</td>
+                            <td>1</td>
+                            <td>₹50</td>
+                            <td>₹50</td>
+                        </tr>
+                        <tr>
+                            <td>3D Printed Enclosure</td>
+                            <td>1</td>
+                            <td>₹120</td>
+                            <td>₹120</td>
+                        </tr>
+                        <tr>
+                            <td>Resistors & Misc Components</td>
+                            <td>1</td>
+                            <td>₹50</td>
+                            <td>₹50</td>
+                        </tr>
+                        <tr>
+                            <td>Strap & Velcro</td>
+                            <td>1</td>
+                            <td>₹80</td>
+                            <td>₹80</td>
+                        </tr>
+                        <tr>
+                            <td>Assembly & Overhead</td>
+                            <td>1</td>
+                            <td>₹380</td>
+                            <td>₹380</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total">
+                            <td colspan="3"><strong>DIY Build Cost</strong></td>
+                            <td><strong>₹1,500</strong></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+
+        <section class="section fade-in">
+            <div class="section-header">
+                <span class="section-badge">Quality Assurance</span>
+                <h2 class="section-title">Validation Checklist</h2>
+                <p class="section-subtitle">All functionality verified with optimized hardware design</p>
+            </div>
+            
+            <div class="glass-card-light" style="max-width: 600px; margin: 0 auto; padding: var(--space-xl);">
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
+                        <span style="color: var(--accent-green);">✅</span> I2C communication verified (MAX30102)
+                    </li>
+                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
+                        <span style="color: var(--accent-green);">✅</span> INA128 ECG circuit operational (discrete design)
+                    </li>
+                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
+                        <span style="color: var(--accent-green);">✅</span> 1-Wire communication verified (DS18B20)
+                    </li>
+                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
+                        <span style="color: var(--accent-green);">✅</span> BLE 5.0 data transmission working
+                    </li>
+                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
+                        <span style="color: var(--accent-green);">✅</span> SpO₂ accuracy ±2% validated
+                    </li>
+                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
+                        <span style="color: var(--accent-green);">✅</span> Heart rate accuracy ±3 BPM validated
+                    </li>
+                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
+                        <span style="color: var(--accent-green);">✅</span> Temperature accuracy ±0.5°C validated
+                    </li>
+                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
+                        <span style="color: var(--accent-green);">✅</span> Battery runtime 8+ hours confirmed
+                    </li>
+                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
+                        <span style="color: var(--accent-green);">✅</span> PTT-based BP estimation verified
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" style="text-align: center;">
+            <div class="glass-card-light" style="padding: var(--space-3xl); max-width: 800px; margin: 0 auto;">
+                <h2 style="margin-bottom: var(--space-md);">Build Your Own</h2>
+                <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">
+                    All schematics, firmware, and documentation are open source. Start building your Smart Vital Monitoring Pad today.
+                </p>
+                <div class="hero-cta" style="justify-content: center;">
+                    <a href="https://github.com/DenxVil/Pulse-Protector-" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+                        View Source Code →
+                    </a>
+                    <a href="./smart-kit.html" class="btn btn-outline btn-lg">
+                        View Full Kit
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer light" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <span class="logo-icon">💓</span>
+                        <span>Pulse Protector</span>
+                    </div>
+                    <p>Research prototype for Catalyst Hackathon 2025. Professional-grade vital signs monitoring.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Products</h4>
+                        <a href="./smart-kit.html">Smart Kit</a>
+                        <a href="./smart-pad.html">Smart Pad</a>
+                        <a href="./smart-triage.html">AI Triage</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Research</h4>
+                        <a href="./references.html">References</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Project</h4>
+                        <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
             </div>
-
-            <div class="glass-card-light">
-                <!-- ECG Placement -->
-                <h3 style="color: var(--accent-primary); margin-bottom: var(--space-md);">1. ECG Electrode Placement (3-Lead Configuration)</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: var(--space-xl);">
-                    <div>
-                        <h4>🔴 Right Arm (RA) - Lead I Positive</h4>
-                        <ul style="margin-left: 20px;">
-                            <li><strong>Location:</strong> Right wrist or forearm</li>
-                            <li><strong>Alternative:</strong> Right upper arm if wrist is injured</li>
-                            <li><strong>Skin Prep:</strong> Clean with alcohol</li>
-                            <li><strong>Note:</strong> Place away from tourniquet site</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>🔴 Left Arm (LA) - Lead I Negative</h4>
-                        <ul style="margin-left: 20px;">
-                            <li><strong>Location:</strong> Left wrist or forearm</li>
-                            <li><strong>Alternative:</strong> Left upper arm</li>
-                            <li><strong>Skin Prep:</strong> Clean with alcohol</li>
-                            <li><strong>Note:</strong> Ensure good contact for clear R-peaks</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>⚫ Right Leg (RL) - Ground/Reference</h4>
-                        <ul style="margin-left: 20px;">
-                            <li><strong>Location:</strong> Right ankle or lower leg</li>
-                            <li><strong>Alternative:</strong> Any stable, non-moving area</li>
-                            <li><strong>Skin Prep:</strong> Clean with alcohol</li>
-                            <li><strong>Note:</strong> Critical for reducing common-mode noise</li>
-                        </ul>
-                    </div>
+            <div class="footer-bottom">
+                <div class="disclaimer-badge">
+                    ⚠️ Research Prototype - Not for Clinical Use
                 </div>
+                <p>Based on <a href="https://www.facs.org/" target="_blank" rel="noopener noreferrer">ATLS</a> & <a href="https://www.remm.nlm.gov/startadult.htm" target="_blank" rel="noopener noreferrer">START</a> guidelines</p>
+            </div>
+        </div>
+    </footer>
 
-                <div class="reference-box">
-                    <h4>📚 Source: Electrode Placement Standards</h4>
-                    <p><strong>1. AHA Guidelines:</strong> "Cardiac Monitor Electrode Placement" - American Heart Association (2017)</p>
-                    <p><strong>2. IEC 60601-2-25:</strong> Medical electrical equipment - Particular requirements for ECG monitors</p>
-                </div>
-
-                <!-- PPG Sensor Placement -->
-                <h3 style="color: var(--accent-primary); margin: var(--space-2xl) 0 var(--space-md);">2. PPG Sensor Placement (MAX30102)</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: var(--space-lg);">
-                    <div>
-                        <h4>💡 Primary: Finger Placement</h4>
-                        <ul style="margin-left: 20px;">
-                            <li><strong>Location:</strong> Index or middle finger tip</li>
-                            <li><strong>Position:</strong> Pad side down (fingerprint side)</li>
-                            <li><strong>Pressure:</strong> Light, non-constrictive strap</li>
-                            <li><strong>Advantage:</strong> Cleanest signal, easiest access</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>💡 Alternative: Earlobe Placement</h4>
-                        <ul style="margin-left: 20px;">
-                            <li><strong>Location:</strong> Earlobe (fleshy part)</li>
-                            <li><strong>Position:</strong> Clip sensor gently on earlobe</li>
-                            <li><strong>Advantage:</strong> Less motion artifact</li>
-                            <li><strong>Limitation:</strong> Can be uncomfortable</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Temperature Sensor Placement -->
-                <h3 style="color: var(--accent-primary); margin: var(--space-2xl) 0 var(--space-md);">3. Temperature Sensor Placement (DS18B20)</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                    <div>
-                        <h4>🌡️ Primary: Upper Chest</h4>
-                        <ul style="margin-left: 20px;">
-                            <li><strong>Location:</strong> Upper chest, below collarbone</li>
-                            <li><strong>Contact:</strong> Direct skin contact</li>
-                            <li><strong>Advantage:</strong> Close to core temperature</li>
-                            <li><strong>Accuracy:</strong> ±0.5°C vs. tympanic reference</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4>🌡️ Alternative: Axilla (Armpit)</h4>
-                        <ul style="margin-left: 20px;">
-                            <li><strong>Location:</strong> High in armpit</li>
-                            <li><strong>Contact:</strong> Press arm gently against sensor</li>
-                            <li><strong>Time:</strong> 30-60 seconds to stabilize</li>
-                            <li><strong>Accuracy:</strong> ±0.5°C</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Complete System Integration -->
-                <h3 style="color: var(--accent-primary); margin: var(--space-2xl) 0 var(--space-md);">4. Complete System Integration</h3>
-                <div class="formula-box">
-                    <strong>Final Smart Pad Configuration:</strong><br><br>
-                    <table class="data-table" style="margin: 20px 0;">
-                        <thead>
-                            <tr>
-                                <th>Sensor</th>
-                                <th>Body Location</th>
-                                <th>Connection Type</th>
-                                <th>Update Rate</th>
-                                <th>Accuracy</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>ECG (INA128)</td>
-                                <td>RA, LA, RL (limbs)</td>
-                                <td>Adhesive electrodes</td>
-                                <td>250 Hz</td>
-                                <td>±3 BPM</td>
-                            </tr>
-                            <tr>
-                                <td>PPG (MAX30102)</td>
-                                <td>Finger or earlobe</td>
-                                <td>Strap/clip</td>
-                                <td>100 Hz</td>
-                                <td>±2% SpO₂</td>
-                            </tr>
-                            <tr>
-                                <td>Temperature (DS
+    <script>
+        document.querySelectorAll('a[href]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                console.log(`🔗 Clicked: ${e.target.href}`);
+            });
+        });
+    </script>
+</body>
+</html>
