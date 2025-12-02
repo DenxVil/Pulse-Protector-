@@ -12,15 +12,7 @@
     
     <base href="https://denx.me/Pulse-Protector-/">
     
-    <style>
-        .glass-card-light {
-            background: rgba(255, 255, 255, 0.7);
-            -webkit-backdrop-filter: blur(12px);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        a { pointer-events: auto !important; }
-    </style>
+    <!-- Safari CSS fixes now consolidated in styles.css -->
 </head>
 <body class="light-theme">
     <header class="header light" role="banner">
@@ -33,11 +25,14 @@
                 </div>
             </div>
             <nav class="main-nav" aria-label="Main navigation">
-                <a href="./index.html" class="nav-link">Home</a>
-                <a href="./smart-kit.html" class="nav-link active">Smart Kit</a>
-                <a href="./smart-pad.html" class="nav-link">Smart Pad</a>
-                <a href="./smart-triage.html" class="nav-link">AI Triage</a>
-                <a href="./references.html" class="nav-link">References</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="smart-kit.html" class="nav-link active">Smart Kit</a>
+                <a href="smart-pad.html" class="nav-link">Smart Pad</a>
+                <a href="smart-triage.html" class="nav-link">AI Triage</a>
+                <a href="economy.html" class="nav-link">Economics</a>
+                <a href="effectiveness.html" class="nav-link">Effectiveness</a>
+                <a href="roadmap.html" class="nav-link">Roadmap</a>
+                <a href="references.html" class="nav-link">References</a>
                 <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub ↗</a>
             </nav>
         </div>
@@ -68,7 +63,7 @@
         </div>
         
         <div class="page-hero-image">
-            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dcd5a51b-d8a1-4feb-bfa1-2fdb1d991500.png" alt="Smart Kit Product Shot" loading="lazy" decoding="async">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/dcd5a51b-d8a1-4feb-bfa1-2fdb1d991500.png" alt="Smart Kit Product Shot" loading="lazy" decoding="async" width="500" height="500">
         </div>
     </section>
 
@@ -323,16 +318,19 @@
                 <div class="footer-links">
                     <div class="footer-column">
                         <h4>Products</h4>
-                        <a href="./smart-kit.html">Smart Kit</a>
-                        <a href="./smart-pad.html">Smart Pad</a>
-                        <a href="./smart-triage.html">AI Triage</a>
+                        <a href="smart-kit.html">Smart Kit</a>
+                        <a href="smart-pad.html">Smart Pad</a>
+                        <a href="smart-triage.html">AI Triage</a>
                     </div>
                     <div class="footer-column">
                         <h4>Research</h4>
-                        <a href="./references.html">References</a>
+                        <a href="economy.html">Economic Impact</a>
+                        <a href="effectiveness.html">Effectiveness</a>
+                        <a href="references.html">References</a>
                     </div>
                     <div class="footer-column">
                         <h4>Project</h4>
+                        <a href="roadmap.html">Roadmap</a>
                         <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
@@ -346,12 +344,6 @@
         </div>
     </footer>
 
-    <script>
-        document.querySelectorAll('a[href]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                console.log(`🔗 Clicked: ${e.target.href}`);
-            });
-        });
-    </script>
+    <script src="navigation.js"></script>
 </body>
 </html>

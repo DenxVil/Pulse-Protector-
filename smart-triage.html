@@ -34,6 +34,7 @@
                 <a href="effectiveness.html" class="nav-link">Effectiveness</a>
                 <a href="roadmap.html" class="nav-link">Roadmap</a>
                 <a href="references.html" class="nav-link">References</a>
+                <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub ↗</a>
             </nav>
         </div>
     </header>
@@ -64,7 +65,7 @@
         </div>
         
         <div class="page-hero-image">
-            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/776d7265-635a-4a60-a854-1a48780aeedd.png" alt="Network Map - Hospital Dashboard Integration" loading="lazy" decoding="async">
+            <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/776d7265-635a-4a60-a854-1a48780aeedd.png" alt="Network Map - Hospital Dashboard Integration" loading="lazy" decoding="async" width="600" height="400">
         </div>
     </section>
 
@@ -234,7 +235,7 @@
             
             <div class="glass-card-light" style="margin-top: var(--space-2xl); padding: var(--space-xl);">
                 <h4 style="margin-bottom: var(--space-md);">Final Score Calculation</h4>
-                <div class="code-block">
+                <pre class="code-block" role="region" aria-label="Code snippet showing triage score calculation algorithm"><code>
 <span class="comment">// Weighted composite score calculation</span>
 <span class="keyword">float</span> finalScore = 
     (cnsScore * <span class="number">0.30</span>) + 
@@ -249,7 +250,7 @@
     <span class="keyword">return</span> <span class="string">"YELLOW"</span>;
 <span class="keyword">else</span> 
     <span class="keyword">return</span> <span class="string">"GREEN"</span>;
-                </div>
+                </code></pre>
             </div>
         </section>
 

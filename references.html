@@ -13,20 +13,9 @@
     <!-- 🚨 CRITICAL: Fixes GitHub Pages subdirectory path issues -->
     <base href="https://denx.me/Pulse-Protector-/">
     
-    <!-- Safari-Specific CSS Fixes -->
+    <!-- Safari CSS fixes now consolidated in styles.css -->
     <style>
-        /* Fix Safari Glassmorphism Rendering */
-        .glass-card-light {
-            background: rgba(255, 255, 255, 0.7);
-            -webkit-backdrop-filter: blur(12px); /* Required for Safari */
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-        }
-        
-        /* Ensure all links are clickable and open securely */
-        a { pointer-events: auto !important; }
-        
-        /* Evidence Level Badges */
+        /* Evidence Level Badges - page-specific styles */
         .evidence-badge {
             font-size: 0.75rem;
             padding: 4px 10px;
@@ -61,14 +50,14 @@
                 </div>
             </div>
             <nav class="main-nav" aria-label="Main navigation">
-                <a href="./index.html" class="nav-link">Home</a>
-                <a href="./smart-kit.html" class="nav-link">Smart Kit</a>
-                <a href="./smart-pad.html" class="nav-link">Smart Pad</a>
-                <a href="./smart-triage.html" class="nav-link">AI Triage</a>
-                <a href="./economy.html" class="nav-link">Economics</a>
-                <a href="./effectiveness.html" class="nav-link">Effectiveness</a>
-                <a href="./roadmap.html" class="nav-link">Roadmap</a>
-                <a href="./references.html" class="nav-link active">References</a>
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="smart-kit.html" class="nav-link">Smart Kit</a>
+                <a href="smart-pad.html" class="nav-link">Smart Pad</a>
+                <a href="smart-triage.html" class="nav-link">AI Triage</a>
+                <a href="economy.html" class="nav-link">Economics</a>
+                <a href="effectiveness.html" class="nav-link">Effectiveness</a>
+                <a href="roadmap.html" class="nav-link">Roadmap</a>
+                <a href="references.html" class="nav-link active">References</a>
                 <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub ↗</a>
             </nav>
         </div>
