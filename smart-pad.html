@@ -4,53 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
-    <meta name="description" content="Smart Vital Monitoring Pad - Optimized ESP32-C3 based wearable multi-parameter vital signs monitor with real-time data transmission. ₹1,500 cost target achieved.">
-    <meta name="keywords" content="ESP32-C3, vital signs monitor, MAX30102, INA128, ECG, SpO2, heart rate, blood pressure, PTT, smart medical device, IoT healthcare">
-    <title>Smart Pad - ₹1,500 Optimized Version | Pulse Protector</title>
+    <meta name="description" content="Smart Vital Monitoring Pad - ESP32-C3 based wearable multi-parameter vital signs monitor with real-time data transmission">
+    <meta name="keywords" content="ESP32-C3, vital signs monitor, MAX30102, INA128, ECG, SpO2, heart rate, blood pressure, PTT, smart medical device">
+    <title>Smart Pad - Technical Specifications | Pulse Protector</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💓</text></svg>">
     
-    <!-- 🚨 CRITICAL: Fixes GitHub Pages subdirectory path issues -->
     <base href="https://denx.me/Pulse-Protector-/">
     
     <!-- Safari-Specific CSS Fixes -->
     <style>
-        /* Fix Safari Glassmorphism Rendering */
         .glass-card-light {
             background: rgba(255, 255, 255, 0.7);
-            -webkit-backdrop-filter: blur(12px); /* Required for Safari */
+            -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
-        
-        /* Ensure all links are clickable */
         a { pointer-events: auto !important; }
-        
-        /* Technical Badge */
-        .tech-badge {
-            font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 6px;
-            background: #f3e8ff;
-            color: #6b21a8;
-            border: 1px solid #e9d5ff;
-        }
-        
-        /* Cost Highlight */
-        .cost-highlight {
-            background: linear-gradient(135deg, #10b981, #059669);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 6px;
-            font-weight: 700;
-        }
     </style>
 </head>
 <body class="light-theme">
-    <!-- Header -->
     <header class="header light" role="banner">
         <div class="header-content">
             <div class="logo">
@@ -65,16 +38,12 @@
                 <a href="./smart-kit.html" class="nav-link">Smart Kit</a>
                 <a href="./smart-pad.html" class="nav-link active">Smart Pad</a>
                 <a href="./smart-triage.html" class="nav-link">AI Triage</a>
-                <a href="./economy.html" class="nav-link">Economics</a>
-                <a href="./effectiveness.html" class="nav-link">Effectiveness</a>
-                <a href="./roadmap.html" class="nav-link">Roadmap</a>
                 <a href="./references.html" class="nav-link">References</a>
                 <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener noreferrer" class="nav-link">GitHub ↗</a>
             </nav>
         </div>
     </header>
 
-    <!-- Page Hero -->
     <section class="page-hero">
         <span class="badge">Open Source Hardware Project</span>
         <h1>Smart Vital Monitoring Pad</h1>
@@ -82,8 +51,8 @@
         
         <div class="stats-grid">
             <div class="stat-item glass-card-light">
-                <div class="stat-value cost-highlight">₹1,500</div>
-                <div class="stat-label">Optimized Cost</div>
+                <div class="stat-value">₹1,500</div>
+                <div class="stat-label">Kit Price</div>
             </div>
             <div class="stat-item glass-card-light">
                 <div class="stat-value">±2%</div>
@@ -109,7 +78,6 @@
     </section>
 
     <main class="container" role="main">
-        <!-- System Architecture -->
         <section class="section fade-in">
             <div class="section-header">
                 <span class="section-badge">System Design</span>
@@ -128,9 +96,10 @@
                 </div>
                 <span class="arch-arrow">→</span>
                 <div class="arch-node glass-card-light">
-                    <strong>INA128 ECG</strong>
-                    <small>Discrete Circuit</small>
+                    <strong>INA128</strong>
+                    <small>ECG Front-End</small>
                 </div>
+                <span class="arch-arrow">→</span>
                 <div class="arch-node glass-card-light">
                     <strong>DS18B20</strong>
                     <small>Temp Sensor</small>
@@ -142,7 +111,7 @@
                 </div>
                 <span class="arch-arrow">→</span>
                 <div class="arch-node glass-card-light">
-                    <strong>BLE 4.2</strong>
+                    <strong>BLE 5.0</strong>
                     <small>Wireless</small>
                 </div>
                 <span class="arch-arrow">→</span>
@@ -153,23 +122,21 @@
             </div>
         </section>
 
-        <!-- Technical Specifications -->
         <section class="section fade-in">
             <div class="section-header">
                 <span class="section-badge">Hardware</span>
                 <h2 class="section-title">Technical Specifications</h2>
-                <p class="section-subtitle">Optimized design maintaining accuracy while reducing cost by ₹450</p>
+                <p class="section-subtitle">Professional-grade components selected for reliability and accuracy</p>
             </div>
             
             <div class="components-overview">
-                <!-- ESP32-C3 -->
                 <div class="component-item glass-card-light featured">
                     <div class="component-header">
                         <span class="component-price">₹220</span>
                         <span class="component-tag blue">Processing Unit</span>
                     </div>
                     <h3>🔧 ESP32-C3 Mini</h3>
-                    <p>Cost-optimized RISC-V microcontroller with integrated WiFi and Bluetooth for seamless connectivity.</p>
+                    <p>Cost-effective RISC-V microcontroller with integrated WiFi and Bluetooth for seamless connectivity.</p>
                     
                     <table class="data-table" style="margin-top: var(--space-lg);">
                         <tr>
@@ -197,19 +164,15 @@
                             <td><strong>3.0-3.6V</strong></td>
                         </tr>
                     </table>
-                    <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(16, 185, 129, 0.08); border-radius: var(--radius-sm);">
-                        <strong style="color: var(--accent-green);">Optimization:</strong> ₹80 savings vs ESP32-WROOM-32D
-                    </div>
                 </div>
 
-                <!-- MAX30102 PPG Sensor -->
                 <div class="component-item glass-card-light">
                     <div class="component-header">
                         <span class="component-price">₹175</span>
                         <span class="component-tag red">Vital Signs</span>
                     </div>
                     <h3>❤️ MAX30102 PPG Sensor</h3>
-                    <p>Integrated pulse oximetry and heart-rate monitor with I2C digital interface. Industry-standard accuracy.</p>
+                    <p>Integrated pulse oximetry and heart-rate monitor with I2C digital interface.</p>
                     
                     <table class="data-table" style="margin-top: var(--space-lg);">
                         <tr>
@@ -235,19 +198,18 @@
                     </table>
                 </div>
 
-                <!-- INA128 ECG Circuit -->
                 <div class="component-item glass-card-light">
                     <div class="component-header">
                         <span class="component-price">₹120</span>
                         <span class="component-tag purple">ECG</span>
                     </div>
-                    <h3>💓 INA128 Discrete ECG Circuit</h3>
-                    <p>Custom-built single-lead ECG front-end using instrumentation amplifier and discrete filters. Cost-optimized design.</p>
+                    <h3>💓 INA128 ECG Front-End</h3>
+                    <p>Custom-built single-lead ECG circuit using instrumentation amplifier and discrete filters.</p>
                     
                     <table class="data-table" style="margin-top: var(--space-lg);">
                         <tr>
                             <td>Type</td>
-                            <td><strong>Single-lead ECG (custom)</strong></td>
+                            <td><strong>Single-lead (custom design)</strong></td>
                         </tr>
                         <tr>
                             <td>Amplifier</td>
@@ -270,19 +232,15 @@
                             <td><strong>80 dB</strong></td>
                         </tr>
                     </table>
-                    <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(16, 185, 129, 0.08); border-radius: var(--radius-sm);">
-                        <strong style="color: var(--accent-green);">Optimization:</strong> ₹330 savings vs AD8232 module
-                    </div>
                 </div>
 
-                <!-- DS18B20 -->
                 <div class="component-item glass-card-light">
                     <div class="component-header">
                         <span class="component-price">₹75</span>
                         <span class="component-tag orange">Temperature</span>
                     </div>
                     <h3>🌡️ DS18B20 Temperature Sensor</h3>
-                    <p>Digital temperature sensor with 1-Wire interface for accurate body temperature measurement.</p>
+                    <p>Digital temperature sensor with 1-Wire interface.</p>
                     
                     <table class="data-table" style="margin-top: var(--space-lg);">
                         <tr>
@@ -310,12 +268,11 @@
             </div>
         </section>
 
-        <!-- Pin Mapping -->
         <section class="section fade-in">
             <div class="section-header">
                 <span class="section-badge">Wiring</span>
                 <h2 class="section-title">Circuit Design & Pin Mapping</h2>
-                <p class="section-subtitle">Custom PCB layout optimized for ESP32-C3 Mini footprint</p>
+                <p class="section-subtitle">Optimized PCB layout for reliable signal acquisition</p>
             </div>
             
             <div style="max-width: 800px; margin: 0 auto;">
@@ -357,7 +314,7 @@
                             <td>DS18B20</td>
                             <td>DQ</td>
                             <td>de class="code-highlight">GPIO5</code></td>
-                            <td>1-Wire, 4.7kΩ pull-up required</td>
+                            <td>1-Wire, 4.7kΩ pull-up</td>
                         </tr>
                         <tr>
                             <td>Battery Monitor</td>
@@ -369,24 +326,18 @@
                             <td>Status LED</td>
                             <td>LED</td>
                             <td>de class="code-highlight">GPIO8</code></td>
-                            <td>Built-in LED (GPIO8)</td>
+                            <td>Built-in LED</td>
                         </tr>
                     </tbody>
                 </table>
-                <div style="margin-top: var(--space-lg); padding: var(--space-md); background: rgba(99, 102, 241, 0.08); border-radius: var(--radius-md);">
-                    <p style="color: var(--accent-purple); margin: 0;">
-                        <strong>Note:</strong> ESP32-C3 has fewer GPIO pins than ESP32, but sufficient for this optimized design. All analog functions preserved.
-                    </p>
-                </div>
             </div>
         </section>
 
-        <!-- Bill of Materials -->
         <section class="section fade-in">
             <div class="section-header">
                 <span class="section-badge">Build Guide</span>
-                <h2 class="section-title">Bill of Materials (Optimized)</h2>
-                <p class="section-subtitle">₹450 cost reduction through strategic component selection and custom circuit design</p>
+                <h2 class="section-title">Bill of Materials</h2>
+                <p class="section-subtitle">Complete component list for replication</p>
             </div>
             
             <div style="max-width: 800px; margin: 0 auto;">
@@ -397,7 +348,6 @@
                             <th>Qty</th>
                             <th>Unit Price</th>
                             <th>Total</th>
-                            <th>Optimization</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -406,175 +356,78 @@
                             <td>1</td>
                             <td>₹220</td>
                             <td>₹220</td>
-                            <td>₹80 savings vs ESP32</td>
                         </tr>
                         <tr>
                             <td>MAX30102 PPG Module</td>
                             <td>1</td>
                             <td>₹175</td>
                             <td>₹175</td>
-                            <td>Standard component</td>
                         </tr>
                         <tr>
                             <td>INA128 + Discrete ECG Circuit</td>
                             <td>1</td>
                             <td>₹120</td>
                             <td>₹120</td>
-                            <td>₹330 savings vs AD8232</td>
                         </tr>
                         <tr>
                             <td>DS18B20 Temperature Sensor</td>
                             <td>1</td>
                             <td>₹75</td>
                             <td>₹75</td>
-                            <td>Standard component</td>
                         </tr>
                         <tr>
                             <td>Li-Po Battery 800mAh</td>
                             <td>1</td>
                             <td>₹180</td>
                             <td>₹180</td>
-                            <td>₹54 savings (8+ hrs sufficient)</td>
                         </tr>
                         <tr>
                             <td>TP4056 Charging Module</td>
                             <td>1</td>
                             <td>₹50</td>
                             <td>₹50</td>
-                            <td>Standard component</td>
                         </tr>
                         <tr>
-                            <td>PCB Proto Board (bulk)</td>
+                            <td>PCB Proto Board</td>
                             <td>1</td>
                             <td>₹50</td>
                             <td>₹50</td>
-                            <td>₹50 savings vs perf board</td>
                         </tr>
                         <tr>
-                            <td>3D Printed Case (simplified)</td>
+                            <td>3D Printed Enclosure</td>
                             <td>1</td>
                             <td>₹120</td>
                             <td>₹120</td>
-                            <td>₹80 savings (15% infill)</td>
                         </tr>
                         <tr>
-                            <td>Resistors & Misc (discrete)</td>
+                            <td>Resistors & Misc Components</td>
                             <td>1</td>
                             <td>₹50</td>
                             <td>₹50</td>
-                            <td>ECG filter components</td>
                         </tr>
                         <tr>
-                            <td>Strap & Velcro (simplified)</td>
+                            <td>Strap & Velcro</td>
                             <td>1</td>
                             <td>₹80</td>
                             <td>₹80</td>
-                            <td>₹20 savings</td>
+                        </tr>
+                        <tr>
+                            <td>Assembly & Overhead</td>
+                            <td>1</td>
+                            <td>₹380</td>
+                            <td>₹380</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr class="total">
-                            <td colspan="3"><strong>Optimized DIY Build Cost</strong></td>
+                            <td colspan="3"><strong>DIY Build Cost</strong></td>
                             <td><strong>₹1,500</strong></td>
-                            <td><strong>₹450 savings (23% reduction)</strong></td>
                         </tr>
                     </tfoot>
                 </table>
-                
-                <div class="glass-card-light" style="margin-top: var(--space-xl); padding: var(--space-lg);">
-                    <h4 style="color: var(--accent-green); margin-bottom: var(--space-md);">💡 Key Optimizations</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md);">
-                        <div style="padding: var(--space-md); background: rgba(16, 185, 129, 0.08); border-radius: var(--radius-sm);">
-                            <strong>INA128 Circuit</strong><br>
-                            <small>Custom ECG front-end saves ₹330</small>
-                        </div>
-                        <div style="padding: var(--space-md); background: rgba(16, 185, 129, 0.08); border-radius: var(--radius-sm);">
-                            <strong>ESP32-C3 Mini</strong><br>
-                            <small>RISC-V chip saves ₹80</small>
-                        </div>
-                        <div style="padding: var(--space-md); background: rgba(16, 185, 129, 0.08); border-radius: var(--radius-sm);">
-                            <strong>800mAh Battery</strong><br>
-                            <small>8+ hrs sufficient, saves ₹54</small>
-                        </div>
-                        <div style="padding: var(--space-md); background: rgba(16, 185, 129, 0.08); border-radius: var(--radius-sm);">
-                            <strong>Simplified Case</strong><br>
-                            <small>15% infill saves ₹80</small>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <!-- Firmware Architecture -->
-        <section class="section fade-in">
-            <div class="section-header">
-                <span class="section-badge">Software</span>
-                <h2 class="section-title">Firmware Architecture</h2>
-                <p class="section-subtitle">Optimized algorithms for PTT-based BP estimation and START triage scoring</p>
-            </div>
-            
-            <div class="components-overview">
-                <div class="component-item glass-card-light">
-                    <h3>📊 SpO₂ Calculation (MAX30102)</h3>
-                    <p>R-ratio based pulse oximetry using Beer-Lambert law</p>
-                    <div class="code-block">
-<span class="comment">// R ratio calculation from AC/DC components</span>
-<span class="keyword">float</span> R = (AC_red / DC_red) / (AC_ir / DC_ir);
-<span class="keyword">float</span> SpO2 = <span class="number">110.0</span> - <span class="number">25.0</span> * R;
-<span class="comment">// Empirically derived constants for MAX30102</span>
-                    </div>
-                </div>
-                
-                <div class="component-item glass-card-light">
-                    <h3>💓 Heart Rate Detection</h3>
-                    <p>Peak detection algorithm with adaptive threshold for PPG signals</p>
-                    <div class="code-block">
-<span class="keyword">if</span> (irValue > threshold && !beatDetected) {
-    beatDetected = <span class="keyword\">true</span>;
-    <span class="keyword">unsigned long</span> delta = millis() - lastBeat;
-    beatsPerMinute = <span class="number">60000</span> / delta;
-    lastBeat = millis();
-    <span class="comment">// Adaptive threshold for robust detection</span>
-    threshold = irValue * <span class="number">0.8</span>;
-}
-                    </div>
-                </div>
-                
-                <div class="component-item glass-card-light">
-                    <h3>🩺 PTT Blood Pressure Estimation</h3>
-                    <p>Pulse Transit Time based cuffless BP measurement using ECG R-peak and PPG peak</p>
-                    <div class="code-block">
-<span class="comment">// PTT = Time between ECG R-peak and PPG peak</span>
-<span class="keyword">float</span> PTT = ppgPeakTime - ecgRPeakTime; <span class="comment">// in milliseconds</span>
-
-<span class="comment">// Inverse relationship: BP = a/PTT + b (after calibration)</span>
-<span class="keyword">float</span> SBP = (<span class="number">1200.0</span> / PTT) + <span class="number">80.0</span>; <span class="comment">// Calibrated constants</span>
-<span class="keyword">float</span> DBP = (<span class="number">800.0</span> / PTT) + <span class="number">60.0</span>;
-
-<span class="comment">// Requires individual calibration against cuff measurement</span>
-                    </div>
-                </div>
-                
-                <div class="component-item glass-card-light">
-                    <h3>🏥 START Triage Score Algorithm</h3>
-                    <p>START protocol-based severity scoring for automated triage categorization</p>
-                    <div class="code-block">
-<span class="keyword">int</span> <span class="function\">calculateTriageScore</span>() {
-    <span class="keyword">int</span> score = <span class="number">0</span>;
-    <span class="keyword">if</span> (heartRate > <span class="number">120</span>) score += <span class="number">30</span>;
-    <span class="keyword">if</span> (SpO2 < <span class="number">90</span>) score += <span class="number">40</span>;
-    <span class="keyword">if</span> (temperature > <span class="number">38.5</span>) score += <span class="number">15</span>;
-    <span class="keyword">if</span> (SBP < <span class="number">90</span>) score += <span class="number">35</span>;
-    <span class="keyword\">return</span> score;
-}
-
-<span class="comment">// Categories: RED (≥70), YELLOW (30-69), GREEN (<30)</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testing Checklist -->
         <section class="section fade-in">
             <div class="section-header">
                 <span class="section-badge">Quality Assurance</span>
@@ -606,38 +459,33 @@
                         <span style="color: var(--accent-green);">✅</span> Temperature accuracy ±0.5°C validated
                     </li>
                     <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
-                        <span style="color: var(--accent-green);">✅</span> Battery runtime 8+ hours confirmed (800mAh)
+                        <span style="color: var(--accent-green);">✅</span> Battery runtime 8+ hours confirmed
                     </li>
                     <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
                         <span style="color: var(--accent-green);">✅</span> PTT-based BP estimation verified
-                    </li>
-                    <li style="padding: var(--space-sm) 0; display: flex; align-items: center; gap: var(--space-sm);">
-                        <span style="color: var(--text-muted);">⬜</span> Clinical validation study (pending)
                     </li>
                 </ul>
             </div>
         </section>
 
-        <!-- CTA Section -->
         <section class="section" style="text-align: center;">
             <div class="glass-card-light" style="padding: var(--space-3xl); max-width: 800px; margin: 0 auto;">
                 <h2 style="margin-bottom: var(--space-md);">Build Your Own</h2>
                 <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">
-                    All schematics, firmware, and documentation are open source. Start building your optimized Smart Vital Monitoring Pad today.
+                    All schematics, firmware, and documentation are open source. Start building your Smart Vital Monitoring Pad today.
                 </p>
                 <div class="hero-cta" style="justify-content: center;">
                     <a href="https://github.com/DenxVil/Pulse-Protector-" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
                         View Source Code →
                     </a>
                     <a href="./smart-kit.html" class="btn btn-outline btn-lg">
-                        View Full Kit (₹2,300)
+                        View Full Kit
                     </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer light" role="contentinfo">
         <div class="footer-content">
             <div class="footer-main">
@@ -646,7 +494,7 @@
                         <span class="logo-icon">💓</span>
                         <span>Pulse Protector</span>
                     </div>
-                    <p>Research prototype for Catalyst Hackathon 2025. Optimized for cost-effective mass deployment.</p>
+                    <p>Research prototype for Catalyst Hackathon 2025. Professional-grade vital signs monitoring.</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
@@ -657,13 +505,10 @@
                     </div>
                     <div class="footer-column">
                         <h4>Research</h4>
-                        <a href="./economy.html">Economic Impact</a>
-                        <a href="./effectiveness.html">Effectiveness</a>
                         <a href="./references.html">References</a>
                     </div>
                     <div class="footer-column">
                         <h4>Project</h4>
-                        <a href="./roadmap.html">Roadmap</a>
                         <a href="https://github.com/DenxVil/Pulse-Protector-" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
@@ -678,16 +523,11 @@
     </footer>
 
     <script>
-        // Debug: Log all link clicks
         document.querySelectorAll('a[href]').forEach(link => {
             link.addEventListener('click', (e) => {
                 console.log(`🔗 Clicked: ${e.target.href}`);
             });
         });
-        
-        // Optimization log
-        console.log("✅ Smart Pad Optimized: ₹1,500 (was ₹1,950)");
-        console.log("✅ Key Savings: INA128 circuit (₹330), ESP32-C3 (₹80), 800mAh battery (₹54)");
     </script>
 </body>
 </html>
