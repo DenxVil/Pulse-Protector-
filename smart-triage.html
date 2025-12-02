@@ -115,12 +115,11 @@
                     <h4>🔴 RED - Immediate (Priority 1)</h4>
                     <p style="margin-bottom: var(--space-md); color: var(--text-secondary);">Life-threatening injuries requiring immediate intervention</p>
                     <ul>
-                        <li>Respirations &gt;30 or &lt;10/min</li>
-                        <li>Capillary refill &gt;2 seconds</li>
-                        <li>Unable to follow commands</li>
                         <li>SpO₂ &lt;90%</li>
                         <li>Systolic BP &lt;90 mmHg</li>
-                        <li>GCS ≤8</li>
+                        <li>Unable to follow commands</li>
+                        <li>Unconscious or unresponsive</li>
+                        <li>Severe active bleeding</li>
                     </ul>
                     <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(239, 68, 68, 0.1); border-radius: var(--radius-sm);">
                         <strong>Action:</strong> Immediate intervention required
@@ -130,12 +129,11 @@
                     <h4>🟡 YELLOW - Delayed (Priority 2)</h4>
                     <p style="margin-bottom: var(--space-md); color: var(--text-secondary);">Serious injuries but stable, can wait for treatment</p>
                     <ul>
-                        <li>Respirations 10-30/min</li>
-                        <li>Capillary refill ≤2 seconds</li>
-                        <li>Follows commands</li>
                         <li>SpO₂ 90-94%</li>
-                        <li>GCS 9-13</li>
+                        <li>HR 80-120 BPM</li>
+                        <li>Follows commands</li>
                         <li>Non-ambulatory</li>
+                        <li>Moderate injuries</li>
                     </ul>
                     <div style="margin-top: var(--space-md); padding: var(--space-sm); background: rgba(245, 158, 11, 0.1); border-radius: var(--radius-sm);">
                         <strong>Action:</strong> Monitor, treat when resources available
@@ -147,7 +145,6 @@
                     <ul>
                         <li>Ambulatory</li>
                         <li>Normal vital signs</li>
-                        <li>GCS 14-15</li>
                         <li>SpO₂ ≥95%</li>
                         <li>Minor injuries only</li>
                         <li>Can follow instructions</li>
@@ -161,7 +158,7 @@
             <div class="glass-card-light" style="margin-top: var(--space-2xl); padding: var(--space-xl); text-align: center;">
                 <h4 style="color: var(--text-muted); margin-bottom: var(--space-sm);">⚫ BLACK - Expectant (Priority 4)</h4>
                 <p style="color: var(--text-secondary); margin: 0;">
-                    Deceased or injuries incompatible with survival given available resources. No spontaneous respirations after airway maneuver.
+                    Deceased or injuries incompatible with survival given available resources.
                 </p>
             </div>
         </section>
@@ -180,12 +177,12 @@
                         <span class="component-price">30%</span>
                         <span class="component-tag purple">Weight</span>
                     </div>
-                    <h3>🧠 CNS Score</h3>
-                    <p>Central Nervous System assessment including GCS, pupil reactivity, and consciousness level.</p>
+                    <h3>🧠 Consciousness Score</h3>
+                    <p>Assessment of patient alertness and ability to follow commands.</p>
                     <table class="data-table" style="margin-top: var(--space-md);">
-                        <tr><td>GCS 15</td><td>100 pts</td></tr>
-                        <tr><td>GCS 9-14</td><td>50-85 pts</td></tr>
-                        <tr><td>GCS ≤8</td><td>0-40 pts</td></tr>
+                        <tr><td>Alert & Responsive</td><td>100 pts</td></tr>
+                        <tr><td>Confused/Drowsy</td><td>50-85 pts</td></tr>
+                        <tr><td>Unconscious</td><td>0-40 pts</td></tr>
                     </table>
                 </div>
                 
@@ -194,8 +191,8 @@
                         <span class="component-price">25%</span>
                         <span class="component-tag blue">Weight</span>
                     </div>
-                    <h3>💨 Respiratory Score</h3>
-                    <p>Respiratory rate, SpO₂, and breathing pattern assessment.</p>
+                    <h3>🫁 Oxygenation Score</h3>
+                    <p>SpO₂ and oxygen saturation level assessment.</p>
                     <table class="data-table" style="margin-top: var(--space-md);">
                         <tr><td>SpO₂ ≥95%</td><td>100 pts</td></tr>
                         <tr><td>SpO₂ 90-94%</td><td>55-75 pts</td></tr>
@@ -209,7 +206,7 @@
                         <span class="component-tag red">Weight</span>
                     </div>
                     <h3>❤️ Cardiovascular Score</h3>
-                    <p>Heart rate, blood pressure, capillary refill, and pulse quality.</p>
+                    <p>Heart rate, blood pressure, and perfusion status assessment.</p>
                     <table class="data-table" style="margin-top: var(--space-md);">
                         <tr><td>HR 60-100, BP normal</td><td>100 pts</td></tr>
                         <tr><td>HR &gt;100, BP borderline</td><td>50-75 pts</td></tr>
@@ -222,8 +219,8 @@
                         <span class="component-price">20%</span>
                         <span class="component-tag green">Weight</span>
                     </div>
-                    <h3>🩸 Circulation Score</h3>
-                    <p>Skin color, temperature, and estimated blood loss.</p>
+                    <h3>🩸 Perfusion Score</h3>
+                    <p>Skin color, temperature, and perfusion quality assessment.</p>
                     <table class="data-table" style="margin-top: var(--space-md);">
                         <tr><td>Normal perfusion</td><td>100 pts</td></tr>
                         <tr><td>Mild compromise</td><td>60-80 pts</td></tr>
@@ -237,18 +234,18 @@
                 <div class="code-block">
 <span class="comment">// Weighted composite score calculation</span>
 <span class="keyword">float</span> finalScore = 
-    (cnsScore * <span class="number">0.30</span>) + 
-    (respScore * <span class="number">0.25</span>) + 
-    (cardioScore * <span class="number">0.25</span>) + 
-    (circScore * <span class="number">0.20</span>);
+    (consciousnessScore * <span class="number">0.30</span>) + 
+    (oxygenationScore * <span class="number">0.25</span>) + 
+    (cardiovascularScore * <span class="number">0.25</span>) + 
+    (perfusionScore * <span class="number">0.20</span>);
 
 <span class="comment">// Triage category determination</span>
 <span class="keyword">if</span> (finalScore < <span class="number">40</span> || criticalAlerts > <span class="number">0</span>) 
-    <span class="keyword">return</span> <span class="string">"RED"</span>;
-<span class="keyword">else if</span> (finalScore < <span class="number">70</span>) 
-    <span class="keyword">return</span> <span class="string">"YELLOW"</span>;
-<span class="keyword">else</span> 
-    <span class="keyword">return</span> <span class="string">"GREEN"</span>;
+    <span class="keyword\">return</span> <span class="string">\"RED\"</span>;
+<span class="keyword\">else if</span> (finalScore < <span class="number\">70</span>) 
+    <span class="keyword\">return</span> <span class="string">\"YELLOW\"</span>;
+<span class="keyword\">else</span> 
+    <span class="keyword\">return</span> <span class="string">\"GREEN\"</span>;
                 </div>
             </div>
         </section>
@@ -293,7 +290,7 @@
                             <li>Real-time vital signs display</li>
                             <li>Triage category with confidence</li>
                             <li>Estimated time of arrival</li>
-                            <li>GPS location tracking</li>
+                            <li>Patient identification</li>
                         </ul>
                     </div>
                     <div>
@@ -390,7 +387,7 @@
                         </div>
                         <span class="arch-arrow">→</span>
                         <div class="arch-node glass-card-light">
-                            <strong>BLE 4.2</strong>
+                            <strong>BLE 5.0</strong>
                             <small>Transmit</small>
                         </div>
                         <span class="arch-arrow">→</span>
@@ -448,8 +445,8 @@
                         <button class="btn btn-outline demo-profile-btn" data-profile="cardiac" onclick="selectDemoProfile('cardiac')">
                             🟡 Cardiac Event
                         </button>
-                        <button class="btn btn-outline demo-profile-btn" data-profile="respiratory" onclick="selectDemoProfile('respiratory')">
-                            🟡 Respiratory Distress
+                        <button class="btn btn-outline demo-profile-btn" data-profile="hypoxic" onclick="selectDemoProfile('hypoxic')">
+                            🟡 Hypoxemia
                         </button>
                     </div>
                 </div>
@@ -582,7 +579,7 @@
                     bgColor: 'rgba(245, 158, 11, 0.1)'
                 }
             },
-            respiratory: {
+            hypoxic: {
                 hr: 110,
                 spo2: 88,
                 bp: '135/85',
@@ -590,7 +587,7 @@
                 ecg: 'Sinus Tachycardia',
                 triage: {
                     code: 'YELLOW',
-                    name: 'Delayed - Respiratory Compromise',
+                    name: 'Delayed - Hypoxemia',
                     desc: 'Hypoxemia with tachycardia and fever. Supplemental oxygen required. Monitor for deterioration to RED category.',
                     color: 'var(--accent-orange)',
                     bgColor: 'rgba(245, 158, 11, 0.1)'
